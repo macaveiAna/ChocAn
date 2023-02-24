@@ -1,4 +1,4 @@
-# Developers Ana, (write your names!)
+# Developers Ana, Pooja, (write your names!)
 # CS314 Group 2
 #
 
