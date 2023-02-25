@@ -1,4 +1,4 @@
-# ChocAn
+#ChocAn
 CS 314 group project
 
 Members pay a monthly fee to ChocAn.  
