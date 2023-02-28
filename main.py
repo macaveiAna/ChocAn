@@ -1,4 +1,4 @@
-# Developers Ana, Pooja, Melissa, Emma, Mahad (write your names!)
+# Developers Ana, Pooja, Melissa, Emma, Mahad
 # CS314 Group 2
 #
 
