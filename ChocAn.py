@@ -47,8 +47,10 @@ class Member:
         self.member_id = input("Please enter your 9 digit member ID: ")
         print("\n\n")
         
-    #function to compare what is in the file
         
+        
+    #function to compare what is in the file
+    
 
 class Services:
     pass
