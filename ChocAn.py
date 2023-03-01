@@ -41,7 +41,7 @@ class Member:
         
     #first check in main function if member already exits
     def add_member(self, member_id, member_name):
-        with open("MemberDirectory.txt", "w") as file:
+        with open("MemberDirectory.txt", "a") as file:
             file.write(member_id)
             file.write(member_name)
         file.close()
@@ -50,6 +50,10 @@ class Member:
     def validate_member(self):
         self.member_id = input("Please enter your 9 digit member ID: ")
         print("\n\n")
+        self.member_name = input("Please enter your 9 digit member ID: ")
+        
+    def remove_member(self):
+        pass
         
         
         
