@@ -11,7 +11,7 @@ def main():
     member = Member()
     list = LLL()
 
-    print("Here are the existing members: \n")
+    print("\n\nHere are the existing members: \n")
     list.load()
     list.display()
     

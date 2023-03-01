@@ -34,7 +34,7 @@ class Provider:
     pass
 
 class Member:
-    
+ 
     def __init__(self):
         self.member_id = 0
         self.member_name = ""
@@ -43,6 +43,7 @@ class Member:
     def add_member(self, member_id, member_name):
         with open("MemberDirectory.txt", "w") as file:
             file.write(member_id)
+            file.write(member_name)
         file.close()
     
     #function to read in user input
