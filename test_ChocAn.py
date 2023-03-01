@@ -1,4 +1,6 @@
 from ChocAn import Terminal
+import pytest
+
 
 #Unit Test file for ChocAn functions
     
