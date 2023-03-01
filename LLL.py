@@ -48,9 +48,9 @@ class LLL:
             #self._insert(line) #pass the array into a node structure 
     '''
    
-        
-    def search(self, match):
-          return self._search(self._head, match)
+    '''
+       def search(self, match):
+              return self._search(self._head, match)
         
     #A private function to have the user search for a particular member
     def _search(self, head, match):
@@ -62,6 +62,8 @@ class LLL:
         else:
             print("This member does not exist.")
         return self._search(self._head, match)
+    '''  
+ 
     
     def _insert(self, item):
         self._head = self._append(self._head, item)

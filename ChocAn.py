@@ -31,7 +31,23 @@ class Manager:
     pass
 
 class Provider:
-    pass
+    def __init__(self):
+        self.head = None
+        
+    def search(self, match):
+              return self._search(self._head, match)
+        
+    #A private function to have the user search for a particular member
+    def _search(self, head, match):
+        
+        if head == None:
+            return False
+        if (head.equals(match)):
+            print("This member exists.")
+            return True
+        else:
+            print("This member does not exist.")
+        return self._search(self._head, match)
 
 class Member:
  
