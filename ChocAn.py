@@ -42,7 +42,7 @@ class Member:
     #first check in main function if member already exits
     def add_member(self, member_id, member_name):
         with open("MemberDirectory.txt", "w") as file:
-            file.write("member_id")
+            file.write(member_id)
         file.close()
     
     #function to read in user input

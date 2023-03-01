@@ -4,14 +4,19 @@
 
 #import ChocAn as object
 from ChocAn import *
-
+from LLL import *
 def main():
     # Creates var 'terminal' to hold Terminal object
     terminal = Terminal()
     member = Member()
+    list = LLL()
 
+    print("Here are the existing members: \n")
+    list.load()
+    list.display()
+    
     terminal.loadTerminal()
-    member.add_member(1234, "hi")
+    member.add_member("1234", "hi")
     
 
 
