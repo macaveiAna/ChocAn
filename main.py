@@ -8,9 +8,11 @@ from ChocAn import *
 def main():
     # Creates var 'terminal' to hold Terminal object
     terminal = Terminal()
+    member = Member()
 
     terminal.loadTerminal()
-
+    member.add_member(1234, "hi")
+    
 
 
 if __name__ == "__main__":
