@@ -38,11 +38,12 @@ class Member:
     def __init__(self, member_id):
         self.member_id = member_id
         
+    #first check in main function if member already exits
     def add_member(self):
         pass
     
     #function to read in user input
-    def input(self):
+    def validate_member(self):
         self.member_id = input("Please enter your 9 digit member ID: ")
         print("\n\n")
         
