@@ -28,6 +28,12 @@ class LLL:
     def __init__(self):
         self._head = None
         
+    def load(self):
+        file = open("memberdirectory.txt", "r")
+        for line in file:
+            item = line.split('|')   
+            self._insert(item) #pass the array into a node structure 
+            
     def search(self, match):
           return self._search(self._head, match)
         
@@ -41,3 +47,19 @@ class LLL:
         else:
             print("This member does not exist.")
         return self._search(self._head, match)
+    
+    def _insert(self, item):
+        self._head = self._append(self._head, item)
+        
+    def _append(self, head, item):
+        if head == None:
+            head = Node() # a new node
+            #still need to finish the rest here 
+    
+    def display_list(self, head):
+        while head != None:
+            head.display()
+            head = head.get_next()
+            
+    def display(self):
+        self.display_list(self._head)
