@@ -1,53 +1,12 @@
-
-class Terminal:
-    def __init__(self):
-        self.type = ""
-    
-    def getInitInput(self):
-        choice = int(input("> "))
-        if choice != 1 and choice != 2:
-            print("Please enter valid choice.")
-            self.getInitInput()
-        
-        return choice
-
-    def setType(self, choice):
-        if choice == 1:
-            self.type = "Provider"
-        else:
-            self.type = "Manager"
-
-        return self.type
-
-    def loadTerminal(self):
-        print("\n\nWelcome to ChocAn!\n")
-        print("Enter 1 if you are a Provider.")
-        print("Enter 2 if you are a Manager.")
-
-        choice = self.getInitInput()
-        self.setType(choice)
         
 class Manager:
     pass
 
 class Provider:
     def __init__(self):
-        self.head = None
-        
-    def search(self, match):
-              return self._search(self._head, match)
-        
-    #A private function to have the user search for a particular member
-    def _search(self, head, match):
-        
-        if head == None:
-            return False
-        if (head.equals(match)):
-            print("This member exists.")
-            return True
-        else:
-            print("This member does not exist.")
-        return self._search(self._head, match)
+        self.provider_id = 0
+        self.provider_name = ""
+    #pass
 
 class Member:
  
@@ -78,3 +37,60 @@ class Member:
 
 class Services:
     pass
+
+
+class Terminal:
+    def __init__(self):
+        self.type = ""
+    
+    def getInitInput(self):
+        choice = int(input("> "))
+        if choice != 1 and choice != 2:
+            print("Please enter valid choice.")
+            self.getInitInput()
+        
+        return choice
+
+    def setType(self, choice):
+        if choice == 1:
+            self.type = "Provider"
+        else:
+            self.type = "Manager"
+
+        return self.type
+
+    def getProviderID(self):
+        print("\nPlease enter a valid provider ID number.")
+        id = input("> ")
+
+        if len(id) != 9 or id.isnumeric() == False:
+            return getProviderID()
+        else:
+            return id
+
+    def getProviderName(self):
+        print("\nPlease enter a valid provider name.")
+        name = input("> ")
+
+        if name.isalpha() == False:
+            return getProviderName()
+        else:
+            return name
+
+    def loadTerminal(self):
+        print("\n\nWelcome to ChocAn!\n")
+        print("Enter 1 if you are a Provider.")
+        print("Enter 2 if you are a Manager.")
+
+        choice = self.getInitInput()
+        self.setType(choice)
+
+        if self.type == "Provider": # if type is provider
+            #provider code
+            provider = Provider() # dec
+            provider.provider_id = self.getProviderID()
+            provider.provider_name = self.getProviderName()
+
+
+        else: # if type is manager
+            #manager code
