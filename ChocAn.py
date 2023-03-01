@@ -1,7 +1,6 @@
 
 class Terminal:
     def __init__(self):
-        self.x = 5
         self.type = ""
     
     def getInitInput(self):
