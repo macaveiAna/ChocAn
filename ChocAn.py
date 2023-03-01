@@ -34,7 +34,20 @@ class Provider:
     pass
 
 class Member:
-    pass
+    
+    def __init__(self, member_id):
+        self.member_id = member_id
+        
+    def add_member(self):
+        pass
+    
+    #function to read in user input
+    def input(self):
+        self.member_id = input("Please enter your 9 digit member ID: ")
+        print("\n\n")
+        
+    #function to compare what is in the file
+        
 
 class Services:
     pass
