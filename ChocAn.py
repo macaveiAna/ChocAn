@@ -1,5 +1,3 @@
-#hi
-#Another Check... -Ana
 
 class Terminal:
     def __init__(self):
