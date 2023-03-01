@@ -26,3 +26,15 @@ class Terminal:
 
         choice = self.getInitInput()
         self.setType(choice)
+        
+class Manager:
+    pass
+
+class Provider:
+    pass
+
+class Member:
+    pass
+
+class Services:
+    pass
