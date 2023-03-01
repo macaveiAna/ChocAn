@@ -35,9 +35,9 @@ class Provider:
 
 class Member:
     
-    def __init__(self, member_id, member_name):
-        self.member_id = member_id
-        self.member_name = member_name
+    def __init__(self):
+        self.member_id = 0
+        self.member_name = ""
         
     #first check in main function if member already exits
     def add_member(self, member_id, member_name):
