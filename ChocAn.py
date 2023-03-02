@@ -68,7 +68,8 @@ class Terminal:
         else:
             return id
 
-    def getProviderName(self):
+    def getProviderName(self,id):
+        '''
         print("\nPlease enter a valid provider name.")
         name = input("> ")
 
@@ -76,6 +77,10 @@ class Terminal:
             return self.getProviderName()
         else:
             return name
+        '''
+        with open("Provider/ProviderList.txt",mode="r") as file:
+            if(file.read() == id):
+                return id
 
     def loadTerminal(self):
         print("\n\nWelcome to ChocAn!\n")
@@ -89,8 +94,8 @@ class Terminal:
             #provider code
             provider = Provider() # dec
             provider.provider_id = self.getProviderID()
-            provider.provider_name = self.getProviderName()
-
+            provider.provider_name = self.getProviderName(id)
+            print("Welcome ",provider.provider_name)
 
         else: # if type is manager
             #manager code
