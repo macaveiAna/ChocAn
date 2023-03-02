@@ -44,7 +44,7 @@ class Member:
             data = json.load(file)
 
         for member in data['members']:
-            if (member['MemberId'] == member_id):
+            if ((member['MemberId']) == member_id):
                 print("hello")
                 
         
