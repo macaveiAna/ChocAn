@@ -17,7 +17,8 @@ def main():
     
     terminal.loadTerminal()
     
-    member.add_member("1234", "hi")
+    #member.add_member("1234", "hi")
+    
     
 
 

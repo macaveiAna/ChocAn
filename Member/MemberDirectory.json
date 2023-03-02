@@ -1,0 +1,9 @@
+{
+    "member_details": [
+        {
+            "MemberName" : "Jesse", 
+            "MemberId" : 123456789,
+            "Status" : "Active"
+        }
+    ] 
+}
