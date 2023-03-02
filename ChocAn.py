@@ -125,7 +125,7 @@ class Terminal:
             m.member_id = self.getMemberID()
             #got member contents to print from json file
             #now we need to figure out how to check the status and
-            #charge the member depending on their status
+            #charge the member depending if they are suspended or not
             m.validate_member(m.member_id)
             '''
             if m.validate_member(m.member_id) == True:
