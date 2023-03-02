@@ -1,1 +1,9 @@
-provider name, provider id , total fees to be paid to provider
+{
+    "EFT_Data": [
+        {
+            "ProviderName": "Tim",
+            "ProviderId": "123456789",
+            "Total_fees": " "
+        }
+    ]
+}
