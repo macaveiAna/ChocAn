@@ -1,0 +1,20 @@
+{
+    "services": [
+        {
+            "serviceName": "dietitian",
+            "serviceCode": "598470",
+            "servicePrice": "$100"
+        
+        },
+        {
+            "serviceName": "internist",
+            "serviceCode": "111356",
+            "servicePrice": "$200"
+        },
+        {
+            "serviceName": "aerobics",
+            "serviceCode": "883948",
+            "servicePrice": "$50"
+        }
+    ]
+}
