@@ -1,5 +1,5 @@
 import json
-import datetime
+from datetime import date
 
 #generate different reports for provider and member
 #manager is able to suspend a member if they have not yet paid 
@@ -23,14 +23,25 @@ class Member:
         self.member_id = ""
         self.member_name = ""
      
-    '''
+   
     #first check in main function if member already exits
     def add_member(self, member_id, member_name):
-        with open("Member/MemberDirectory.txt", "a") as file:
-            file.write(member_id)
-            file.write(member_name)
-        file.close()
-    '''   
+        today = date.today()
+        #print(today)
+       
+        with open("Member/MemberDirectory.json", "r") as file:
+            data = json.load(file)
+        new_member = {
+            "MemberName": member_name, 
+            "MemberId": member_id, 
+            "Status": "Active", 
+            "last_payment": str(today)
+            }
+        data["members"].append(new_member)
+        with open("Member/MemberDirectory.json", "w") as file:
+            json.dump(data,file, indent = 4)
+        
+     
 
     
     #function to read in user input
