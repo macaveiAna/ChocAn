@@ -43,7 +43,7 @@ class Member:
             '''
             data = json.load(file)
             
-        print(data)
+        print(data['member'])
         
         #return False
     
