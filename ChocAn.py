@@ -34,7 +34,7 @@ class Member:
     
     #function to read in user input
     def validate_member(self, member_id):
-        with open("Member/MemberDirectory.json") as file:
+        with open('Member/MemberDirectory.json') as file:
             '''
             for line in file:
                 parts = line.strip().split(" ")
