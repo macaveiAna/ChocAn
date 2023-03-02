@@ -12,14 +12,14 @@ class Manager:
 
 class Provider:
     def __init__(self):
-        self.provider_id = 0
+        self.provider_id = ""
         self.provider_name = ""
     #pass
 
 class Member:
  
     def __init__(self):
-        self.member_id = 0
+        self.member_id = ""
         self.member_name = ""
      
     '''
@@ -42,9 +42,9 @@ class Member:
                     return True
             '''
             data = json.load(file)
-
+        
         for member in data['members']:
-            if ((member['MemberId']) == member_id):
+            if member['MemberId'] == member_id:
                 print("hello")
                 
         
