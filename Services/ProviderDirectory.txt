@@ -1,1 +1,3 @@
-#service name,service code, service fee
+dietitian 598470 $100         
+internist 111356 $200
+aerobics 883948 $50
