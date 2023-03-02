@@ -1,3 +1,43 @@
+        
+class Manager:
+    pass
+
+class Provider:
+    def __init__(self):
+        self.provider_id = 0
+        self.provider_name = ""
+    #pass
+
+class Member:
+ 
+    def __init__(self):
+        self.member_id = 0
+        self.member_name = ""
+        
+    #first check in main function if member already exits
+    def add_member(self, member_id, member_name):
+        with open("MemberDirectory.txt", "a") as file:
+            file.write(member_id)
+            file.write(member_name)
+        file.close()
+    
+    #function to read in user input
+    def validate_member(self):
+        self.member_id = input("Please enter your 9 digit member ID: ")
+        print("\n\n")
+        self.member_name = input("Please enter your 9 digit member ID: ")
+        
+    def remove_member(self):
+        pass
+        
+        
+        
+    #function to compare what is in the file
+    
+
+class Services:
+    pass
+
 
 class Terminal:
     def __init__(self):
@@ -19,6 +59,24 @@ class Terminal:
 
         return self.type
 
+    def getProviderID(self):
+        print("\nPlease enter a valid provider ID number.")
+        id = input("> ")
+
+        if len(id) != 9 or id.isnumeric() == False:
+            return getProviderID()
+        else:
+            return id
+
+    def getProviderName(self):
+        print("\nPlease enter a valid provider name.")
+        name = input("> ")
+
+        if name.isalpha() == False:
+            return getProviderName()
+        else:
+            return name
+
     def loadTerminal(self):
         print("\n\nWelcome to ChocAn!\n")
         print("Enter 1 if you are a Provider.")
@@ -26,35 +84,13 @@ class Terminal:
 
         choice = self.getInitInput()
         self.setType(choice)
-        
-class Manager:
-    pass
 
-class Provider:
-    pass
+        if self.type == "Provider": # if type is provider
+            #provider code
+            provider = Provider() # dec
+            provider.provider_id = self.getProviderID()
+            provider.provider_name = self.getProviderName()
 
-class Member:
- 
-    def __init__(self):
-        self.member_id = 0
-        self.member_name = ""
-        
-    #first check in main function if member already exits
-    def add_member(self, member_id, member_name):
-        with open("MemberDirectory.txt", "w") as file:
-            file.write(member_id)
-            file.write(member_name)
-        file.close()
-    
-    #function to read in user input
-    def validate_member(self):
-        self.member_id = input("Please enter your 9 digit member ID: ")
-        print("\n\n")
-        
-        
-        
-    #function to compare what is in the file
-    
 
-class Services:
-    pass
+        else: # if type is manager
+            #manager code
