@@ -69,15 +69,7 @@ class Terminal:
             return id
 
     def getProviderName(self,id):
-        '''
-        print("\nPlease enter a valid provider name.")
-        name = input("> ")
-
-        if name.isalpha() == False:
-            return self.getProviderName()
-        else:
-            return name
-        '''
+        
         with open("Provider/ProviderList.txt",mode="r") as file:
             for line in file:
                 parts = line.strip().split(" ")
@@ -97,7 +89,7 @@ class Terminal:
             #provider code
             provider = Provider() # dec
             provider.provider_id = self.getProviderID()
-            provider.provider_name = self.getProviderName(id)
+            provider.provider_name = self.getProviderName(provider.provider_id)
             print("Welcome ",provider.provider_name)
 
         else: # if type is manager
