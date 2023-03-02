@@ -64,7 +64,7 @@ class Terminal:
         id = input("> ")
 
         if len(id) != 9 or id.isnumeric() == False:
-            return getProviderID()
+            return self.getProviderID()
         else:
             return id
 
@@ -73,7 +73,7 @@ class Terminal:
         name = input("> ")
 
         if name.isalpha() == False:
-            return getProviderName()
+            return self.getProviderName()
         else:
             return name
 
@@ -94,3 +94,4 @@ class Terminal:
 
         else: # if type is manager
             #manager code
+            pass
