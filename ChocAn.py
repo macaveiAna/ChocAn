@@ -16,7 +16,7 @@ class Member:
         
     #first check in main function if member already exits
     def add_member(self, member_id, member_name):
-        with open("MemberDirectory.txt", "a") as file:
+        with open("Member/MemberDirectory.txt", "a") as file:
             file.write(member_id)
             file.write(member_name)
         file.close()
@@ -69,7 +69,7 @@ class Terminal:
             return id
 
     def getProviderName(self,id):
-        
+
         with open("Provider/ProviderList.txt",mode="r") as file:
             for line in file:
                 parts = line.strip().split(" ")
