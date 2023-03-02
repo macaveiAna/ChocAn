@@ -34,7 +34,7 @@ class Member:
     
     #function to read in user input
     def validate_member(self, member_id):
-        with open("Member/MemberDirectory.json") as file:
+        with open('Member/MemberDirectory.json') as file:
             '''
             for line in file:
                 parts = line.strip().split(" ")
@@ -42,8 +42,9 @@ class Member:
                     return True
             '''
             data = json.load(file)
-        for i in data['member_details']:
-            print(i) 
+            
+        print(data)
+        
         #return False
     
     def pay_monthly_fee(self):
@@ -122,6 +123,7 @@ class Terminal:
             print("Welcome ",provider.provider_name)
             m = Member()
             m.member_id = self.getMemberID()
+            m.validate_member(m.member_id)
             '''
             if m.validate_member(m.member_id) == True:
                 print("Validated")
