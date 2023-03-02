@@ -79,8 +79,11 @@ class Terminal:
             return name
         '''
         with open("Provider/ProviderList.txt",mode="r") as file:
-            if(file.read() == id):
-                return id
+            for line in file:
+                parts = line.strip().split(" ")
+                if parts[0] == id:
+                    return parts[1]
+        
 
     def loadTerminal(self):
         print("\n\nWelcome to ChocAn!\n")
