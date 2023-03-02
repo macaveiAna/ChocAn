@@ -72,7 +72,7 @@ class Terminal:
 
         with open("Provider/ProviderList.txt",mode="r") as file:
             for line in file:
-                parts = line.strip().split(" ")
+                parts = line.strip().split("\t\t:")
                 if parts[0] == id:
                     return parts[1]
         
