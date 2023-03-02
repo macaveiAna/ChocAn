@@ -1,4 +1,5 @@
 import json
+import datetime
 
 #generate different reports for provider and member
 #manager is able to suspend a member if they have not yet paid 
@@ -45,7 +46,10 @@ class Member:
         
         for member in data['members']:
             if member['MemberId'] == member_id:
-                print("hello")
+                status = member['Status']
+                if status == 'Suspended':
+                    return False
+
                 
         
         
