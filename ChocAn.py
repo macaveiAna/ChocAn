@@ -112,8 +112,8 @@ class Member:
     #def remove_member(self):
         #pass
         
-
-
+class Services:
+    pass
 class Provider:
     def __init__(self):
         self.provider_id = ""
@@ -141,9 +141,6 @@ class Provider:
                 self.printWelcomeMessage(name)
                 return name
                 
-        
- 
-
     def getMemberID(self):
         print("\nPlease enter a valid member ID number.")
         id = input("> ")
@@ -151,7 +148,45 @@ class Provider:
             return self.getMemberID()
         else:
             return id
+    def validateServiceName(self,name):
+        print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
+        ans = input("> ")
+        if(ans == 'y'):
+            with open("Services/ProviderDirectory.json") as file:
+                data = json.load(file)
+            for service in data['services']:
+                if service['serviceName'] == name:
+                    fees = service['servicePrice']
+                    print("Here is the total amount due: ", fees)
+                    break
+        elif(ans == 'n'):
+            print("Try again!")
+            self.load_validated()
+        else:
+            print("Invalid response!")
+               
+    def printServiceName(self,name):
+            print("Service: ", name)
+            self.validateServiceName(name)
 
+        
+    def load_validated(self):
+        print("Please enter the date the service was provided:")
+        date_service = input("> ")
+        print("Please enter service code:")
+        service_code = input("> ")
+        validServiceCode = False
+        with open("Services/ProviderDirectory.json") as file:
+            data = json.load(file)
+        for service in data['services']:
+            if service['serviceCode'] == service_code:
+                name = service['serviceName']
+                validServiceCode = True
+                self.printServiceName(name)
+                break
+        if(validServiceCode == False):
+            print("Invalid service code")
+        
     def load(self):
         self.provider_id = self.getProviderID()
         self.provider_name = self.getProviderName(self.provider_id)
@@ -167,8 +202,7 @@ class Provider:
         else:
             print("Invalid Number")
             
-class Services:
-    pass
+
 
 
 class Terminal:
