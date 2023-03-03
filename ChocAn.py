@@ -52,27 +52,22 @@ class Member:
                 if date.today() > date:
                     # suspend this account
                     member['Status'] = 'Suspended'
-                    self.printSuspended()
-                    return False
-                else:
                     return True
+                else:
+                    return False
 
         return False # default return. If trouble finding account
         
 
     
     #function to read in user input
-    def validate_member(self, member_id):
+    def validate_member(self, member_id): # Checks if member exists 
         with open('Member/MemberDirectory.json') as file:
             data = json.load(file)
         
         for member in data['members']:
             if member['MemberId'] == member_id:
-                status = member['Status']
-                if status == 'Active':
-                    return self.setIfSuspended(member_id)
-                elif status == 'Suspended':
-                    return False
+                return True
         
         return False
     
@@ -129,8 +124,11 @@ class Provider:
         var = m.validate_member(m.member_id)
         
         if var == True:
-            print("Validated")
-            # call function that does rest of work: self.load_validated()
+            if m.setIfSuspended() == True:
+                m.printSuspended()
+            else:
+                print("Validated")
+                self.load_validated()
         else:
             print("Invalid Number")
             
