@@ -51,7 +51,13 @@ class Member:
         return False # default return. If trouble finding account
         
 
-    
+    def getMemberID(self):
+        print("\nPlease enter a valid member ID number.")
+        id = input("> ")
+        if len(id) != 9 or id.isnumeric() == False:
+            return self.getMemberID()
+        else:
+            return id
     #function to read in user input
     def validate_member(self, member_id): # Checks if member exists 
         with open('Member/MemberDirectory.json') as file:

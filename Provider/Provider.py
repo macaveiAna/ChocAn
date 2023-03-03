@@ -27,13 +27,13 @@ class Provider:
                 self.printWelcomeMessage(name)
                 return name
                 
-    def getMemberID(self):
+    '''def getMemberID(self):
         print("\nPlease enter a valid member ID number.")
         id = input("> ")
         if len(id) != 9 or id.isnumeric() == False:
             return self.getMemberID()
         else:
-            return id
+            return id'''
     
     def validateServiceName(self,name):
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
@@ -88,7 +88,7 @@ class Provider:
         self.provider_id = self.getProviderID()
         self.provider_name = self.getProviderName(self.provider_id)
         m = Member()
-        m.member_id = self.getMemberID()
+        m.member_id = m.getMemberID()
         var = m.validate_member(m.member_id)
         if var == True:
             if m.isSuspended(m.member_id) == True:
