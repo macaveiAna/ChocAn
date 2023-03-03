@@ -1,5 +1,7 @@
+import datetime
 import json
-from datetime import date
+from datetime import date, timedelta
+from time import strptime
 
 #generate different reports for provider and member
 #manager is able to suspend a member if they have not yet paid 
@@ -46,10 +48,12 @@ class Member:
         
         for member in data['members']:
             if member['MemberId'] == member_id:
-                date = strptime(member["last_payment"], "%Y/%m/%d")
-                date = date + timedelta(days=30)
+                date_obj = datetime.datetime.strptime(member["last_payment"], "%Y-%m-%d")
+                #print(type(date)) #figure out how to caste a class as an object
+                date_obj = date_obj.date() + timedelta(days=30)
+                
 
-                if date.today() > date:
+                if date.today() > date_obj:
                     # suspend this account
                     member['Status'] = 'Suspended'
                     return True
@@ -95,13 +99,22 @@ class Provider:
             return self.getProviderID()
         else:
             return id
+        
+    def printWelcomeMessage(self, name):
+        print("Welcome ", name)
+        
 
     def getProviderName(self,id):
         with open("Provider/ProviderList.json",mode="r") as file:
-            for line in file:
-                parts = line.strip().split(":")
-                if parts[0] == id:
-                    return parts[1]
+            data = json.load(file)
+        for member in data['providers']:
+            if member['ProviderId'] == id:
+                name = member["ProviderName"]
+                self.printWelcomeMessage(name)
+                return name
+                
+        
+ 
 
     def getMemberID(self):
         print("\nPlease enter a valid member ID number.")
@@ -114,7 +127,6 @@ class Provider:
     def load(self):
         self.provider_id = self.getProviderID()
         self.provider_name = self.getProviderName(self.provider_id)
-        print("Welcome ", self.provider_name)
         m = Member()
         m.member_id = self.getMemberID()
         #got member contents to print from json file
@@ -124,7 +136,7 @@ class Provider:
         var = m.validate_member(m.member_id)
         
         if var == True:
-            if m.setIfSuspended() == True:
+            if m.setIfSuspended(m.member_id) == True:
                 m.printSuspended()
             else:
                 print("Validated")
