@@ -44,8 +44,7 @@ class Manager:
                 print("3.Update services")
     def load(self):
         self.menu()
-    def check_member_status(self):
-        pass
+    
 
 class Member:
  
