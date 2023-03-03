@@ -49,8 +49,9 @@ class Provider:
                     print("Here is the total amount due: ", fees)
                     break
         elif(ans == 'n'):
+            m = Member()
             print("Try again!")
-            self.load_validated()
+            m.load_validated()
         else:
             print("Invalid response!")
     
@@ -58,9 +59,8 @@ class Provider:
             print("Service: ", name)
             self.validateServiceName(name)
              
-      
-    def load_validated(self):
-        #s = Service()
+    
+    def load_validated(self):  
         print("Please enter the date the service was provided:")
         date_service = input("> ")
         print("Please enter service code:")
@@ -76,6 +76,7 @@ class Provider:
                 break
         if(validServiceCode == False):
             print("Invalid service code")
+    
         
     def load(self):
         self.provider_id = self.getProviderID()

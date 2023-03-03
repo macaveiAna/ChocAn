@@ -3,6 +3,7 @@ import datetime
 from datetime import date, timedelta
 from time import strptime
 
+
 class Member:
  
     def __init__(self):
@@ -49,7 +50,6 @@ class Member:
                     return False
 
         return False # default return. If trouble finding account
-        
 
     def getMemberID(self):
         print("\nPlease enter a valid member ID number.")
@@ -74,4 +74,4 @@ class Member:
         
     #def remove_member(self):
         #pass
-        
+   
