@@ -74,7 +74,6 @@ class Member:
         print("Fees are owed. Member suspended...")
 
     def setIfSuspended(self, member_id):
-        #today = date.today() + timedelta(days=30)
 
         with open("Member/MemberDirectory.json", "r") as file:
             data = json.load(file)
