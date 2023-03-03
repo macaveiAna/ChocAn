@@ -9,9 +9,6 @@ def main():
     # Creates var 'terminal' to hold Terminal object
     terminal = Terminal()
     terminal.loadTerminal()
-    
-    
-    
 
 if __name__ == "__main__":
     main()
