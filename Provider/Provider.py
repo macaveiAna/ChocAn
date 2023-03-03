@@ -27,13 +27,6 @@ class Provider:
                 self.printWelcomeMessage(name)
                 return name
                 
-    '''def getMemberID(self):
-        print("\nPlease enter a valid member ID number.")
-        id = input("> ")
-        if len(id) != 9 or id.isnumeric() == False:
-            return self.getMemberID()
-        else:
-            return id'''
     
     def validateServiceName(self,name):
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
