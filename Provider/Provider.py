@@ -34,6 +34,7 @@ class Provider:
             return self.getMemberID()
         else:
             return id
+    
     def validateServiceName(self,name):
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
@@ -59,13 +60,14 @@ class Provider:
             self.load_validated()
         else:
             print("Invalid response!")
-               
+    
     def printServiceName(self,name):
             print("Service: ", name)
             self.validateServiceName(name)
-
+             
       
     def load_validated(self):
+        #s = Service()
         print("Please enter the date the service was provided:")
         date_service = input("> ")
         print("Please enter service code:")

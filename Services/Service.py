@@ -1,8 +1,9 @@
-from Provider import *
+
+
 class Service:
     def __init__(self):
         pass
-    
+    '''
     def validateServiceName(self,name):
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
@@ -34,3 +35,5 @@ class Service:
     def printServiceName(self,name):
         print("Service: ", name)
         self.validateServiceName(name)
+    '''
+    
