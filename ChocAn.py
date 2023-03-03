@@ -73,7 +73,7 @@ class Member:
     def printSuspended(self):
         print("Fees are owed. Member suspended...")
 
-    def setIfSuspended(self, member_id):
+    def isSuspended(self, member_id):
 
         with open("Member/MemberDirectory.json", "r") as file:
             data = json.load(file)
@@ -112,9 +112,6 @@ class Member:
     #def remove_member(self):
         #pass
         
-        
-        
-    #function to compare what is in the file
 
 
 class Provider:
@@ -162,7 +159,7 @@ class Provider:
         m.member_id = self.getMemberID()
         var = m.validate_member(m.member_id)
         if var == True:
-            if m.setIfSuspended(m.member_id) == True:
+            if m.isSuspended(m.member_id) == True:
                 m.printSuspended()
             else:
                 print("Validated")
