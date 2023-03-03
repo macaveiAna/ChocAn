@@ -49,7 +49,6 @@ class Member:
         for member in data['members']:
             if member['MemberId'] == member_id:
                 date_obj = datetime.datetime.strptime(member["last_payment"], "%Y-%m-%d")
-                #print(type(date)) #figure out how to caste a class as an object
                 date_obj = date_obj.date() + timedelta(days=30)
                 
 
@@ -129,12 +128,7 @@ class Provider:
         self.provider_name = self.getProviderName(self.provider_id)
         m = Member()
         m.member_id = self.getMemberID()
-        #got member contents to print from json file
-        #now we need to figure out how to check the status and
-        #charge the member depending if they are suspended or not
-        
         var = m.validate_member(m.member_id)
-        
         if var == True:
             if m.setIfSuspended(m.member_id) == True:
                 m.printSuspended()
@@ -144,71 +138,6 @@ class Provider:
         else:
             print("Invalid Number")
             
-
-
-'''
-class Member:
- 
-    def __init__(self):
-        self.member_id = ""
-        self.member_name = ""
-     
-   
-    #first check in main function if member already exits
-    def add_member(self, member_id, member_name):
-        today = date.today()
-        #print(today)
-       
-        with open("Member/MemberDirectory.json", "r") as file:
-            data = json.load(file)
-        new_member = {
-            "MemberName": member_name, 
-            "MemberId": member_id, 
-            "Status": "Active", 
-            "last_payment": str(today)
-            }
-        data["members"].append(new_member)
-        with open("Member/MemberDirectory.json", "w") as file:
-            json.dump(data,file, indent = 4)
-        
-     
-
-    
-    #function to read in user input
-    def validate_member(self, member_id):
-        with open('Member/MemberDirectory.json') as file:
-            
-            for line in file:
-                parts = line.strip().split(" ")
-                if parts[0] == member_id:
-                    return True
-            
-            data = json.load(file)
-        
-        for member in data['members']:
-            if member['MemberId'] == member_id:
-                status = member['Status']
-                if status == 'Suspended':
-                    return False
-
-                
-        
-        
-        #return False
-    
-    def pay_monthly_fee(self):
-        pass
-        
-    #def remove_member(self):
-        #pass
-        
-        
-        
-    #function to compare what is in the file
-'''
-
-
-
 class Services:
     pass
 

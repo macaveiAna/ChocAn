@@ -4,19 +4,7 @@
             "MemberName": "Jesse",
             "MemberId": "123456789",
             "Status": "Active",
-            "last_payment": "2023-01-05"
-        },
-        {
-            "MemberName": "hi",
-            "MemberId": "1234",
-            "Status": "Active",
-            "last_payment": "2023-03-02"
-        },
-        {
-            "MemberName": "hi",
-            "MemberId": "1234",
-            "Status": "Active",
-            "last_payment": "2023-03-02"
-        }
+            "last_payment": "2023-03-01"
+        }    
     ]
 }
