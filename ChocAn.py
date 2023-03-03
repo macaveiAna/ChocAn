@@ -1,10 +1,13 @@
-import datetime
+'''import datetime
 import json
 from datetime import date, timedelta
-from time import strptime
+from time import strptime'''
+from Provider import *
+from Manager import *
 
 #generate different reports for provider and member
 #able to add member,delete member, same with provider and able to also do the same with services  
+'''
 class Manager:
     def __init__(self):
         pass
@@ -114,6 +117,7 @@ class Member:
         
 class Services:
     pass
+
 class Provider:
     def __init__(self):
         self.provider_id = ""
@@ -212,7 +216,7 @@ class Provider:
             print("Invalid Number")
             
 
-
+'''
 
 class Terminal:
     def __init__(self):
