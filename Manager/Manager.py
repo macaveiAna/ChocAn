@@ -48,7 +48,7 @@ class Manager:
 
 
             case 3:
-               p = Providers()
+               p = Provider.Provider()
                while True:
                 print("What do you want to do?")
                 print("1. Add provider")

@@ -2,9 +2,7 @@
 # CS314 Group 2
 #
 
-#import ChocAn as object
-#from ChocAn import *
-from ChocAn import Terminal
+from ChocAn import *
 
 def main():
     # Creates var 'terminal' to hold Terminal object

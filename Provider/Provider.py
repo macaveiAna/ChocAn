@@ -1,11 +1,11 @@
 from Member import *
+from Service import *
 import random
 import os
 from pathlib import Path
 
-from Service import *
 
-class Providers:
+class Provider:
     def __init__(self):
         self.provider_id = ""
         self.provider_name = ""
@@ -156,6 +156,7 @@ class Providers:
             self.validateServiceName(name)
     '''
     def add_comments(self):
+        p = Provider()
         print("Would you like to enter comments about the service provided? [y/n]")
         ans2 = input("> ")
         if ans2 == 'y':
