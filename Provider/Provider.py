@@ -35,7 +35,16 @@ class Provider:
         data['providers'].append(new_provider)
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file,indent= 4)
-        
+
+    def remove_provider(self):
+        id = self.getProviderID()
+        with open("Provider/ProviderList.json",mode="r") as file:
+            data = json.load(file)
+        for index,provider in enumerate(data['providers']):
+            if provider['ProviderId'] == id:
+                data['providers'].pop(index)
+        with open("Provider/ProviderList.json",mode="w") as file:
+            json.dump(data,file, indent = 4)    
     
     def getProviderID(self):
         print("\nPlease enter a valid provider ID number.")

@@ -35,7 +35,7 @@ class Manager:
                 print("1.Add provider")
                 print("2.Remove provider")
                 print("3.Update provider records")
-                p.enter_Provider_details()
+                p.remove_provider()
             case 4:
                 print("What do you want to do?")
                 print("1.Add service")
