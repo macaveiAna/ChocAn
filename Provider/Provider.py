@@ -3,6 +3,8 @@ import random
 import os
 from pathlib import Path
 
+from Service import *
+
 class Provider:
     def __init__(self):
         self.provider_id = ""
@@ -109,9 +111,9 @@ class Provider:
                 self.printWelcomeMessage(name)
                 return name
         return None
-                
     
-    #test
+    '''
+                
     def validateServiceName(self,name):
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
@@ -141,9 +143,19 @@ class Provider:
     def printServiceName(self,name):
             print("Service: ", name)
             self.validateServiceName(name)
-             
+    '''
+    def add_comments(self):
+        print("Would you like to enter comments about the service provided? [y/n]")
+        ans2 = input("> ")
+        if ans2 == 'y':
+            print("Please enter a comment (100 characters): ")
+            comment = input("> ")
+            filename = f"{p.provider_name}.json"
+            with open(filename, "w") as file:
+                json.dump(comment, file)
     
     def load_validated(self):  
+        s = Service()
         print("Please enter the date the service was provided:")
         date_service = input("> ")
         print("Please enter service code:")
@@ -155,7 +167,7 @@ class Provider:
             if service['serviceCode'] == service_code:
                 name = service['serviceName']
                 validServiceCode = True
-                self.printServiceName(name)
+                s.printServiceName(name)
                 break
         if(validServiceCode == False):
             print("Invalid service code")
@@ -179,4 +191,3 @@ class Provider:
                 self.load_validated()
         else:
             print("Invalid Number")
-            
