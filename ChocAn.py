@@ -5,7 +5,8 @@ from Manager import *
 class Terminal:
     def __init__(self):
         self.type = ""
-    
+        
+    #test
     def getInitInput(self):
         choice = int(input("> "))
         if choice != 1 and choice != 2:
@@ -13,7 +14,7 @@ class Terminal:
             self.getInitInput()
         
         return choice
-
+    
     def setType(self, choice):
         if choice == 1:
             self.type = "Provider"
@@ -22,7 +23,7 @@ class Terminal:
 
         return self.type
         
-        
+    #test  
     def loadTerminal(self):
         print("\n\nWelcome to ChocAn!\n")
         print("Enter 1 if you are a Provider.")

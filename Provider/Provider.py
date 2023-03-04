@@ -25,6 +25,7 @@ class Provider:
         self.zip = input("> ")
         self.add_provider(self.provider_name,self.provider_id)
         
+    #test
     def add_provider(self,name,id):
         with open("Provider/ProviderList.json",mode="r") as file:
             data = json.load(file)
@@ -35,7 +36,8 @@ class Provider:
         data['providers'].append(new_provider)
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file,indent= 4)
-
+            
+    #test
     def remove_provider(self):
         id = self.getProviderID()
         with open("Provider/ProviderList.json",mode="r") as file:
@@ -45,7 +47,7 @@ class Provider:
                 data['providers'].pop(index)
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
-    
+    #test
     def update_provider(self):
         pass
     
@@ -61,7 +63,7 @@ class Provider:
     def printWelcomeMessage(self, name):
         print("Welcome ", name)
         
-
+    #test
     def getProviderName(self,id):
         with open("Provider/ProviderList.json",mode="r") as file:
             data = json.load(file)
@@ -73,7 +75,7 @@ class Provider:
         return None
                 
     
-
+    #test
     def validateServiceName(self,name):
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
@@ -122,7 +124,7 @@ class Provider:
         if(validServiceCode == False):
             print("Invalid service code")
     
-        
+    #test 
     def load(self):
         self.provider_id = self.getProviderID()
         self.provider_name = self.getProviderName(self.provider_id)
