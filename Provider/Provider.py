@@ -5,7 +5,7 @@ from pathlib import Path
 
 from Service import *
 
-class Provider:
+class Providers:
     def __init__(self):
         self.provider_id = ""
         self.provider_name = ""
@@ -42,7 +42,7 @@ class Provider:
         else:
             #creates the new provider directory
             directory = f"{self.provider_name}/" #new provider directory
-            p = Path(f"ChocAn/Provider/{directory}/") #sets path to the new provider's directory
+            p = Path(f"/ChocAn/Provider/{directory}") #sets path to the new provider's directory
             p.mkdir() #makes the directory
             #contents for file that is uploaded
             provider = {
