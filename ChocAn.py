@@ -1,6 +1,6 @@
 
-from Provider import *
-from Manager import *
+from Provider import Provider
+from Manager import Manager
 
 class Terminal:
     def __init__(self):
