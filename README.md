@@ -76,10 +76,10 @@ o Service name (20 characters).
 
 Each provider who has billed ChocAn during that week receives a report, 
 sent as an e-mail attachment, containing the list of services he or she provided to 
-ChocAn members.  To simplify the task of verification, the report contains the same 
+ChocAn members. To simplify the task of verification, the report contains the same 
 information as that entered on the provider’s form, in the order that the data were 
-received by the computer.  At the end of the report is a summary including the 
-number of consultations with members and the total fee for that week.  That is, the 
+received by the computer. At the end of the report is a summary including the 
+number of consultations with members and the total fee for that week. That is, the 
 fields of the report include: 
 • Provider name (25 characters). 
 • Provider number (9 digits). 

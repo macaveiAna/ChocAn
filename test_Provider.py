@@ -80,4 +80,15 @@ def test_add_provider():
         jsondata = json.load(file)
     assert jsondata == expected_data
     os.remove(filepath)
-        
+    
+    
+#def test_getProviderName(setup):
+    #obj1.getProviderName(setup)
+    
+    #assert Provider.getProviderName(obj1.provider_name) == True
+    
+ 
+    
+    
+    
+    
