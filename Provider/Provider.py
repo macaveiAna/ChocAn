@@ -95,9 +95,8 @@ class Provider:
                     print("Here is the total amount due: ", fees)
                     break
         elif(ans == 'n'):
-            m = Member()
             print("Try again!")
-            m.load_validated()
+            self.load_validated()
         else:
             print("Invalid response!")
     
