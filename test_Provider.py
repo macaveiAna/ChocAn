@@ -33,11 +33,11 @@ def test_enter_Provider_details():
 #def test_remove_provider():
 
 def test_getProviderID():
-    obj1.getProviderID()
+    id = obj1.getProviderID()
     
-    assert len(obj1.getProviderID()) > 0 
-    assert len(obj1.getProviderID()) <= 9
-    assert obj1.getProviderID().isnumeric()
+    assert len(id) > 0 
+    assert len(id) <= 9
+    assert id.isnumeric()
     
 def test_load_validated():
     obj1.load_validated()
