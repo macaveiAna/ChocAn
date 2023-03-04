@@ -1,5 +1,7 @@
 import pytest
 import Provider
+import json
+import os
 
 obj1 = Provider.Provider()
 #when testing, please run with pytest -s to test output
@@ -37,3 +39,26 @@ def test_getProviderID():
     assert len(obj1.getProviderID()) <= 9
     assert obj1.getProviderID().isnumeric()
     
+def test_load_validated():
+    obj1.load_validated()
+    
+    #opening the json file that we are testing
+    with open("Service/ProviderDirectory.json", "r") as file:
+        #set variable to the contents of the file
+        expected_data = json.load(file)
+    #creating a new file
+    filepath = "test_file.json"
+    #opening the temporary file in write mode to...
+    with open(filepath, "w") as file:
+        #insert the contents of original file to temporary file
+        json.dump(expected_data, file)
+    #open the temporary file in read mode
+    with open(filepath, "r") as file:
+        #set variable to the contents of temporary file
+        jsondata = json.load(file)
+    #then check if the temporary file is equal to the original file
+    assert jsondata == expected_data
+    #the last statement basically removes the temporary file
+    os.remove(filepath)
+    
+        
