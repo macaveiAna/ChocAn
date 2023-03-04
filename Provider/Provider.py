@@ -59,7 +59,9 @@ class Provider:
                     "ProviderZip": self.zip,
                     "Services": [{
                         
-                    }]
+                    }],
+                    "TotalConsultations": 0,
+                    "TotalFee": "$0.00"
             }
             #Opens the path to the new folder and creates new json file for provider profile        
             with open(f"{path}/{self.provider_name}.json",mode="w") as file:   #file 
