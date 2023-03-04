@@ -3,7 +3,8 @@
 #
 
 #import ChocAn as object
-from ChocAn import *
+#from ChocAn import *
+from ChocAn import Terminal
 
 def main():
     # Creates var 'terminal' to hold Terminal object
