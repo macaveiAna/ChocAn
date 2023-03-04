@@ -34,7 +34,7 @@ class Providers:
     #test
     def add_provider(self):
         cwd = os.getcwd() #gets current working directory
-        parent_dir = "/ChocAn/Provider/" #sets relative path in variable
+        parent_dir = "Provider/" #sets relative path in variable
         
         #If provider already has a file, will print a statement that it exists
         if os.path.exists(f"{cwd}/{parent_dir}/{self.provider_name}"): 
@@ -42,8 +42,12 @@ class Providers:
         else:
             #creates the new provider directory
             directory = f"{self.provider_name}/" #new provider directory
+            '''
             p = Path(f"/ChocAn/Provider/{directory}") #sets path to the new provider's directory
-            p.mkdir() #makes the directory
+            os.makedirs(p) #makes the directory
+            '''
+            path = os.getcwd() + "/" + directory
+            os.makedirs(path)
             #contents for file that is uploaded
             provider = {
                     "ProviderName": self.provider_name,
@@ -57,13 +61,18 @@ class Providers:
                     }]
             }
             #Opens the path to the new folder and creates new json file for provider profile        
-            with open(f"{p}/{self.provider_name}.json",mode="w") as file:   #file 
+            with open(f"{path}/{self.provider_name}.json",mode="w") as file:   #file 
                json.dump(provider,file,indent= 4)
 
             #Opens the path to the Provider folder for the
             # list of providers in the json file
+            
             with open(f"{cwd}/{parent_dir}/ProviderList.json",mode="r") as file:
                 data = json.load(file)
+                '''
+            with open(f"{cwd}/{parent_dir}/ProviderList.json",mode="r") as file:
+                data = json.load(file)
+            '''
             #New provider data for the json file containing all providers in Provider folder
             new_provider = {
                 "ProviderName": self.provider_name,

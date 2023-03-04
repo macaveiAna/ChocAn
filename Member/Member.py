@@ -9,7 +9,12 @@ class Member:
     def __init__(self):
         self.member_id = ""
         self.member_name = ""
-     
+        '''
+        self.strAddr = ""
+        self.city = ""
+        self.state = ""
+        self.zip = ""
+        '''
    
     #first check in main function if member already exits
     def add_member(self, member_id, member_name):
