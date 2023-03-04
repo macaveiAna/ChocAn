@@ -27,8 +27,7 @@ def test_enter_Provider_details():
     assert obj1.zip != ""
     assert obj1.zip != None
     assert len(obj1.zip) == 5
-    
-#def test_add_provider():
+
 
 #def test_remove_provider():
 
@@ -61,4 +60,24 @@ def test_load_validated():
     #the last statement basically removes the temporary file
     os.remove(filepath)
     
+    #verify that this test works as should 
+# - group 2 was working on this while I was testing
+def test_add_provider():
+    obj1.add_provider()
+    
+    with open("Provider/ProviderList.json", mode = "r") as file:
+        expected_data = json.load(file)
+    filepath = "test_file.json"
+    new_provider = {
+        "ProviderName": obj1.provider_name,
+        "ProviderId": obj1.provider_id
+    }
+    expected_data['providers'].append(new_provider)
+    with open(filepath,"w") as file:
+        json.dump(expected_data, file)
+        
+    with open(filepath, "r") as file:
+        jsondata = json.load(file)
+    assert jsondata == expected_data
+    os.remove(filepath)
         
