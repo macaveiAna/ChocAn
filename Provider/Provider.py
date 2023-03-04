@@ -46,6 +46,9 @@ class Provider:
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
     
+    def update_provider(self):
+        pass
+    
     def getProviderID(self):
         print("\nPlease enter a valid provider ID number.")
         id = input("> ")
