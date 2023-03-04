@@ -1,21 +1,41 @@
-from ChocAn import Terminal
 import pytest
+from ChocAn import Terminal
+from Provider import Provider
 
 
 #Unit Test file for ChocAn functions
+obj1 = Provider.Provider("","","","","","")
+
+def test_enter_Provider_details():
+    obj1.enter_Provider_details()
+    
+    #check if it's not empty
+    assert obj1.provider_name != ""
+    assert obj1.provider_name != None
+    assert obj1.provider_id != ""
+    assert obj1.provider_id != None
+    assert obj1.strAddr != ""
+    assert obj1.strAddr != None
+    assert obj1.city != ""
+    assert obj1.city != None
+    assert obj1.state != ""
+    assert obj1.state != None
+    assert obj1.zip != ""
+    assert obj1.zip != None
     
 #Test the type for the terminal
 # Need to figure out how to do in one test
-def test_setType(setup):
+def test_setType(setup: Terminal):
     setup = Terminal()
     setup.setType(1)
     assert setup.type == "Provider"
 
-def test_setType2(setup):
+def test_setType2(setup: Terminal):
     setup = Terminal()
     setup.setType(2)
     assert setup.type =="Manager"
-    
+
+
 
 #def loadTerminal
 #def test_loadTerminal():
