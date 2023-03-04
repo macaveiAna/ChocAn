@@ -1,3 +1,4 @@
+from Provider import *
 #generate different reports for provider and member
 #able to add member,delete member, same with provider and able to also do the same with services  
 class Manager:
@@ -27,11 +28,14 @@ class Manager:
                 print("1.Add member")
                 print("2.Remove member")
                 print("3.Update member records")
+
             case 3:
+                p = Provider()
                 print("What do you want to do?")
                 print("1.Add provider")
                 print("2.Remove provider")
                 print("3.Update provider records")
+                p.enter_Provider_details()
             case 4:
                 print("What do you want to do?")
                 print("1.Add service")

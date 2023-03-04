@@ -1,9 +1,41 @@
 from Member import *
+import random
 
 class Provider:
     def __init__(self):
         self.provider_id = ""
         self.provider_name = ""
+        self.strAddr = ""
+        self.city = ""
+        self.state = ""
+        self.zip = ""
+    
+    def enter_Provider_details(self):
+        print("Please enter provider's name: ")
+        self.provider_name = input("> ")
+        for i in range(9):
+            self.provider_id += str(random.randint(0,9))
+        print("Please enter the Street Address: ")
+        self.strAddr = input("> ")
+        print("Please enter the City: ")
+        self.city = input("> ")
+        print("Please enter the State: ")
+        self.state= input("> ")
+        print("Please enter the zipcode: ")
+        self.zip = input("> ")
+        self.add_provider(self.provider_name,self.provider_id)
+        
+    def add_provider(self,name,id):
+        with open("Provider/ProviderList.json",mode="r") as file:
+            data = json.load(file)
+        new_provider = {
+            "ProviderName": name,
+            "ProviderId": id
+        }
+        data['providers'].append(new_provider)
+        with open("Provider/ProviderList.json",mode="w") as file:
+            json.dump(data,file,indent= 4)
+        
     
     def getProviderID(self):
         print("\nPlease enter a valid provider ID number.")
