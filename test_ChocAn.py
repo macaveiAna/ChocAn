@@ -1,11 +1,11 @@
 import pytest
 from ChocAn import Terminal
-from Provider import Provider
+import Provider
 
 
 #Unit Test file for ChocAn functions
-obj1 = Provider.Provider("","","","","","")
-
+obj1 = Provider.Provider()
+#when testing, please run with pytest -s to test output
 def test_enter_Provider_details():
     obj1.enter_Provider_details()
     
