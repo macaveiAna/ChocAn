@@ -70,8 +70,10 @@ class Provider:
                 name = member["ProviderName"]
                 self.printWelcomeMessage(name)
                 return name
+        return None
                 
     
+
     def validateServiceName(self,name):
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
@@ -85,7 +87,7 @@ class Provider:
                 with open(filename, "w") as file:
                     json.dump(comment, file)
                 
-            with open("Services/ProviderDirectory.json") as file:
+            with open("Service/ProviderDirectory.json") as file:
                 data = json.load(file)
             for service in data['services']:
                 if service['serviceName'] == name:
@@ -110,7 +112,7 @@ class Provider:
         print("Please enter service code:")
         service_code = input("> ")
         validServiceCode = False
-        with open("Services/ProviderDirectory.json") as file:
+        with open("Service/ProviderDirectory.json") as file:
             data = json.load(file)
         for service in data['services']:
             if service['serviceCode'] == service_code:
@@ -125,6 +127,10 @@ class Provider:
     def load(self):
         self.provider_id = self.getProviderID()
         self.provider_name = self.getProviderName(self.provider_id)
+        while(self.provider_name == None):
+            print("Invalid Provider Id")
+            self.provider_id = self.getProviderID()
+            self.provider_name = self.getProviderName(self.provider_id)
         m = Member()
         m.member_id = m.getMemberID()
         var = m.validate_member(m.member_id)

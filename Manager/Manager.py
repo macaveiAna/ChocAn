@@ -1,4 +1,6 @@
 from Provider import *
+from Member import *
+from Service import *
 #generate different reports for provider and member
 #able to add member,delete member, same with provider and able to also do the same with services  
 class Manager:
@@ -24,23 +26,66 @@ class Manager:
                 print("1.Member report")
                 print("2.Provider report")
             case 2:
-                print("What do you want to do?")
-                print("1.Add member")
-                print("2.Remove member")
-                print("3.Update member records")
+                m = Member()
+                
+                while True:
+                    print("What do you want to do?")
+                    print("1. Add member")
+                    print("2. Remove member")
+                    print("3. Update member records")
+                    print("Please choose an option..")
+                    response = int(input("> "))
+                    if response == 1:
+                        p.enter_Provider_details()
+                    elif response == 2:
+                        p.remove_provider()
+                    elif response == 3:
+                        p.update_provider_records()
+                    else:
+                        print("Enter a valid option!")
+                        continue  # repeat the loop until a valid option is entered
+                    break  # exit the loop once a valid option is selected     
+
 
             case 3:
-                p = Provider()
+               p = Provider()
+               while True:
                 print("What do you want to do?")
-                print("1.Add provider")
-                print("2.Remove provider")
-                print("3.Update provider records")
-                p.remove_provider()
+                print("1. Add provider")
+                print("2. Remove provider")
+                print("3. Update provider records")
+                print("Please choose an option..")
+                response = int(input("> "))
+                if response == 1:
+                    p.enter_Provider_details()
+                elif response == 2:
+                    p.remove_provider()
+                elif response == 3:
+                    p.update_provider_records()
+                else:
+                    print("Enter a valid option!")
+                    continue  # repeat the loop until a valid option is entered
+                break  # exit the loop once a valid option is selected         
             case 4:
-                print("What do you want to do?")
-                print("1.Add service")
-                print("2.Remove service")
-                print("3.Update services")
+                s = Service()
+                while True:
+                    print("What do you want to do?")
+                    print("1.Add service")
+                    print("2.Remove service")
+                    print("3.Update services")
+                    print("Please choose an option..")
+                    response = int(input("> "))
+                    if response == 1:
+                        p.enter_Provider_details()
+                    elif response == 2:
+                        p.remove_provider()
+                    elif response == 3:
+                        p.update_provider_records()
+                    else:
+                        print("Enter a valid option!")
+                        continue  # repeat the loop until a valid option is entered
+                    break  # exit the loop once a valid option is selected      
+
     def load(self):
         self.menu()
     
