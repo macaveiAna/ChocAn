@@ -1,11 +1,11 @@
 from Member import *
+from Service import *
 import random
 import os
 from pathlib import Path
 
-from Service import *
 
-class Providers:
+class Provider:
     def __init__(self):
         self.provider_id = ""
         self.provider_name = ""
