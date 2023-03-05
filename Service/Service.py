@@ -9,7 +9,7 @@ class Service:
         pass
     
     def validateServiceName(self,name):
-        p = Provider()
+        p = Provider.Provider()
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
         if(ans == 'y'):   

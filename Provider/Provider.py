@@ -187,7 +187,7 @@ class Provider:
                 name = service['serviceName']
                 validServiceCode = True
                 s.printServiceName(name)
-                s.validateServiceName(name)
+                #s.validateServiceName(name)
                 break
         if(validServiceCode == False):
             print("Invalid service code")

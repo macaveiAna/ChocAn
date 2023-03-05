@@ -1,5 +1,5 @@
 
-from Provider import *
+from Provider import Provider
 from Manager import *
 
 class Terminal:
@@ -33,7 +33,7 @@ class Terminal:
         self.setType(choice)
 
         if self.type == "Provider": # if type is provider
-            provider = Provider()
+            provider = Provider.Provider()
             provider.load()
             
         else: # if type is manager

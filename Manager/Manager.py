@@ -1,4 +1,4 @@
-from Provider import *
+from Provider import Provider
 from Member import *
 from Service import *
 #generate different reports for provider and member
@@ -72,7 +72,7 @@ class Manager:
                     continue  # repeat the loop until a valid option is entered
                 break  # exit the loop once a valid option is selected         
             case 4:
-                s = Service()
+                #s = Service()
                 while True:
                     print("What do you want to do?")
                     print("1.Add service")
