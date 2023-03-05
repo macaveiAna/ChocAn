@@ -1,1 +1,1 @@
-from .Member import *
+from .Member import Member

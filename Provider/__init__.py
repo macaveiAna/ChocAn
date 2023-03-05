@@ -1,1 +1,1 @@
-from Provider.Provider import *
+from .Provider import Provider

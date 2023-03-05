@@ -1,4 +1,4 @@
-from Provider import Provider
+from Provider import *
 from Member import *
 from Service import *
 #generate different reports for provider and member
@@ -53,7 +53,7 @@ class Manager:
 
 
             case 3:
-               p = Provider.Provider()
+               p = Provider()
                while True:
                 print("What do you want to do?")
                 print("1. Add provider")

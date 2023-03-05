@@ -1,9 +1,11 @@
+import json
 from Member import *
 from Service import *
 import random
 import os
 from pathlib import Path
 import shutil
+
 
 
 class Provider:
@@ -90,6 +92,7 @@ class Provider:
             
     #test
     def remove_provider(self):
+        #if want to remove a provider directory which is not there? add a condition
         id = self.getProviderID()
         pName = self.getProviderName(id, 0)
         path = os.getcwd() + '/Provider/' + pName
