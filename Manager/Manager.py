@@ -90,13 +90,13 @@ class Manager:
                             continue  # repeat the loop until a valid option is entered
                         break  # exit the loop once a valid option is selected         
                 case 4:
-                    #s = Service()
+                    s = Service()
                     while True:
                         response = self.servicesMenu()
                         if response == 1:
-                            p.enter_Provider_details()
+                            s.enter_service_details()
                         elif response == 2:
-                            p.remove_provider()
+                            s.remove_service()
                         elif response == 3:
                             p.update_provider_records()
                         else:
