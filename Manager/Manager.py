@@ -75,7 +75,6 @@ class Manager:
                             continue  # repeat the loop until a valid option is entered
                         break  # exit the loop once a valid option is selected     
 
-
                 case 3:
                     p = Provider()
                     while True:
@@ -88,7 +87,7 @@ class Manager:
                             p.update_provider_records()
                         else:
                             print("Enter a valid option!")
-                        continue  # repeat the loop until a valid option is entered
+                            continue  # repeat the loop until a valid option is entered
                         break  # exit the loop once a valid option is selected         
                 case 4:
                     #s = Service()

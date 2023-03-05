@@ -78,10 +78,7 @@ class Provider:
             
             with open(f"{cwd}/{parent_dir}/ProviderList.json",mode="r") as file:
                 data = json.load(file)
-                '''
-            with open(f"{cwd}/{parent_dir}/ProviderList.json",mode="r") as file:
-                data = json.load(file)
-            '''
+                
             #New provider data for the json file containing all providers in Provider folder
             new_provider = {
                 "ProviderName": self.provider_name,
