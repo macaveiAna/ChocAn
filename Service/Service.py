@@ -2,6 +2,7 @@ from Provider import Provider
 import json
 import random
 import pandas as pd
+from tabulate import tabulate
 
 class Service:
     def __init__(self):
@@ -34,6 +35,7 @@ class Service:
         print("Service not found")
 
     def remove_service(self):
+        self.display_services()
         found = False
         service_code = self.getServiceCode()
         sName = self.getServiceName(service_code)
@@ -67,12 +69,11 @@ class Service:
         # Load the JSON data
         with open('Service/ProviderDirectory.json', 'r') as f:
             data = json.load(f)
-
         # Convert the data to a DataFrame
         df = pd.DataFrame(data['services'])
-
-        # Display the DataFrame
-        print(df.head())
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print("List of Services")
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='grid', showindex=False))
     def update_service_name(self):
         pass
     def getServiceCode(self):
