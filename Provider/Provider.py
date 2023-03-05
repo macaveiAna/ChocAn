@@ -30,7 +30,8 @@ class Provider:
         self.add_provider()
     
     def print_exists(self):
-        print("Provider already exists.")  
+        print("Provider already exists.") 
+         
     #test
     def add_provider(self):
         cwd = os.getcwd() #gets current working directory
@@ -96,6 +97,7 @@ class Provider:
                 data['providers'].pop(index)
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
+            
     #test
     def update_provider(self):
         pass
