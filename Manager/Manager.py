@@ -3,22 +3,48 @@ from Member import *
 from Service import *
 from tabulate import tabulate
 import pandas as pd
+
 #generate different reports for provider and member
 #able to add member,delete member, same with provider and able to also do the same with services  
 class Manager:
-    def __init__(self):
-        pass
-    '''
-    def getOption(self):
-        option = int(input("> "))
-        if (option < 0 or option > 4):
-            print("Please enter a valid option!")
-            self.getOption()
-        return option
-    '''
-    def displayMenu(self):
+    def displayMainMenu(self):
         options = {
             'Services': ['1. Generate reports', '2. Modify Members', '3. Modify Providers', '4. Modify Services', '5. Quit']
+        }
+        df = pd.DataFrame(options)
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+        return int(input("Please enter your choice: "))
+    
+    def reportsMenu(self):
+        options = {
+            'Report to generate': ['1. Member report', '2. Provider report', '3. EFT report', '4. Summary report']
+        }
+        df = pd.DataFrame(options)
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+        return int(input("Please enter your choice: "))
+    
+    def membersMenu(self):
+        options = {
+            'Services': ['1. Add Member', '2. Remove Member', '3. Update Member Records']
+        }
+        df = pd.DataFrame(options)
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+        return int(input("Please enter your choice: "))
+    
+    def providersMenu(self):
+        options = {
+            'Services': ['1. Add Provider', '2. Remove Provider', '3. Update Provider Records']
+        }
+        df = pd.DataFrame(options)
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+        return int(input("Please enter your choice: "))
+    def servicesMenu(self):
+        options = {
+            'Services': ['1. Add Service', '2. Remove Service', '3. Update Services']
         }
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
@@ -28,26 +54,15 @@ class Manager:
     def menu(self):
         print("Welcome back!")
         while True:
-            option = self.displayMenu()
+            option = self.displayMainMenu()
             match option:
                 case 1:
-                    print("Which report do you want to generate?")
-                    print("1.Member report")
-                    #Need to do one member and all members
-                    print("2.Provider report")
-                    #Need to do one provider & all providers
-                    print("3.EFT Report")
-                    print("4.Summary Report")
+                    choice = self.reportsMenu()
                 case 2:
                     m = Member()
                 
                     while True:
-                        print("What do you want to do?")
-                        print("1. Add member")
-                        print("2. Remove member")
-                        print("3. Update member records")
-                        print("Please choose an option..")
-                        response = int(input("> "))
+                        response = self.membersMenu()
                         if response == 1:
                             m.enter_Member_details()
                         elif response == 2:
@@ -64,12 +79,7 @@ class Manager:
                 case 3:
                     p = Provider()
                     while True:
-                        print("What do you want to do?")
-                        print("1. Add provider")
-                        print("2. Remove provider")
-                        print("3. Update provider records")
-                        print("Please choose an option..")
-                        response = int(input("> "))
+                        response = self.providersMenu()
                         if response == 1:
                             p.enter_Provider_details()
                         elif response == 2:
@@ -83,12 +93,7 @@ class Manager:
                 case 4:
                     #s = Service()
                     while True:
-                        print("What do you want to do?")
-                        print("1.Add service")
-                        print("2.Remove service")
-                        print("3.Update services")
-                        print("Please choose an option..")
-                        response = int(input("> "))
+                        response = self.servicesMenu()
                         if response == 1:
                             p.enter_Provider_details()
                         elif response == 2:
