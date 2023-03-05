@@ -1,6 +1,7 @@
 from Provider import Provider
 import json
 import random
+import pandas as pd
 
 class Service:
     def __init__(self):
@@ -62,10 +63,16 @@ class Service:
             json.dump(data,file, indent = 4)    
 
     def display_services(self):
-        with open("Service/ProviderDirectory.json",mode="r") as file:
-            data = json.load(file)   
-   
-        print (data['services'])
+
+        # Load the JSON data
+        with open('Service/ProviderDirectory.json', 'r') as f:
+            data = json.load(f)
+
+        # Convert the data to a DataFrame
+        df = pd.DataFrame(data['services'])
+
+        # Display the DataFrame
+        print(df.head())
     def update_service_name(self):
         pass
     def getServiceCode(self):
