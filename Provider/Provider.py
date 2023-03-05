@@ -34,6 +34,9 @@ class Provider:
     
     def print_exists(self):
         print("Provider already exists.") 
+    
+    def print_not_found(self):
+        print("Provider does not exist.")
          
     #test
     def add_provider(self):
@@ -92,20 +95,24 @@ class Provider:
             
     #test
     def remove_provider(self):
-        #if want to remove a provider directory which is not there? add a condition
+        found = False
         id = self.getProviderID()
         pName = self.getProviderName(id, 0)
-        path = os.getcwd() + '/Provider/' + pName
-        shutil.rmtree(path)
-
+        if pName != None:
+            found = True
+            path = os.getcwd() + '/Provider/' + pName
+            shutil.rmtree(path)
+        else:
+            self.print_not_found()
         with open("Provider/ProviderList.json",mode="r") as file:
             data = json.load(file)
         for index,provider in enumerate(data['providers']):
             if provider['ProviderId'] == id:
                 data['providers'].pop(index)
+                found = True
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
-            
+        return found
     #test
     def update_provider(self):
         pass
