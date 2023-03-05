@@ -9,7 +9,7 @@ import pandas as pd
 class Manager:
     def displayMainMenu(self):
         options = {
-            'Services': ['1. Generate reports', '2. Modify Members', '3. Modify Providers', '4. Modify Services', '5. Quit']
+            'Main Menu': ['1. Generate reports', '2. Modify Members', '3. Modify Providers', '4. Modify Services', '5. Quit']
         }
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})

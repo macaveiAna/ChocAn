@@ -53,6 +53,7 @@ class Service:
             json.dump(data,file, indent = 4)    
         return found
     def update_service_fee(self):
+        self.display_services()
         sCode = self.getServiceCode()
         print("Enter the new price for the service:")
         new_price = input("> ")
@@ -63,9 +64,7 @@ class Service:
                 service['servicePrice'] = "$" + new_price
         with open("Service/ProviderDirectory.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
-
     def display_services(self):
-
         # Load the JSON data
         with open('Service/ProviderDirectory.json', 'r') as f:
             data = json.load(f)
@@ -75,7 +74,17 @@ class Service:
         print("List of Services")
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='grid', showindex=False))
     def update_service_name(self):
-        pass
+        self.display_services()
+        sCode = self.getServiceCode()
+        print("Enter the new name for the service:")
+        new_name = input("> ")
+        with open("Service/ProviderDirectory.json",mode="r") as file:
+            data = json.load(file)
+        for service in data['services']:
+            if service['serviceCode'] == sCode:
+                service['serviceName'] = new_name
+        with open("Service/ProviderDirectory.json",mode="w") as file:
+            json.dump(data,file, indent = 4)  
     def getServiceCode(self):
         print("\nPlease enter a valid service code.")
         code = input("> ")

@@ -1,7 +1,7 @@
 {
     "services": [
         {
-            "serviceName": "dietitian",
+            "serviceName": "diet",
             "serviceCode": "598470",
             "servicePrice": "$50"
         },
@@ -11,7 +11,7 @@
             "servicePrice": "$200"
         },
         {
-            "serviceName": "aerobics",
+            "serviceName": "dance",
             "serviceCode": "883948",
             "servicePrice": "$50"
         }
