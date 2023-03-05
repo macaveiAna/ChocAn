@@ -84,7 +84,7 @@ class Manager:
                         elif response == 2:
                             p.remove_provider()
                         elif response == 3:
-                            p.update_provider_records()
+                            p.update_provider()
                         else:
                             print("Enter a valid option!")
                             continue  # repeat the loop until a valid option is entered

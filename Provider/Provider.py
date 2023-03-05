@@ -110,12 +110,24 @@ class Provider:
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
         return found
-    #test
+       #test
     def update_provider(self):
-        pass
+        id = self.getProviderID()
+        pName = self.getProviderName(id, 0)
+        if pName != None:
+            found = True
+            path = os.getcwd() + '/Provider/' + pName
+            print("Path test: ", path)
+        else:
+            self.print_not_found()
+
+    #Just a print statement to reuse in multiple functions
+    def ask_for_ID(self):
+        print("Please enter a valid provider ID number: ")
     
     def getProviderID(self):
-        print("\nPlease enter a valid provider ID number.")
+        self.ask_for_ID()
+        #print("\nPlease enter a valid provider ID number.")
         id = input("> ")
 
         if len(id) != 9 or id.isnumeric() == False:
