@@ -46,8 +46,6 @@ class Member:
                     "Services": [{
                         
                     }],
-                    "TotalConsultations": 0,
-                    "TotalFee": "$0.00"
             }
         cwd = os.getcwd() #gets current working directory
         parent_dir = "Member" #sets relative path in variable
@@ -64,23 +62,27 @@ class Member:
             '''
             path = os.getcwd() + "/Member/" + directory
             os.makedirs(path)
+            
+            with open(f"{path}/{self.member_name}.json",mode="w") as file:   #file 
+               json.dump(member,file,indent= 4)
 
-        new_member = {
-            "MemberName": self.member_name, 
-            "MemberId": self.member_id, 
-            "Status": "Active", 
-            "last_payment": str(today)
-            }
-        
-        
+            new_member = {
+                "MemberName": self.member_name, 
+                "MemberId": self.member_id, 
+                "Status": "Active", 
+                "last_payment": str(today)
+                }
+            
+            
             #Appends the new member to the full member list
-        with open(f"{cwd}/{parent_dir}/MemberDirectory.json",mode="r") as file:
-            data = json.load(file)
+            with open(f"{cwd}/{parent_dir}/MemberDirectory.json",mode="r") as file:
+                data = json.load(file)
 
-        data["members"].append(new_member)
-        with open(f"{cwd}/{parent_dir}/MemberDirectory.json",mode="w") as file:
-            json.dump(data,file, indent = 4)
+            data["members"].append(new_member)
+            with open(f"{cwd}/{parent_dir}/MemberDirectory.json",mode="w") as file:
+                json.dump(data,file, indent = 4)
         
+
     def printSuspended(self):
         print("Fees are owed. Member suspended...")
 
