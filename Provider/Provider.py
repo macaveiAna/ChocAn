@@ -154,6 +154,7 @@ class Provider:
             self.validateServiceName(name)
     '''
     def add_comments(self):
+        p = Provider()
         print("Would you like to enter comments about the service provided? [y/n]")
         ans2 = input("> ")
         if ans2 == 'y':
