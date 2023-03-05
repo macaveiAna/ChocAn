@@ -35,7 +35,7 @@ class Provider:
     #test
     def add_provider(self):
         cwd = os.getcwd() #gets current working directory
-        parent_dir = "Provider/" #sets relative path in variable
+        parent_dir = "Provider" #sets relative path in variable
         
         #If provider already has a file, will print a statement that it exists
         if os.path.exists(f"{cwd}/{parent_dir}/{self.provider_name}"): 

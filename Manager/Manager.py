@@ -24,7 +24,11 @@ class Manager:
             case 1:
                 print("Which report do you want to generate?")
                 print("1.Member report")
+                #Need to do one member and all members
                 print("2.Provider report")
+                #Need to do one provider & all providers
+                print("3.EFT Report")
+                print("4.Summary Report")
             case 2:
                 m = Member()
                 
@@ -36,11 +40,11 @@ class Manager:
                     print("Please choose an option..")
                     response = int(input("> "))
                     if response == 1:
-                        p.enter_Provider_details()
+                        m.enter_Member_details()
                     elif response == 2:
-                        p.remove_provider()
+                        m.remove_provider()
                     elif response == 3:
-                        p.update_provider_records()
+                        m.update_provider_records()
                     else:
                         print("Enter a valid option!")
                         continue  # repeat the loop until a valid option is entered
