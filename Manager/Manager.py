@@ -42,9 +42,10 @@ class Manager:
                     if response == 1:
                         m.enter_Member_details()
                     elif response == 2:
-                        m.remove_provider()
+                        m.remove_member()
                     elif response == 3:
-                        m.update_provider_records()
+                        #m.update_provider_records()
+                        pass
                     else:
                         print("Enter a valid option!")
                         continue  # repeat the loop until a valid option is entered

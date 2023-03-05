@@ -5,6 +5,7 @@ from time import strptime
 import random
 import os
 from pathlib import Path
+import shutil
 
 class Member:
  
@@ -33,6 +34,29 @@ class Member:
 
     def print_exists(self):
         print("Member already exists.") 
+
+    def getMemberName(self,id):
+        with open("Member/MemberDirectory.json",mode="r") as file:
+            data = json.load(file)
+        for member in data['members']:
+            if member['MemberId'] == id:
+                name = member["MemberName"]
+                return name
+        return None
+
+    def remove_member(self):
+        id = self.getMemberID()
+        mName = self.getMemberName(id)
+        path = os.getcwd() + '/Member/' + mName
+        shutil.rmtree(path)
+
+        with open("Member/MemberDirectory.json",mode="r") as file:
+            data = json.load(file)
+        for index,member in enumerate(data['members']):
+            if member['MemberId'] == id:
+                data['members'].pop(index)
+        with open("Member/MemberDirectory.json",mode="w") as file:
+            json.dump(data,file, indent = 4)    
 
     #first check in main function if member already exits
     def add_member(self):
