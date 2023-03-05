@@ -31,6 +31,8 @@ class Member:
         self.zip = input("> ")
         self.add_member()
 
+    def print_exists(self):
+        print("Member already exists.") 
 
     #first check in main function if member already exits
     def add_member(self):
