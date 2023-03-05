@@ -3,6 +3,7 @@ from Service import *
 import random
 import os
 from pathlib import Path
+import shutil
 
 
 class Provider:
@@ -90,6 +91,10 @@ class Provider:
     #test
     def remove_provider(self):
         id = self.getProviderID()
+        pName = self.getProviderName(id, 0)
+        path = os.getcwd() + '/Provider/' + pName
+        shutil.rmtree(path)
+
         with open("Provider/ProviderList.json",mode="r") as file:
             data = json.load(file)
         for index,provider in enumerate(data['providers']):
@@ -115,13 +120,14 @@ class Provider:
         print("Welcome ", name)
         
     #test
-    def getProviderName(self,id):
+    def getProviderName(self,id, choice):
         with open("Provider/ProviderList.json",mode="r") as file:
             data = json.load(file)
         for member in data['providers']:
             if member['ProviderId'] == id:
                 name = member["ProviderName"]
-                self.printWelcomeMessage(name)
+                if choice == 1:
+                    self.printWelcomeMessage(name)
                 return name
         return None
     
@@ -189,11 +195,11 @@ class Provider:
     #test 
     def load(self):
         self.provider_id = self.getProviderID()
-        self.provider_name = self.getProviderName(self.provider_id)
+        self.provider_name = self.getProviderName(self.provider_id, 1)
         while(self.provider_name == None):
             print("Invalid Provider Id")
             self.provider_id = self.getProviderID()
-            self.provider_name = self.getProviderName(self.provider_id)
+            self.provider_name = self.getProviderName(self.provider_id, 1)
         m = Member()
         m.member_id = m.getMemberID()
         var = m.validate_member(m.member_id)
