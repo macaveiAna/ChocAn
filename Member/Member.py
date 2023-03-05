@@ -2,6 +2,7 @@ import json
 import datetime
 from datetime import date, timedelta
 from time import strptime
+import random
 import os
 from pathlib import Path
 
@@ -15,21 +16,41 @@ class Member:
         self.state = ""
         self.zip = ""
     
+    def enter_Member_details(self):
+        print("Please enter member's name: ")
+        self.member_name = input("> ")
+        for i in range(9):
+            self.member_id += str(random.randint(0,9))
+        print("Please enter the Street Address: ")
+        self.strAddr = input("> ")
+        print("Please enter the City: ")
+        self.city = input("> ")
+        print("Please enter the State: ")
+        self.state= input("> ")
+        print("Please enter the zipcode: ")
+        self.zip = input("> ")
+        self.add_member()
+
 
     #first check in main function if member already exits
     def add_member(self):
         today = date.today()
         #print(today)
-        new_member = {
-            "MemberName": self.member_name, 
-            "MemberId": self.member_id, 
-            "Status": "Active", 
-            "last_payment": str(today)
+        member = {
+                    "MemberName": self.member_name,
+                    "MemberID": self.member_id,
+                    "MemberAddr": self.strAddr,
+                    "MemberCity": self.city,
+                    "MemberState": self.state,
+                    "MemberZip": self.zip,
+                    "Services": [{
+                        
+                    }],
+                    "TotalConsultations": 0,
+                    "TotalFee": "$0.00"
             }
-        
-        data["members"].append(new_member)
         cwd = os.getcwd() #gets current working directory
-        parent_dir = "Member/" #sets relative path in variable
+        parent_dir = "Member" #sets relative path in variable
         
         #If member already has a file, will print a statement that it exists
         if os.path.exists(f"{cwd}/{parent_dir}/{self.member_name}"): 
@@ -44,10 +65,19 @@ class Member:
             path = os.getcwd() + "/Member/" + directory
             os.makedirs(path)
 
+        new_member = {
+            "MemberName": self.member_name, 
+            "MemberId": self.member_id, 
+            "Status": "Active", 
+            "last_payment": str(today)
+            }
+        
+        
             #Appends the new member to the full member list
         with open(f"{cwd}/{parent_dir}/MemberDirectory.json",mode="r") as file:
             data = json.load(file)
-  
+
+        data["members"].append(new_member)
         with open(f"{cwd}/{parent_dir}/MemberDirectory.json",mode="w") as file:
             json.dump(data,file, indent = 4)
         
