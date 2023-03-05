@@ -3,8 +3,7 @@
         {
             "serviceName": "dietitian",
             "serviceCode": "598470",
-            "servicePrice": "$100"
-        
+            "servicePrice": "$50"
         },
         {
             "serviceName": "internist",

@@ -44,7 +44,7 @@ class Manager:
         return int(input("Please enter your choice: "))
     def servicesMenu(self):
         options = {
-            'Services': ['1. Add Service', '2. Remove Service', '3. Update Services']
+            'Services': ['1. Add Service', '2. Remove Service', '3. Update Service Name', '4. Update Service Fee', '5. Display services']
         }
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
@@ -98,7 +98,11 @@ class Manager:
                         elif response == 2:
                             s.remove_service()
                         elif response == 3:
-                            p.update_provider_records()
+                            s.update_service_name()
+                        elif response == 4:
+                            s.update_service_fee()
+                        elif response == 5:
+                            s.display_services()
                         else:
                             print("Enter a valid option!")
                             continue  # repeat the loop until a valid option is entered

@@ -49,7 +49,25 @@ class Service:
         with open("Service/ProviderDirectory.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
         return found
-    
+    def update_service_fee(self):
+        sCode = self.getServiceCode()
+        print("Enter the new price for the service:")
+        new_price = input("> ")
+        with open("Service/ProviderDirectory.json",mode="r") as file:
+            data = json.load(file)
+        for service in data['services']:
+            if service['serviceCode'] == sCode:
+                service['servicePrice'] = "$" + new_price
+        with open("Service/ProviderDirectory.json",mode="w") as file:
+            json.dump(data,file, indent = 4)    
+
+    def display_services(self):
+        with open("Service/ProviderDirectory.json",mode="r") as file:
+            data = json.load(file)   
+   
+        print (data['services'])
+    def update_service_name(self):
+        pass
     def getServiceCode(self):
         print("\nPlease enter a valid service code.")
         code = input("> ")
