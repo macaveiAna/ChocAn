@@ -164,20 +164,19 @@ class Provider:
             self.validateServiceName(name)
     '''
     def add_comments(self):
-        p = Provider()
         print("Would you like to enter comments about the service provided? [y/n]")
         ans2 = input("> ")
         if ans2 == 'y':
             print("Please enter a comment (100 characters): ")
             comment = input("> ")
-            filename = f"{p.provider_name}.json"
+            filename = f"{self.provider_name}.json"
             with open(filename, "w") as file:
                 json.dump(comment, file)
     
     def load_validated(self):  
         s = Service()
-        print("Please enter the date the service was provided:")
-        date_service = input("> ")
+        #print("Please enter the date the service was provided:")
+        #date_service = input("> ")
         print("Please enter service code:")
         service_code = input("> ")
         validServiceCode = False
@@ -188,6 +187,7 @@ class Provider:
                 name = service['serviceName']
                 validServiceCode = True
                 s.printServiceName(name)
+                s.validateServiceName(name)
                 break
         if(validServiceCode == False):
             print("Invalid service code")
