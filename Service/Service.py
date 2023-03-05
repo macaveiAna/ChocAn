@@ -9,6 +9,15 @@ class Service:
         self.service_name = ""
         self.service_code = ""
         self.service_fee = ""
+
+    def load_file(self):
+        with open("Service/ProviderDirectory.json", "r") as file:
+            data = json.load(file)
+        return data
+    
+    def write_to_file(self,data):
+        with open("Service/ProviderDirectory.json","w") as file:
+            json.dump(data, file, indent=4)
     
     def enter_service_details(self):
         print("Please enter name of service: ")
@@ -20,16 +29,14 @@ class Service:
         self.add_service()
         
     def add_service(self):
-        with open("Service/ProviderDirectory.json", "r") as file:
-            data = json.load(file)
+        data = self.load_file()
         new_service = {
             "serviceName": self.service_name,
             "serviceCode": self.service_code,
-            "servicePrice": self.service_fee
+            "servicePrice": "$" + self.service_fee
         }
         data['services'].append(new_service)
-        with open("Service/ProviderDirectory.json","w") as file:
-            json.dump(data, file, indent=4)
+        self.write_to_file(data)
     
     def print_not_found(self):
         print("Service not found")
@@ -43,71 +50,71 @@ class Service:
             found = True
         else:
             self.print_not_found()
-        with open("Service/ProviderDirectory.json",mode="r") as file:
-            data = json.load(file)
+        
+        data = self.load_file()
         for index,service in enumerate(data['services']):
             if service['serviceCode'] == service_code:
                 data['services'].pop(index)
                 found = True
-        with open("Service/ProviderDirectory.json",mode="w") as file:
-            json.dump(data,file, indent = 4)    
+        
+        self.write_to_file(data)   
         return found
+    
     def update_service_fee(self):
         self.display_services()
         sCode = self.getServiceCode()
         print("Enter the new price for the service:")
         new_price = input("> ")
-        with open("Service/ProviderDirectory.json",mode="r") as file:
-            data = json.load(file)
+        
+        data = self.load_file()
         for service in data['services']:
             if service['serviceCode'] == sCode:
                 service['servicePrice'] = "$" + new_price
-        with open("Service/ProviderDirectory.json",mode="w") as file:
-            json.dump(data,file, indent = 4)    
+        
+        self.write_to_file(data)
+
     def display_services(self):
         # Load the JSON data
-        with open('Service/ProviderDirectory.json', 'r') as f:
-            data = json.load(f)
+        data = self.load_file()
         # Convert the data to a DataFrame
         df = pd.DataFrame(data['services'])
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
         print("List of Services")
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='grid', showindex=False))
+
     def update_service_name(self):
         self.display_services()
         sCode = self.getServiceCode()
         print("Enter the new name for the service:")
         new_name = input("> ")
-        with open("Service/ProviderDirectory.json",mode="r") as file:
-            data = json.load(file)
+        data = self.load_file()
         for service in data['services']:
             if service['serviceCode'] == sCode:
                 service['serviceName'] = new_name
-        with open("Service/ProviderDirectory.json",mode="w") as file:
-            json.dump(data,file, indent = 4)  
+        self.write_to_file(data)
+
     def getServiceCode(self):
         print("\nPlease enter a valid service code.")
         code = input("> ")
-
         if len(code) != 6 or code.isnumeric() == False:
             return self.getServiceCode()
         else:
             return code
+        
     def getServiceName(self,code):
-        with open("Service/ProviderDirectory.json",mode="r") as file:
-            data = json.load(file)
+        data = self.load_file()
         for service in data['services']:
             if service['serviceCode'] == code:
                 sName = service["serviceName"]
                 return sName
         return None
+    
     def validateServiceName(self,name):
         p = Provider.Provider()
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
         if(ans == 'y'):   
-            with open("Service/ProviderDirectory.json") as file:
-                data = json.load(file)
+            data = self.load_file()
             for service in data['services']:
                 if service['serviceName'] == name:
                     fees = service['servicePrice']
