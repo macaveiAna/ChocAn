@@ -2,7 +2,6 @@
 # CS314 Group 2
 #
 
-
 from ChocAn import *
 
 def main():
