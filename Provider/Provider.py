@@ -46,7 +46,7 @@ class Providers:
             p = Path(f"/ChocAn/Provider/{directory}") #sets path to the new provider's directory
             os.makedirs(p) #makes the directory
             '''
-            path = os.getcwd() + "/" + directory
+            path = os.getcwd() + "/Provider" + directory
             os.makedirs(path)
             #contents for file that is uploaded
             provider = {
