@@ -120,6 +120,15 @@ class Provider:
             json.dump(data,file, indent = 4)    
         return found
        #test
+    
+    #Get name
+    def update_name(self):
+        print("Write the updated name of the provider: ")
+        new_pName = input()
+        return new_pName
+        
+    #test
+    #Update the Provider profile & info in ProviderList
     def update_provider(self):
         id = self.getProviderID()
         pName = self.getProviderName(id, 0)
@@ -127,8 +136,24 @@ class Provider:
             found = True
             path = os.getcwd() + '/Provider/' + pName
             print("Path test: ", path)
+            # Need edit function to call
+            new_name = self.update_name()
+            new_path = os.getcwd() + '/Provider/' + new_name
+            shutil.move(path, new_path)
+            print("New: ", new_name)
+            print("Old: ", pName)
+            
+            with open("Provider/ProviderList.json",mode="r") as file:
+                data = json.load(file)
+            for index,provider in enumerate(data['providers']):
+                if provider['ProviderId'] == id:
+                 #data['providers'].pop(index)
+                 found = True
+            with open("Provider/ProviderList.json",mode="w") as file:
+                json.dump(data,file, indent = 4)    
         else:
             self.print_not_found()
+
 
     #Just a print statement to reuse in multiple functions
     def ask_for_ID(self):
