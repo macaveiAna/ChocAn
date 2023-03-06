@@ -169,7 +169,7 @@ class Provider:
             with open(filename, "w") as file:
                 json.dump(comment, file)
     
-    def load_validated(self,member_id):  
+    def load_validated(self,member_id,member_name):  
         s = Service()
         print("Please enter the date the service was provided:")
         date_service = input("> ")
@@ -183,7 +183,7 @@ class Provider:
                 name = service['serviceName']
                 validServiceCode = True
                 s.printServiceName(name)
-                s.validateServiceName(member_id,date_service,name,self.provider_name)
+                s.validateServiceName(member_id,date_service,name,self.provider_name,member_name,service_code)
                 break
         if(validServiceCode == False):
             print("Invalid service code")
@@ -198,6 +198,7 @@ class Provider:
             self.provider_name = self.getProviderName(self.provider_id, 1)
         m = Member()
         m.member_id = m.getMemberID()
+        m.member_name - m.getMemberName()
         var = m.validate_member(m.member_id)
         if var == True:
             if m.isSuspended(m.member_id) == True:
@@ -211,7 +212,7 @@ class Provider:
     def create_provider_weekly_report(self,date_service,member_id,member_name,service_code,service_fee):
         cwd = os.getcwd() #gets current working directory
         parent_dir = "Provider" #sets relative path in variable
-        
+        now = datetime.datetime.now()
             
 
         with open('Provider/ProviderList.json') as file:
@@ -247,49 +248,48 @@ class Provider:
             if latest_file_datetime.date() > days_ago_7:
                 new_service = {
                     "Date_Of_Service": date_service,
-                    "ProviderName": pName,
-                    "ServiceName": sName
+                    "Date_received by computer": f"{now}",
+                    "MemberName": member_name,
+                    "MemberNum": member_id,
+                    "ServiceCode": service_code,
+                    "ServiceFee": service_fee
                 }
                 with open(f"{latest_file}","r") as file:
                     new_data = json.load(file)
                 new_data['Services'].append(new_service)
+                new_data['TotalConsultations'] += 1
+
                 with open(f"{latest_file}","w") as file:
                     json.dump(new_data,file,indent=4)
             else:
             
-                member = {
-                    "MemberName": mName,
-                    "MemberID": member_id,
-                    "MemberAddr": mAddr,
-                    "MemberCity": mCity,
-                    "MemberState": mState,
-                    "MemberZip": mZip,
+                provider = {
+                    "ProviderName": self.provider_name,
+                    "ProviderID": self.provider_id,
+                    "ProviderAddr": pAddr,
+                    "ProviderCity": pCity,
+                    "ProviderState": pState,
+                    "ProviderZip": pCity,
                     "Services": [{
                         "Date_Of_Service": date_service,
-                        "ProviderName": pName,
-                        "ServiceName": sName
+                        "Date_received by computer": "",
+                        "MemberName": member_name,
+                        "MemberNum": member_id,
+                        "ServiceCode": service_code,
+                        "ServiceFee": service_fee
                     }],
-                }
+                    "TotalConsultations": 1,
+                    "TotalFee": "$0.00"
+            }
 
-                with open(f"{path}/{mName}_{date_service}.json",mode="w") as file:   #file 
-                    json.dump(member,file,indent= 4)
+                with open(f"{path}/{self.provider_name}_{date_service}.json",mode="w") as file:   #file 
+                    json.dump(provider,file,indent= 4)
     
         else:
-            member = {
-                    "MemberName": mName,
-                    "MemberID": member_id,
-                    "MemberAddr": mAddr,
-                    "MemberCity": mCity,
-                    "MemberState": mState,
-                    "MemberZip": mZip,
-                    "Services": [{
-                        "Date_Of_Service": date_service,
-                        "ProviderName": pName,
-                        "ServiceName": sName
-                    }],
-            }
-            with open(f"{dir_path}/{mName}_{date_service}.json",mode="w") as file:   #file 
-                    json.dump(member,file,indent= 4)
+            
+            
+            with open(f"{dir_path}/{self.provider_name}_{date_service}.json",mode="w") as file:   #file 
+                    json.dump(provider,file,indent= 4)
 
     def display_providers(self):
         with open('Provider/ProviderList.json') as f:
