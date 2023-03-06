@@ -18,8 +18,11 @@ class Member:
         self.zip = ""
     
     def enter_Member_details(self):
-        print("Please enter member's name: ")
-        self.member_name = input("> ")
+        print("Please enter member's first name: ")
+        first_name = input("> ")
+        print("Please enter member's last name: ")
+        last_name = input("> ")
+        self.member_name = first_name + " " + last_name
         for i in range(9):
             self.member_id += str(random.randint(0,9))
         print("Please enter the Street Address: ")
@@ -89,7 +92,7 @@ class Member:
             path = os.getcwd() + "/Member/" + directory
             os.makedirs(path)
             
-            with open(f"{path}/{self.member_name}.json",mode="w") as file:   #file 
+            with open(f"{path}/{self.member_name}_profile.json",mode="w") as file:   #file 
                json.dump(member,file,indent= 4)
 
             new_member = {
