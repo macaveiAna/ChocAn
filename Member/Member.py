@@ -72,6 +72,7 @@ class Member:
     def add_member(self):
         today = date.today()
         #print(today)
+        '''
         member = {
                     "MemberName": self.member_name,
                     "MemberID": self.member_id,
@@ -83,6 +84,7 @@ class Member:
                         
                     }],
             }
+        '''
         cwd = os.getcwd() #gets current working directory
         parent_dir = "Member" #sets relative path in variable
         
@@ -99,8 +101,8 @@ class Member:
             path = os.getcwd() + "/Member/" + directory
             os.makedirs(path)
             
-            with open(f"{path}/{self.member_name}_profile.json",mode="w") as file:   #file 
-               json.dump(member,file,indent= 4)
+            #with open(f"{path}/{self.member_name}_profile.json",mode="w") as file:   #file 
+               #json.dump(member,file,indent= 4)
 
             new_member = {
                 "MemberName": self.member_name, 
@@ -163,6 +165,23 @@ class Member:
     def pay_monthly_fee(self):
         pass
         
-    def create_weekly_report(self):
-        pass
+    def create_weekly_report(self,date_service,sName,pName):
+        member = {
+                    "MemberName": self.member_name,
+                    "MemberID": self.member_id,
+                    "MemberAddr": self.strAddr,
+                    "MemberCity": self.city,
+                    "MemberState": self.state,
+                    "MemberZip": self.zip,
+                    "Services": [{
+                        "Date_Of_Service": date_service,
+                        "ProviderName": pName,
+                        "ServiceName": sName
+                    }],
+            }
+        directory = f"{self.member_name}"
+        path = os.getcwd() + "/Member/" + directory
+
+        with open(f"{path}/{self.member_name}_{date_service}.json",mode="w") as file:   #file 
+               json.dump(member,file,indent= 4)
    

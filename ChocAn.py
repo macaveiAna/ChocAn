@@ -33,7 +33,7 @@ class Terminal:
         self.setType(choice)
 
         if self.type == "Provider": # if type is provider
-            provider = Provider.Provider()
+            provider = Provider()
             provider.load()
             
         else: # if type is manager

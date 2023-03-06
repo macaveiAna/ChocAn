@@ -162,8 +162,8 @@ class Provider:
     
     def load_validated(self):  
         s = Service()
-        #print("Please enter the date the service was provided:")
-        #date_service = input("> ")
+        print("Please enter the date the service was provided:")
+        date_service = input("> ")
         print("Please enter service code:")
         service_code = input("> ")
         validServiceCode = False
@@ -174,6 +174,7 @@ class Provider:
                 name = service['serviceName']
                 validServiceCode = True
                 s.printServiceName(name)
+                s.validateServiceName(date_service,name,self.provider_name)
                 break
         if(validServiceCode == False):
             print("Invalid service code")
