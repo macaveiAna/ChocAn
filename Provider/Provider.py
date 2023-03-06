@@ -198,16 +198,22 @@ class Provider:
             self.provider_name = self.getProviderName(self.provider_id, 1)
         m = Member()
         m.member_id = m.getMemberID()
-        m.member_name - m.getMemberName()
+        m.member_name = m.getMemberName(m.member_id)
+        while(m.member_name == None):
+            print("Invalid Member Id")
+            m.member_id = m.getMemberID()
+            m.member_name = m.getMemberName(m.member_id)
         var = m.validate_member(m.member_id)
         if var == True:
             if m.isSuspended(m.member_id) == True:
                 m.printSuspended()
             else:
                 print("Validated")
-                self.load_validated(m.member_id)
-        else:
-            print("Invalid Number")
+                self.load_validated(m.member_id, m.member_name)
+        #else:
+            #print("Invalid Number")
+            #m.member_id.getMemberID()
+        
     
     def create_provider_weekly_report(self,date_service,member_id,member_name,service_code,service_fee):
         cwd = os.getcwd() #gets current working directory

@@ -3,4 +3,4 @@ pip install pytest
 pip install guardonce
 pip install pandas
 pip install tabulate
-pip install Jinja2
+pip install jinja2
