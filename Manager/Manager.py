@@ -36,7 +36,7 @@ class Manager:
     
     def providersMenu(self):
         options = {
-            'Services': ['1. Add Provider', '2. Remove Provider', '3. Update Provider Records']
+            'Services': ['1. Add Provider', '2. Remove Provider', '3. Update Provider Records','4. Display Providers']
         }
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
@@ -89,6 +89,8 @@ class Manager:
                             p.remove_provider()
                         elif response == 3:
                             p.update_provider()
+                        elif response == 4:
+                            p.display_providers()
                         else:
                             print("Enter a valid option!")
                             continue  # repeat the loop until a valid option is entered

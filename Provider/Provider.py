@@ -5,6 +5,7 @@ import random
 import os
 from pathlib import Path
 import shutil
+from tabulate import tabulate
 
 
 
@@ -198,3 +199,15 @@ class Provider:
                 self.load_validated(m.member_id)
         else:
             print("Invalid Number")
+    def display_providers(self):
+        with open('Provider/ProviderList.json') as f:
+            data = json.load(f)
+
+        # Extract fields
+        rows = []
+        for obj in data['providers']:
+            rows.append([obj['ProviderName'], obj['ProviderId']])
+
+        # Print table
+        headers = ['Name', 'ID']
+        print(tabulate(rows, headers=headers))
