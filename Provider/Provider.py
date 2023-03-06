@@ -51,15 +51,11 @@ class Provider:
         if os.path.exists(f"{cwd}/{parent_dir}/{self.provider_name}"): 
             self.print_exists()
         else:
-            #creates the new provider directory
+            #Creates the new provider directory
             directory = f"{self.provider_name}/" #new provider directory
-            '''
-            p = Path(f"/ChocAn/Provider/{directory}") #sets path to the new provider's directory
-            os.makedirs(p) #makes the directory
-            '''
-            path = os.getcwd() + "/Provider/" + directory
+            path = os.getcwd() + "/Provider/" + directory  #sets path to the new provider's directory
             os.makedirs(path)
-            #contents for file that is uploaded
+            #Contents for file that is uploaded
             provider = {
                     "ProviderName": self.provider_name,
                     "ProviderID": self.provider_id,
@@ -74,7 +70,9 @@ class Provider:
                     "TotalFee": "$0.00"
             }
             #Opens the path to the new folder and creates new json file for provider profile        
-            with open(f"{path}/{self.provider_name}_{str(today)}.json",mode="w") as file:   #file 
+            #with open(f"{path}/{self.provider_name}_{str(today)}.json",mode="w") as file:   #file 
+             #  json.dump(provider,file,indent= 4)
+            with open(f"{path}/{self.provider_name}.json",mode="w") as file:   #file  
                json.dump(provider,file,indent= 4)
 
             #Opens the path to the Provider folder for the
@@ -87,10 +85,10 @@ class Provider:
             new_provider = {
                 "ProviderName": self.provider_name,
                 "ProviderId": self.provider_id,
-                "ProviderAddr": self.strAddr,
-                "ProviderCity": self.city,
-                "ProviderState": self.state,
-                "ProviderZip": self.zip,
+                #"ProviderAddr": self.strAddr, # I don't think these are needed in the full list
+                #"ProviderCity": self.city,
+               # "ProviderState": self.state,
+                #"ProviderZip": self.zip,
             }
             #Appends the new provider to the full provider list
             data['providers'].append(new_provider)
@@ -121,28 +119,53 @@ class Provider:
         return found
        #test
     
-    #Get name
-    def update_name(self):
+    def update_Pmenu(self):
+        print("To update name, enter 1")
+        print("To update address, enter 2")
+        choice = input("> ")
+        return choice
+
+    #Get updated name
+    def ask_name(self):
         print("Write the updated name of the provider: ")
         new_pName = input()
         return new_pName
-        
-    #test
+  
+    
     #Update the Provider profile & info in ProviderList
     def update_provider(self):
         id = self.getProviderID()
         pName = self.getProviderName(id, 0)
-        if pName != None:
-            found = True
-            path = os.getcwd() + '/Provider/' + pName
-            print("Path test: ", path)
-            # Need edit function to call
-            new_name = self.update_name()
+        if pName == None:
+                return
+        choice = self.update_Pmenu()
+       
+        if choice == 1: #Update Provider Name
+            path = os.getcwd() + '/Provider/' + pName #Go to the dir
+            #print("Path test: ", path)
+            self.provider_name = new_name = self.ask_name()    # Need edit function to call
             new_path = os.getcwd() + '/Provider/' + new_name
-            shutil.move(path, new_path)
-            print("New: ", new_name)
-            print("Old: ", pName)
+            os.rename(f"{path}/{pName}.json", f"{path}/{new_name}.json") #Renaming Profile
+            shutil.move(path, new_path) #Move the dir & contents to new_named dir
+    
+            #Need to edit the dictionary now
+           # with open(f"{new_path}/{new_name}.json",mode="w") as file:   #file 
+            #   json.dump(provider,file,indent= 4)
+                #data = json.load(file)
             
+        """
+            if pName in data:
+                    del data[pName]
+                    cacheDict = dict(data)
+                    cacheDict.update({pName:new_name})
+                    with open(f"{new_path}/{new_name}.json",mode="w") as file:
+                    # Dump cached dict to json file
+                        json.dump(cacheDict, file, indent=4)
+                      
+            
+            #shutil.move(f"{new_path}/{pName}.json", f"{new_path}/{new_name}.json")
+               
+            #Update the ProviderList JSON
             with open("Provider/ProviderList.json",mode="r") as file:
                 data = json.load(file)
             for index,provider in enumerate(data['providers']):
@@ -153,6 +176,7 @@ class Provider:
                 json.dump(data,file, indent = 4)    
         else:
             self.print_not_found()
+        """
 
 
     #Just a print statement to reuse in multiple functions
