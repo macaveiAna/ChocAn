@@ -164,5 +164,5 @@ class Member:
         pass
         
     def create_weekly_report(self):
-        
+        pass
    
