@@ -93,6 +93,7 @@ class Provider:
             
     #test
     def remove_provider(self):
+        self.display_providers()
         found = False
         id = self.getProviderID()
         pName = self.getProviderName(id, 0)
