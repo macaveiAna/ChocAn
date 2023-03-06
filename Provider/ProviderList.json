@@ -2,11 +2,15 @@
     "providers": [
         {
             "ProviderName": "Pooja",
-            "ProviderId": "997825779",
-            "ProviderAddr": "111 LL",
-            "ProviderCity": "Portland",
-            "ProviderState": "OR",
-            "ProviderZip": "22222"
+            "ProviderId": "997825779"
+        },
+        {
+            "ProviderName": "AAA",
+            "ProviderId": "415255290"
+        },
+        {
+            "ProviderName": "New",
+            "ProviderId": "729441226"
         }
     ]
 }
