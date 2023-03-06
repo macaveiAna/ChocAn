@@ -171,6 +171,11 @@ class Member:
     
     def create_weekly_report(self,member_id,date_service,sName,pName):
         
+        cwd = os.getcwd() #gets current working directory
+        parent_dir = "Member" #sets relative path in variable
+        
+            
+
         with open('Member/MemberDirectory.json') as file:
             data = json.load(file)
         
@@ -181,52 +186,73 @@ class Member:
                 mCity = member['MemberCity']
                 mState = member['MemberState']
                 mZip = member['MemberZip']
-        
+        #If member already has a file, will print a statement that it exists
+        if os.path.exists(f"{cwd}/{parent_dir}/{mName}") == False:
+            directory = f"{mName}/" #new member directory
+            path = os.getcwd() + "/Member/" + directory
+            os.makedirs(path)
+            
 
         dir_path = f"Member/{mName}"
         abs_path = os.path.abspath(dir_path)
         all_files = os.listdir(abs_path)
         all_files.sort(key=lambda x: os.path.getmtime(os.path.join(abs_path, x)), reverse=True)
+        if len(all_files) != 0:
+            latest_file = os.path.join(abs_path, all_files[0])
 
-        latest_file = os.path.join(abs_path, all_files[0])
+            latest_file_mtime = os.path.getmtime(latest_file)
+            latest_file_datetime = datetime.datetime.fromtimestamp(latest_file_mtime)
 
-        latest_file_mtime = os.path.getmtime(latest_file)
-        latest_file_datetime = datetime.datetime.fromtimestamp(latest_file_mtime)
-
-        today = datetime.date.today()
-        days_ago_7 = today - datetime.timedelta(days=7)
-        directory = f"{mName}"
-        path = os.getcwd() + "/Member/" + directory
-        if latest_file_datetime.date() > days_ago_7:
-            new_service = {
-                "Date_Of_Service": date_service,
-                "ProviderName": pName,
-                "ServiceName": sName
-            }
-            with open(f"{latest_file}","r") as file:
-                new_data = json.load(file)
-            new_data['Services'].append(new_service)
-            with open(f"{latest_file}","w") as file:
-                json.dump(new_data,file,indent=4)
-        else:
+            today = datetime.date.today()
+            days_ago_7 = today - datetime.timedelta(days=7)
+            directory = f"{mName}"
+            path = os.getcwd() + "/Member/" + directory
+            if latest_file_datetime.date() > days_ago_7:
+                new_service = {
+                    "Date_Of_Service": date_service,
+                    "ProviderName": pName,
+                    "ServiceName": sName
+                }
+                with open(f"{latest_file}","r") as file:
+                    new_data = json.load(file)
+                new_data['Services'].append(new_service)
+                with open(f"{latest_file}","w") as file:
+                    json.dump(new_data,file,indent=4)
+            else:
             
+                member = {
+                    "MemberName": mName,
+                    "MemberID": member_id,
+                    "MemberAddr": mAddr,
+                    "MemberCity": mCity,
+                    "MemberState": mState,
+                    "MemberZip": mZip,
+                    "Services": [{
+                        "Date_Of_Service": date_service,
+                        "ProviderName": pName,
+                        "ServiceName": sName
+                    }],
+                }
+
+                with open(f"{path}/{mName}_{date_service}.json",mode="w") as file:   #file 
+                    json.dump(member,file,indent= 4)
+    
+        else:
             member = {
-                    "MemberName": self.member_name,
-                    "MemberID": self.member_id,
-                    "MemberAddr": self.strAddr,
-                    "MemberCity": self.city,
-                    "MemberState": self.state,
-                    "MemberZip": self.zip,
+                    "MemberName": mName,
+                    "MemberID": member_id,
+                    "MemberAddr": mAddr,
+                    "MemberCity": mCity,
+                    "MemberState": mState,
+                    "MemberZip": mZip,
                     "Services": [{
                         "Date_Of_Service": date_service,
                         "ProviderName": pName,
                         "ServiceName": sName
                     }],
             }
-
-            with open(f"{path}/{self.member_name}_{date_service}.json",mode="w") as file:   #file 
-               json.dump(member,file,indent= 4)
-    
+            with open(f"{dir_path}/{mName}_{date_service}.json",mode="w") as file:   #file 
+                    json.dump(member,file,indent= 4)
     def display_members(self):
         with open('Member/MemberDirectory.json') as f:
             data = json.load(f)

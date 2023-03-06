@@ -125,7 +125,7 @@ class Service:
                     break
         elif(ans == 'n'):
             print("Try again!")
-            p.load_validated()
+            p.load_validated(member_id)
         else:
             print("Invalid response!")
     
