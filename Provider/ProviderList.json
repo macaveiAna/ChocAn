@@ -1,12 +1,5 @@
 {
     "providers": [
-        {
-            "ProviderName": "Ana",
-            "ProviderId": "833556365",
-            "ProviderAddr": "458 biy st",
-            "ProviderCity": "Oregon City",
-            "ProviderState": "OR",
-            "ProviderZip": "97229"
-        }
+        
     ]
 }
