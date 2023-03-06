@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 from tabulate import tabulate
 from datetime import date, timedelta
+import datetime
 
 
 class Provider:
@@ -207,8 +208,88 @@ class Provider:
         else:
             print("Invalid Number")
     
-    def create_provider_weekly_report(self):
-        pass
+    def create_provider_weekly_report(self,date_service,member_id,member_name,service_code,service_fee):
+        cwd = os.getcwd() #gets current working directory
+        parent_dir = "Provider" #sets relative path in variable
+        
+            
+
+        with open('Provider/ProviderList.json') as file:
+            data = json.load(file)
+        
+        for provider in data['providers']:
+            if provider['ProviderId'] == self.provider_id:
+                pAddr = provider["ProviderAddr"]
+                pCity = provider['ProviderCity']
+                pState = provider['ProviderState']
+                pZip = provider['ProviderZip']
+        
+        if os.path.exists(f"{cwd}/{parent_dir}/{self.provider_name}") == False:
+            directory = f"{self.provider_name}/" #new member directory
+            path = os.getcwd() + "/Provider/" + directory
+            os.makedirs(path)
+            
+
+        dir_path = f"Member/{self.provider_name}"
+        abs_path = os.path.abspath(dir_path)
+        all_files = os.listdir(abs_path)
+        all_files.sort(key=lambda x: os.path.getmtime(os.path.join(abs_path, x)), reverse=True)
+        if len(all_files) != 0:
+            latest_file = os.path.join(abs_path, all_files[0])
+
+            latest_file_mtime = os.path.getmtime(latest_file)
+            latest_file_datetime = datetime.datetime.fromtimestamp(latest_file_mtime)
+
+            today = datetime.date.today()
+            days_ago_7 = today - datetime.timedelta(days=7)
+            directory = f"{self.provider_name}"
+            path = os.getcwd() + "/Member/" + directory
+            if latest_file_datetime.date() > days_ago_7:
+                new_service = {
+                    "Date_Of_Service": date_service,
+                    "ProviderName": pName,
+                    "ServiceName": sName
+                }
+                with open(f"{latest_file}","r") as file:
+                    new_data = json.load(file)
+                new_data['Services'].append(new_service)
+                with open(f"{latest_file}","w") as file:
+                    json.dump(new_data,file,indent=4)
+            else:
+            
+                member = {
+                    "MemberName": mName,
+                    "MemberID": member_id,
+                    "MemberAddr": mAddr,
+                    "MemberCity": mCity,
+                    "MemberState": mState,
+                    "MemberZip": mZip,
+                    "Services": [{
+                        "Date_Of_Service": date_service,
+                        "ProviderName": pName,
+                        "ServiceName": sName
+                    }],
+                }
+
+                with open(f"{path}/{mName}_{date_service}.json",mode="w") as file:   #file 
+                    json.dump(member,file,indent= 4)
+    
+        else:
+            member = {
+                    "MemberName": mName,
+                    "MemberID": member_id,
+                    "MemberAddr": mAddr,
+                    "MemberCity": mCity,
+                    "MemberState": mState,
+                    "MemberZip": mZip,
+                    "Services": [{
+                        "Date_Of_Service": date_service,
+                        "ProviderName": pName,
+                        "ServiceName": sName
+                    }],
+            }
+            with open(f"{dir_path}/{mName}_{date_service}.json",mode="w") as file:   #file 
+                    json.dump(member,file,indent= 4)
 
     def display_providers(self):
         with open('Provider/ProviderList.json') as f:
