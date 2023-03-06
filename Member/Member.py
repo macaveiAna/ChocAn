@@ -46,21 +46,28 @@ class Member:
                 name = member["MemberName"]
                 return name
         return None
-
+    def print_not_found(self):
+        print("Member does not exist.")
     def remove_member(self):
+        found = False
         id = self.getMemberID()
         mName = self.getMemberName(id)
-        path = os.getcwd() + '/Member/' + mName
-        shutil.rmtree(path)
-
+        if mName != None:
+            found = True
+            path = os.getcwd() + '/Member/' + mName
+            shutil.rmtree(path)
+        else:
+            self.print_not_found()
         with open("Member/MemberDirectory.json",mode="r") as file:
             data = json.load(file)
         for index,member in enumerate(data['members']):
             if member['MemberId'] == id:
+                found = True
                 data['members'].pop(index)
+
         with open("Member/MemberDirectory.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
-
+        return found
     #first check in main function if member already exits
     def add_member(self):
         today = date.today()
@@ -156,6 +163,6 @@ class Member:
     def pay_monthly_fee(self):
         pass
         
-    #def remove_member(self):
-        #pass
+    def create_weekly_report(self):
+        
    
