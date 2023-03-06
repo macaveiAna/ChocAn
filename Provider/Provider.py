@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 import shutil
 from tabulate import tabulate
-
+from datetime import date, timedelta
 
 
 class Provider:
@@ -41,6 +41,8 @@ class Provider:
          
     #test
     def add_provider(self):
+
+        today = date.today()
         cwd = os.getcwd() #gets current working directory
         parent_dir = "Provider" #sets relative path in variable
         
@@ -71,7 +73,7 @@ class Provider:
                     "TotalFee": "$0.00"
             }
             #Opens the path to the new folder and creates new json file for provider profile        
-            with open(f"{path}/{self.provider_name}.json",mode="w") as file:   #file 
+            with open(f"{path}/{self.provider_name}_{str(today)}.json",mode="w") as file:   #file 
                json.dump(provider,file,indent= 4)
 
             #Opens the path to the Provider folder for the
