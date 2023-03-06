@@ -63,9 +63,9 @@ class Provider:
                     "ProviderCity": self.city,
                     "ProviderState": self.state,
                     "ProviderZip": self.zip,
-                    "Services": [{
+                    "Services": [
                         
-                    }],
+                    ],
                     "TotalConsultations": 0,
                     "TotalFee": "$0.00"
             }
@@ -160,7 +160,7 @@ class Provider:
             with open(filename, "w") as file:
                 json.dump(comment, file)
     
-    def load_validated(self):  
+    def load_validated(self,member_id):  
         s = Service()
         print("Please enter the date the service was provided:")
         date_service = input("> ")
@@ -174,7 +174,7 @@ class Provider:
                 name = service['serviceName']
                 validServiceCode = True
                 s.printServiceName(name)
-                s.validateServiceName(date_service,name,self.provider_name)
+                s.validateServiceName(member_id,date_service,name,self.provider_name)
                 break
         if(validServiceCode == False):
             print("Invalid service code")
@@ -195,6 +195,6 @@ class Provider:
                 m.printSuspended()
             else:
                 print("Validated")
-                self.load_validated()
+                self.load_validated(m.member_id)
         else:
             print("Invalid Number")
