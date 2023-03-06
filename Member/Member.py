@@ -166,8 +166,6 @@ class Member:
         
         return False
     
-    def pay_monthly_fee(self):
-        pass
     
     def create_weekly_report(self,member_id,date_service,sName,pName):
         
