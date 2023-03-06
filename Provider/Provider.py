@@ -201,7 +201,9 @@ class Provider:
         else:
             print("Invalid Number")
     
-    
+    def create_provider_weekly_report(self):
+        pass
+
     def display_providers(self):
         with open('Provider/ProviderList.json') as f:
             data = json.load(f)
