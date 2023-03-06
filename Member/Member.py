@@ -186,7 +186,7 @@ class Member:
                 mCity = member['MemberCity']
                 mState = member['MemberState']
                 mZip = member['MemberZip']
-        #If member already has a file, will print a statement that it exists
+        
         if os.path.exists(f"{cwd}/{parent_dir}/{mName}") == False:
             directory = f"{mName}/" #new member directory
             path = os.getcwd() + "/Member/" + directory
