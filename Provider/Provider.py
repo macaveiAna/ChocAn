@@ -169,10 +169,10 @@ class Provider:
             with open(filename, "w") as file:
                 json.dump(comment, file)
     
-    def load_validated(self,member_id,member_name):  
+    def load_validated(self,member_id,member_name,date_service):  
         s = Service()
-        print("Please enter the date the service was provided:")
-        date_service = input("> ")
+        #print("Please enter the date the service was provided:")
+        #date_service = input("> ")
         print("Please enter service code:")
         service_code = input("> ")
         validServiceCode = False
@@ -187,7 +187,15 @@ class Provider:
                 break
         if(validServiceCode == False):
             print("Invalid service code")
-    
+            self.load_validated(member_id, member_name, date_service)
+            
+    def get_date_service(self, member_id, member_name):
+        print("Please enter the date the service was provided: ")
+        date_service = input("> ")
+        self.load_validated(member_id, member_name, date_service)
+            
+   
+        
     #test 
     def load(self):
         self.provider_id = self.getProviderID()
@@ -209,7 +217,8 @@ class Provider:
                 m.printSuspended()
             else:
                 print("Validated")
-                self.load_validated(m.member_id, m.member_name)
+                #self.load_validated(m.member_id, m.member_name)
+                self.get_date_service(m.member_id, m.member_name)
         #else:
             #print("Invalid Number")
             #m.member_id.getMemberID()
@@ -235,9 +244,9 @@ class Provider:
             directory = f"{self.provider_name}/" #new member directory
             path = os.getcwd() + "/Provider/" + directory
             os.makedirs(path)
-            
+        #print(self.provider_name)
 
-        dir_path = f"Member/{self.provider_name}"
+        dir_path = f"Provider/{self.provider_name}"
         abs_path = os.path.abspath(dir_path)
         all_files = os.listdir(abs_path)
         all_files.sort(key=lambda x: os.path.getmtime(os.path.join(abs_path, x)), reverse=True)
@@ -275,7 +284,7 @@ class Provider:
                     "ProviderAddr": pAddr,
                     "ProviderCity": pCity,
                     "ProviderState": pState,
-                    "ProviderZip": pCity,
+                    "ProviderZip": pZip,
                     "Services": [{
                         "Date_Of_Service": date_service,
                         "Date_received by computer": "",
@@ -292,7 +301,24 @@ class Provider:
                     json.dump(provider,file,indent= 4)
     
         else:
-            
+            provider = {
+                    "ProviderName": self.provider_name,
+                    "ProviderID": self.provider_id,
+                    "ProviderAddr": pAddr,
+                    "ProviderCity": pCity,
+                    "ProviderState": pState,
+                    "ProviderZip": pZip,
+                    "Services": [{
+                        "Date_Of_Service": date_service,
+                        "Date_received by computer": "",
+                        "MemberName": member_name,
+                        "MemberNum": member_id,
+                        "ServiceCode": service_code,
+                        "ServiceFee": service_fee
+                    }],
+                    "TotalConsultations": 1,
+                    "TotalFee": "$0.00"
+            }
             
             with open(f"{dir_path}/{self.provider_name}_{date_service}.json",mode="w") as file:   #file 
                     json.dump(provider,file,indent= 4)

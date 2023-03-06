@@ -111,7 +111,7 @@ class Service:
         return None
     
     def validateServiceName(self,member_id,date,name,pName,member_name,service_code):
-        p = Provider()
+        p = Provider.Provider()
         m = Member()
         print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
         ans = input("> ")
@@ -128,7 +128,7 @@ class Service:
             
         elif(ans == 'n'):
             print("Try again!")
-            p.load_validated(member_id)
+            p.load_validated(member_id, member_name, date)
         else:
             print("Invalid response!")
     
