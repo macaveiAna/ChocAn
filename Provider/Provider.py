@@ -83,7 +83,11 @@ class Provider:
             #New provider data for the json file containing all providers in Provider folder
             new_provider = {
                 "ProviderName": self.provider_name,
-                "ProviderId": self.provider_id
+                "ProviderId": self.provider_id,
+                "ProviderAddr": self.strAddr,
+                "ProviderCity": self.city,
+                "ProviderState": self.state,
+                "ProviderZip": self.zip,
             }
             #Appends the new provider to the full provider list
             data['providers'].append(new_provider)
