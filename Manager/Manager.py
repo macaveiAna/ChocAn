@@ -55,12 +55,13 @@ class Manager:
         print("Welcome back!")
         while True:
             option = self.displayMainMenu()
+            print("\n")
             match option:
                 case 1:
                     choice = self.reportsMenu()
                 case 2:
                     m = Member()
-                
+                    print("\n")
                     while True:
                         response = self.membersMenu()
                         if response == 1:
@@ -76,8 +77,9 @@ class Manager:
                             print("Enter a valid option!")
                             continue  # repeat the loop until a valid option is entered
                         break  # exit the loop once a valid option is selected     
-
+                    print("\n")
                 case 3:
+                    print("\n")
                     p = Provider()
                     while True:
                         response = self.providersMenu()
@@ -90,8 +92,10 @@ class Manager:
                         else:
                             print("Enter a valid option!")
                             continue  # repeat the loop until a valid option is entered
-                        break  # exit the loop once a valid option is selected         
+                        break  # exit the loop once a valid option is selected  
+                    print("\n")      
                 case 4:
+                    print("\n")
                     s = Service()
                     while True:
                         response = self.servicesMenu()
@@ -109,6 +113,7 @@ class Manager:
                             print("Enter a valid option!")
                             continue  # repeat the loop until a valid option is entered
                         break  # exit the loop once a valid option is selected 
+                    print("\n")
                 case 5:
                     print("SEE YOU AGAIN TOMORROW!")    
             if not option!=5:
