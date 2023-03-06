@@ -1,19 +1,7 @@
 {
-    "members": [
+    "members": [       
         {
             "MemberName": "Jesse",
-            "MemberId": "123456789",
-            "Status": "Active",
-            "last_payment": "2023-03-01"
-        },
-        {
-            "MemberName": "Jesse lion",
-            "MemberId": "353667966",
-            "Status": "Active",
-            "last_payment": "2023-03-05"
-        },
-        {
-            "MemberName": "Pooja Sounder Rajan",
             "MemberId": "138624622",
             "MemberAddr": "jksqdb",
             "MemberCity": "jdv",

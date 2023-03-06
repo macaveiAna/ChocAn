@@ -27,7 +27,7 @@ class Manager:
     
     def membersMenu(self):
         options = {
-            'Services': ['1. Add Member', '2. Remove Member', '3. Update Member Records']
+            'Services': ['1. Add Member', '2. Remove Member', '3. Update Member Records', '4. Display Members']
         }
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
@@ -70,6 +70,8 @@ class Manager:
                         elif response == 3:
                             #m.update_provider_records()
                             pass
+                        elif response == 4:
+                            m.display_members()
                         else:
                             print("Enter a valid option!")
                             continue  # repeat the loop until a valid option is entered

@@ -7,6 +7,8 @@ import os
 from pathlib import Path
 import shutil
 
+from tabulate import tabulate
+
 class Member:
  
     def __init__(self):
@@ -225,3 +227,15 @@ class Member:
             with open(f"{path}/{self.member_name}_{date_service}.json",mode="w") as file:   #file 
                json.dump(member,file,indent= 4)
     
+    def display_members(self):
+        with open('Member/MemberDirectory.json') as f:
+            data = json.load(f)
+
+        # Extract fields
+        rows = []
+        for obj in data['members']:
+            rows.append([obj['MemberName'], obj['MemberId']])
+
+        # Print table
+        headers = ['Name', 'ID']
+        print(tabulate(rows, headers=headers))
