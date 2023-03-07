@@ -122,7 +122,7 @@ class Provider:
     def update_Pmenu(self):
         print("To update name, enter 1")
         print("To update address, enter 2")
-        choice = input("> ")
+        choice = input()
         return choice
 
     #Get updated name
@@ -139,8 +139,8 @@ class Provider:
         if pName == None:
                 return
         choice = self.update_Pmenu()
-       
-        if choice == 1: #Update Provider Name
+        print("choice ", choice)
+        if choice == "1": #Update Provider Name
             path = os.getcwd() + '/Provider/' + pName #Go to the dir
             #print("Path test: ", path)
             self.provider_name = new_name = self.ask_name()    # Need edit function to call
