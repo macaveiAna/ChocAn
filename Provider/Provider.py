@@ -49,7 +49,7 @@ class Provider:
         #If provider already has a file, will print a statement that it exists
         if os.path.exists(f"{cwd}/{parent_dir}/{self.provider_name}"): 
             self.print_exists()
-            
+
         else:
             #Creates the new provider directory
             directory = f"{self.provider_name}/" #new provider directory
@@ -218,7 +218,7 @@ class Provider:
             with open(filename, "w") as file:
                 json.dump(comment, file)
     
-    def load_validated(self,member_id,member_name,date_service):  
+    def load_validated(self):  
         s = Service()
         #print("Please enter the date the service was provided:")
         #date_service = input("> ")
@@ -232,16 +232,16 @@ class Provider:
                 name = service['serviceName']
                 validServiceCode = True
                 s.printServiceName(name)
-                s.validateServiceName(member_id,date_service,name,self.provider_name,member_name,service_code)
+                s.validateServiceName(name)
                 break
         if(validServiceCode == False):
             print("Invalid service code")
-            self.load_validated(member_id, member_name, date_service)
+            self.load_validated()
             
-    def get_date_service(self, member_id, member_name):
+    def get_date_service(self):
         print("Please enter the date the service was provided: ")
         date_service = input("> ")
-        self.load_validated(member_id, member_name, date_service)
+        self.load_validated()
             
    
         
@@ -267,7 +267,7 @@ class Provider:
             else:
                 print("Validated")
                 #self.load_validated(m.member_id, m.member_name)
-                self.get_date_service(m.member_id, m.member_name)
+                self.get_date_service()
         #else:
             #print("Invalid Number")
             #m.member_id.getMemberID()
