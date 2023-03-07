@@ -103,16 +103,16 @@ class Member:
             path = os.getcwd() + "/Member/" + directory
             os.makedirs(path)
             
-            with open(f"{path}/{self.member_name}_{str(today)}.json",mode="w") as file:   #file 
+            with open(f"{path}/{self.member_name}_profile.json",mode="w") as file:   #file 
                json.dump(member,file,indent= 4)
 
             new_member = {
                 "MemberName": self.member_name, 
                 "MemberId": self.member_id, 
-                "MemberAddr": self.strAddr,
-                "MemberCity": self.city,
-                "MemberState": self.state,
-                "MemberZip": self.zip,
+                #"MemberAddr": self.strAddr,
+                #"MemberCity": self.city,
+                #"MemberState": self.state,
+                #"MemberZip": self.zip,
                 "Status": "Active", 
                 "last_payment": str(today)
                 }
@@ -168,8 +168,6 @@ class Member:
         
         return False
 
-    
-    
     def create_weekly_report(self,member_id,date_service,sName,pName):
         
         cwd = os.getcwd() #gets current working directory

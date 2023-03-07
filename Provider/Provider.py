@@ -43,13 +43,13 @@ class Provider:
     #test
     def add_provider(self):
 
-        today = date.today()
         cwd = os.getcwd() #gets current working directory
         parent_dir = "Provider" #sets relative path in variable
         
         #If provider already has a file, will print a statement that it exists
         if os.path.exists(f"{cwd}/{parent_dir}/{self.provider_name}"): 
             self.print_exists()
+            
         else:
             #Creates the new provider directory
             directory = f"{self.provider_name}/" #new provider directory
@@ -72,7 +72,7 @@ class Provider:
             #Opens the path to the new folder and creates new json file for provider profile        
             #with open(f"{path}/{self.provider_name}_{str(today)}.json",mode="w") as file:   #file 
              #  json.dump(provider,file,indent= 4)
-            with open(f"{path}/{self.provider_name}.json",mode="w") as file:   #file  
+            with open(f"{path}/{self.provider_name}_profile.json",mode="w") as file:   #file  
                json.dump(provider,file,indent= 4)
 
             #Opens the path to the Provider folder for the
