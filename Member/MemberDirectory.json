@@ -1,14 +1,5 @@
 {
     "members": [
-        {
-            "MemberName": "Ana Macavei",
-            "MemberId": "496410017",
-            "MemberAddr": "111 OK",
-            "MemberCity": "Portland",
-            "MemberState": "OR",
-            "MemberZip": "97045",
-            "Status": "Active",
-            "last_payment": "2023-03-06"
-        }
+        
     ]
 }
