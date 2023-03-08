@@ -250,11 +250,21 @@ class Provider:
             self.load_validated()
             
     def get_date_service(self):
-        print("Please enter the date the service was provided: ")
-        date_service = input("> ")
-        self.load_validated()
-            
-   
+        print("\nPlease enter the date the service was provided. ")
+        year = int(input('Enter year: '))
+        month = int(input('Enter month: '))
+        day = int(input('Enter day: '))
+
+        d = date(year, month, day)
+
+        if date.today() < d:
+            print("Invalid Date!")
+            self.get_date_service()
+        elif date.today() - timedelta(days=6) > d:
+            print("Invalid Date!")
+            self.get_date_service()
+        else:
+            self.load_validated()
         
     #test 
     def load(self):
