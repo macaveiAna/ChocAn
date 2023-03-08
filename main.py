@@ -3,6 +3,7 @@
 #
 
 from ChocAn import *
+import os
 
 def main():
     # Creates var 'terminal' to hold Terminal object
@@ -10,4 +11,5 @@ def main():
     terminal.loadTerminal()
 
 if __name__ == "__main__":
+    os.system('clear')
     main()
