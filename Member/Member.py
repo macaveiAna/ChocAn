@@ -6,7 +6,7 @@ import random
 import os
 from pathlib import Path
 import shutil
-
+import pandas as pd
 from tabulate import tabulate
 
 class Member:
@@ -126,6 +126,15 @@ class Member:
             with open(f"{cwd}/{parent_dir}/MemberDirectory.json",mode="w") as file:
                 json.dump(data,file, indent = 4)
         
+        options = {
+                'Options': ['1. Add Another Member', '2. Return to Main Menu']
+            }
+        df = pd.DataFrame(options)
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+        ch = int(input("Please enter your choice: "))
+        if ch == 1:
+            self.enter_Member_details()
 
     def printSuspended(self):
         print("Fees are owed. Member suspended...")
