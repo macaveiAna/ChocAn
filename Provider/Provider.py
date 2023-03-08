@@ -219,12 +219,20 @@ class Provider:
                 return name
         return None
     
+    def get_comment(self):
+        print("Please enter a comment (100 characters): ")
+        comment = input('> ')
+        if len(comment > 100):
+            print('Your comment surpassed 100 characters.\nPlease Redo!')
+            return self.get_comment()
+        else:
+            return comment
+
     def add_comments(self):
         print("Would you like to enter comments about the service provided? [y/n]")
         ans2 = input("> ")
         if ans2 == 'y':
-            print("Please enter a comment (100 characters): ")
-            comment = input("> ")
+            comment = self.get_comment()
             filename = f"{self.provider_name}.json"
             with open(filename, "w") as file:
                 json.dump(comment, file)
