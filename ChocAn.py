@@ -3,6 +3,7 @@ from Provider import Provider
 from Manager import *
 import pandas as pd
 from tabulate import tabulate
+import os
 
 
 class Terminal:
@@ -17,8 +18,13 @@ class Terminal:
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
-        choice = int(input("Please enter your choice: "))
-        return choice
+        choice = input("Please enter your choice: ")
+        if choice.isalpha() == True:
+            os.system('cls')
+            print("Invalid Input! Try again:")
+            return self.getInitInput()
+        else:        
+            return int(choice)
     
     def setType(self, choice):
         if choice == 1:
@@ -31,12 +37,18 @@ class Terminal:
     #test  
     def loadTerminal(self):
         choice = self.getInitInput()
-        self.setType(choice)
-
-        if self.type == "Provider": # if type is provider
-            provider = Provider()
-            provider.load()
+        if choice != 1 and choice != 2:
             
-        else: # if type is manager
-            manager = Manager()
-            manager.load()
+            os.system('cls')
+            print("Invalid Input! Try Again: ")
+            self.loadTerminal()
+        else:
+            self.setType(choice)
+
+            if self.type == "Provider": # if type is provider
+                provider = Provider()
+                provider.load()
+            
+            else: # if type is manager
+                manager = Manager()
+                manager.load()
