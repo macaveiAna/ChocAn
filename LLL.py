@@ -2,6 +2,7 @@
 # methods: insert, retrieve, display and remove
 
 from ChocAn import *
+import Member
 
 class Node:
     #constructor
