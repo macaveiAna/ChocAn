@@ -192,11 +192,12 @@ class Member:
                 return True
         
         return False
-
+    '''
     def create_weekly_report(self,member_id,date_service,sName,pName):
         
         cwd = os.getcwd() #gets current working directory
         parent_dir = "Member" #sets relative path in variable
+    
         
             
 
@@ -277,6 +278,7 @@ class Member:
             }
             with open(f"{dir_path}/{mName}_{date_service}.json",mode="w") as file:   #file 
                     json.dump(member,file,indent= 4)
+    '''
     def display_members(self):
         with open('Member/MemberDirectory.json') as f:
             data = json.load(f)
