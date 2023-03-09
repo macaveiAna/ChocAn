@@ -112,11 +112,12 @@ class Service:
     
     def validateServiceName(self,sName):
         p = Provider.Provider()
-        m = Member()
         print("Is this the correct service that was provided? ","'",sName,"'","[y/n]")
         ans = input("> ")
         if(ans == 'y'):   
-            data = self.load_file();
+            data = self.load_file()
+            p.add_comments()
+            print(p.provider_name)
             for service in data['services']:
                 if service['serviceName'] == sName:
                     fees = service['servicePrice']
