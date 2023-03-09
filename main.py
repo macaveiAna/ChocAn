@@ -11,5 +11,5 @@ def main():
     terminal.loadTerminal()
 
 if __name__ == "__main__":
-    os.system('clear')
+    os.system('cls')
     main()

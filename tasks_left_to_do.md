@@ -1,0 +1,1 @@
+- Clear screen before each menu (use os.system('cls'))
