@@ -1,6 +1,7 @@
 import json
 import datetime
-class reports:
+
+class report:
     def __init__(self):
         pass
 

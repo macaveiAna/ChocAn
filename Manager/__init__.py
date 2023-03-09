@@ -1,2 +1,2 @@
 from .Manager import Manager
-from .reports import reports
+from .report import report
