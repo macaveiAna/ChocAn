@@ -222,7 +222,7 @@ class Provider:
     def get_comment(self):
         print("Please enter a comment (100 characters): ")
         comment = input('> ')
-        if len(comment > 100):
+        if len(comment) > 100:
             print('Your comment surpassed 100 characters.\nPlease Redo!')
             return self.get_comment()
         else:
