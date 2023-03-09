@@ -34,23 +34,28 @@ def test_enter_Provider_details():
 
 def test_add_member():
     #obj1.add_member('80192104', 'T_' + datetime.datetime.now())
-
+    today = datetime.date.today
     with open("Member/MemberDirectory.json", "r") as file:
-        expected = json.load(file)
+        expected_data = json.load(file)
+    filepath = "test_file.json"
     new_member = {
         "MemberName": 'T_' + datetime.datetime.now(), 
         "MemberId": '80192104', 
         "Status": "Active", 
-        "last_payment": str(today)
+        "last_payment": str(today) #work on this part
         }
-    expected["members"].append(new_member)
+    expected_data["members"].append(new_member)
 
     obj1.add_member('80192104', 'T_' + datetime.datetime.now())
 
+    with open("Member/MemberDirectory.json", "w") as file:
+        json.dump(expected_data, file)
+        
     with open("Member/MemberDirectory.json", "r") as file:
-        whatWeHave = json.load(file)
+        jsondata = json.load(file)
 
-    assert expected == whatWeHave
+    assert expected_data == jsondata
+    os.remove(filepath)
 
 
 def test_isSuspended():
