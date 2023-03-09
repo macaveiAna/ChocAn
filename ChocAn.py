@@ -19,7 +19,7 @@ class Terminal:
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
         choice = input("Please enter your choice: ")
-        if choice.isalpha() == True:
+        if choice.isnumeric() == False or (int(choice) != 1 and int(choice) != 2):
             os.system('cls')
             print("Invalid Input! Try again:")
             return self.getInitInput()
@@ -37,18 +37,12 @@ class Terminal:
     #test  
     def loadTerminal(self):
         choice = self.getInitInput()
-        if choice != 1 and choice != 2:
-            
-            os.system('cls')
-            print("Invalid Input! Try Again: ")
-            self.loadTerminal()
-        else:
-            self.setType(choice)
+        self.setType(choice)
 
-            if self.type == "Provider": # if type is provider
-                provider = Provider()
-                provider.load()
-            
-            else: # if type is manager
-                manager = Manager()
-                manager.load()
+        if self.type == "Provider": # if type is provider
+            provider = Provider()
+            provider.load()
+        
+        else: # if type is manager
+            manager = Manager()
+            manager.load()
