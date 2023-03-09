@@ -5,5 +5,16 @@
     "MemberCity": "portland",
     "MemberState": "or",
     "MemberZip": "97229",
-    "Services": []
+    "Services": [
+        {
+            "Date of Service ": "2023-03-05",
+            "Provider Name ": "Pooja",
+            "Service Name ": "internist"
+        },
+        {
+            "Date of Service ": "2023-03-05",
+            "Provider Name ": "Pooja",
+            "Service Name ": "internist"
+        }
+    ]
 }
