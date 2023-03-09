@@ -259,9 +259,9 @@ class Provider:
             
     def get_date_service(self):
         print("\nPlease enter the date the service was provided. ")
-        year = int(input('Enter year: '))
-        month = int(input('Enter month: '))
-        day = int(input('Enter day: '))
+        year = int(input('Enter year (yyyy): '))
+        month = int(input('Enter month (mm): '))
+        day = int(input('Enter day (dd): '))
 
         d = date(year, month, day)
 
