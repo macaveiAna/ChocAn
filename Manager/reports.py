@@ -18,4 +18,16 @@ class reports:
             with open(f"Member/{name}/{name}_profile.json", "w") as file:
                 json.dump(aMember,file)
     
-    
+    def create_provider_weekly_reports(self):
+        today = datetime.date.today()
+        with open("Provider/ProviderList.json", mode="r") as providerFile:
+            all_providers = json.load(providerFile)
+        for provider in all_providers["providers"]:
+            name = provider["ProviderName"]
+            with open(f"Provider/{name}/{name}_profile.json", "r") as aProviderFile:
+                aProvider = json.load(aProviderFile)
+            with open(f"Provider/{name}/{name}_{today}", "w") as f:
+                json.dump(aProvider, f)
+            del aProvider['Services']
+            with open(f"Provider/{name}/{name}_profile.json", "w") as file:
+                json.dump(aProvider,file)
