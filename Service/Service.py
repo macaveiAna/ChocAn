@@ -4,6 +4,7 @@ import json
 import random
 import pandas as pd
 from tabulate import tabulate
+from datetime import date
 
 class Service:
     def __init__(self):
@@ -110,14 +111,15 @@ class Service:
                 return sName
         return None
     
-    def validateServiceName(self,sName):
+    def validateServiceName(self,sName, provider_name, member_name, date_of_service):
         p = Provider.Provider()
         print("Is this the correct service that was provided? ","'",sName,"'","[y/n]")
         ans = input("> ")
         if(ans == 'y'):   
             data = self.load_file()
-            p.add_comments()
-            print(p.provider_name)
+            p.add_comments(provider_name)
+            self.add_service_in_member_profile(provider_name, member_name, sName, date_of_service)
+            
             for service in data['services']:
                 if service['serviceName'] == sName:
                     fees = service['servicePrice']
@@ -126,9 +128,28 @@ class Service:
             
         elif(ans == 'n'):
             print("Try again!")
-            p.load_validated()
+            p.load_validated(provider_name, date_of_service, member_name)
         else:
             print("Invalid response!")
+    
+    def add_service_in_member_profile(self, provider_name, member_name, service_name, date_of_service):
+        with open(f"Member/{member_name}/{member_name}_profile.json", "r") as file:
+            data = json.load(file)
+        
+        new_service = {
+            "Date of Service ": str(date_of_service),
+            "Provider Name ": provider_name,
+            "Service Name ": service_name
+        }
+        
+        data["Services"].append(new_service)
+        with open(f"Member/{member_name}/{member_name}_profile.json", "w") as newfile:
+            json.dump(data, newfile, indent = 4)
+       
+            
+            
+            
+    
     
     def printServiceName(self,sname):
             print("Service: ", sname)

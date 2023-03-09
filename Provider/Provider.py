@@ -228,16 +228,16 @@ class Provider:
         else:
             return comment
 
-    def add_comments(self):
+    def add_comments(self, provider_name):
         print("Would you like to enter comments about the service provided? [y/n]")
         ans2 = input("> ")
         if ans2 == 'y':
             comment = self.get_comment()
-            filename = f"{self.provider_name}.json"
+            filename = f"{provider_name}.json"
             with open(filename, "w") as file:
                 json.dump(comment, file)
     
-    def load_validated(self):  
+    def load_validated(self, provider_name, date_of_service, member_name):  
         s = Service()
         #print("Please enter the date the service was provided:")
         #date_service = input("> ")
@@ -248,31 +248,31 @@ class Provider:
             data = json.load(file)
         for service in data['services']:
             if service['serviceCode'] == service_code:
-                name = service['serviceName']
+                sname = service['serviceName']
                 validServiceCode = True
-                s.printServiceName(name)
-                s.validateServiceName(name)
+                s.printServiceName(sname)
+                s.validateServiceName(sname, provider_name, member_name, date_of_service)
                 break
         if(validServiceCode == False):
             print("Invalid service code")
-            self.load_validated()
+            self.load_validated(provider_name, date_of_service, member_name)
             
-    def get_date_service(self):
+    def get_date_service(self, provider_name, member_name):
         print("\nPlease enter the date the service was provided. ")
         year = int(input('Enter year (yyyy): '))
         month = int(input('Enter month (mm): '))
         day = int(input('Enter day (dd): '))
 
         d = date(year, month, day)
-
+      
         if date.today() < d:
             print("Invalid Date!")
-            self.get_date_service()
+            self.get_date_service(provider_name, member_name)
         elif date.today() - timedelta(days=6) > d:
             print("Invalid Date!")
-            self.get_date_service()
+            self.get_date_service(provider_name, member_name)
         else:
-            self.load_validated()
+            self.load_validated(provider_name, d, member_name)
         
     #test 
     def load(self):
@@ -296,7 +296,7 @@ class Provider:
             else:
                 print("Validated")
                 #self.load_validated(m.member_id, m.member_name)
-                self.get_date_service()
+                self.get_date_service(self.provider_name, m.member_name)
         #else:
             #print("Invalid Number")
             #m.member_id.getMemberID()
