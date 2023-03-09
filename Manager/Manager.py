@@ -1,5 +1,5 @@
 from Provider import *
-from report import report
+from report import *
 from Member import *
 from Service import *
 from tabulate import tabulate
@@ -59,7 +59,7 @@ class Manager:
             print("\n")
             match option:
                 case 1:
-                    r = report.report()
+                    r = report()
                     choice = self.reportsMenu()
                     while True:
                         if(choice == 1):
