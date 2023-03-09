@@ -47,8 +47,3 @@ def set_input(some_input):
 
     mock_input_output()
     test_input = some_input
-#getInitInput Test
-#def test_getInitInput(setup):
-    #input = 1
-
-    #choice = terminal.getInitInput()
