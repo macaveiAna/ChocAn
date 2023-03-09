@@ -1,1 +1,4 @@
-- Clear screen before each menu (use os.system('cls'))
+- Clear screen before each menu (use os.system('cls')) 
+- test_Member.py functions (Assinged to MG)
+- EFT report (Assigned to PS and AM)
+- Summary report (Assigned to AM and PS)
