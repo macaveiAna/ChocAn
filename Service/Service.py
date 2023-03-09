@@ -110,22 +110,22 @@ class Service:
                 return sName
         return None
     
-    def validateServiceName(self,member_id,date,name,pName,member_name,service_code):
+    def validateServiceName(self,sName):
         p = Provider.Provider()
         m = Member()
-        print("Is this the correct service that was provided? ","'",name,"'","[y/n]")
+        print("Is this the correct service that was provided? ","'",sName,"'","[y/n]")
         ans = input("> ")
         if(ans == 'y'):   
-            data = self.load_file()
+            data = self.load_file();
             for service in data['services']:
-                if service['serviceName'] == name:
+                if service['serviceName'] == sName:
                     fees = service['servicePrice']
                     print("Here is the total amount due: ", fees)
                     break
             
         elif(ans == 'n'):
             print("Try again!")
-            p.load_validated(member_id, member_name, date)
+            p.load_validated()
         else:
             print("Invalid response!")
     

@@ -302,6 +302,7 @@ class Provider:
             #m.member_id.getMemberID()
         
     
+    '''
     def create_provider_weekly_report(self,date_service,member_id,member_name,service_code,service_fee):
         cwd = os.getcwd() #gets current working directory
         parent_dir = "Provider" #sets relative path in variable
@@ -400,7 +401,8 @@ class Provider:
             
             with open(f"{dir_path}/{self.provider_name}_{date_service}.json",mode="w") as file:   #file 
                     json.dump(provider,file,indent= 4)
-
+    
+    '''
     def display_providers(self):
         with open('Provider/ProviderList.json') as f:
             data = json.load(f)

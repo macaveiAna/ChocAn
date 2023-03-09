@@ -17,7 +17,7 @@ class Terminal:
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
-        choice = input("Please enter your choice: ")
+        choice = int(input("Please enter your choice: "))
         return choice
     
     def setType(self, choice):
