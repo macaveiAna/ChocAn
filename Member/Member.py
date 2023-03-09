@@ -19,14 +19,19 @@ class Member:
         self.state = ""
         self.zip = ""
     
-    def enter_Member_details(self):
+    def get_name(self):
         print("Please enter member's first name: ")
         first_name = input("> ")
         print("Please enter member's last name: ")
         last_name = input("> ")
-        self.member_name = first_name + " " + last_name
-        for i in range(9):
-            self.member_id += str(random.randint(0,9))
+        if first_name.isalpha() == False or last_name.isalpha() == False:
+            print("Incorrect name format!")
+            return self.get_name()
+        else:
+            member_name = first_name + " " + last_name
+            return member_name
+
+    def get_address(self):
         print("Please enter the Street Address: ")
         self.strAddr = input("> ")
         print("Please enter the City: ")
@@ -35,6 +40,17 @@ class Member:
         self.state= input("> ")
         print("Please enter the zipcode: ")
         self.zip = input("> ")
+
+        if self.city.isalpha() == False or self.state.isalpha() == False or self.zip.isnumeric() == False or len(self.state) != 2 or len(self.zip) != 5:
+            print("Incorrect address format!")
+            self.get_address()
+
+
+    def enter_Member_details(self):
+        self.member_name = self.get_name()
+        for i in range(9):
+            self.member_id += str(random.randint(0,9))
+        self.get_address()
         self.add_member()
 
     def print_exists(self):
