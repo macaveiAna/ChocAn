@@ -1,4 +1,5 @@
 from Provider import *
+from report import *
 from Member import *
 from Service import *
 from tabulate import tabulate
@@ -18,7 +19,7 @@ class Manager:
     
     def reportsMenu(self):
         options = {
-            'Report to generate': ['1. Member report', '2. Provider report', '3. EFT report', '4. Summary report']
+            'Report to generate': ['1. Member Weekly reports', '2. Provider Weekly reports', '3. EFT report', '4. Summary report']
         }
         df = pd.DataFrame(options)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
@@ -58,7 +59,21 @@ class Manager:
             print("\n")
             match option:
                 case 1:
+                    r = report()
                     choice = self.reportsMenu()
+                    while True:
+                        if(choice == 1):
+                            r.create_member_weekly_reports()
+                        elif(choice == 2):
+                            r.create_provider_weekly_reports()
+                        elif(choice == 3):
+                            pass
+                        elif(choice == 4):
+                            pass
+                        else:
+                            print("Enter a valid option!")
+                            continue
+                        break
                 case 2:
                     m = Member()
                     print("\n")

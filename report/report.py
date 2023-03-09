@@ -1,6 +1,7 @@
 import json
 import datetime
-class reports:
+
+class report:
     def __init__(self):
         pass
 
@@ -13,10 +14,10 @@ class reports:
             with open(f"Member/{name}/{name}_profile.json", "r") as aMemberFile:
                 aMember = json.load(aMemberFile)
             with open(f"Member/{name}/{name}_{today}", "w") as f:
-                json.dump(aMember, f)
+                json.dump(aMember, f,indent=4)
             del aMember['Services']
             with open(f"Member/{name}/{name}_profile.json", "w") as file:
-                json.dump(aMember,file)
+                json.dump(aMember,file,indent=4)
     
     def create_provider_weekly_reports(self):
         today = datetime.date.today()
