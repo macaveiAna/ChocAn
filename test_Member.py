@@ -34,7 +34,7 @@ def test_enter_Provider_details():
 
 def test_add_member():
     #obj1.add_member('80192104', 'T_' + datetime.datetime.now())
-    today = datetime.date.today
+    today = datetime.date.today()
     with open("Member/MemberDirectory.json", "r") as file:
         expected_data = json.load(file)
     filepath = "test_file.json"
