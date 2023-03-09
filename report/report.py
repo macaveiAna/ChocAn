@@ -15,7 +15,7 @@ class report:
                 aMember = json.load(aMemberFile)
             with open(f"Member/{name}/{name}_{today}", "w") as f:
                 json.dump(aMember, f,indent=4)
-            aMember['Services'] = {}
+            aMember['Services'] = []
             with open(f"Member/{name}/{name}_profile.json", "w") as file:
                 json.dump(aMember,file,indent=4)
     
@@ -28,7 +28,7 @@ class report:
             with open(f"Provider/{name}/{name}_profile.json", "r") as aProviderFile:
                 aProvider = json.load(aProviderFile)
             with open(f"Provider/{name}/{name}_{today}", "w") as f:
-                json.dump(aProvider, f)
-            del aProvider['Services']
+                json.dump(aProvider, f, indent=4)
+            aProvider['Services'] = []
             with open(f"Provider/{name}/{name}_profile.json", "w") as file:
-                json.dump(aProvider,file)
+                json.dump(aProvider,file, indent=4)
