@@ -4,7 +4,7 @@ import json
 import random
 import pandas as pd
 from tabulate import tabulate
-from datetime import date
+from datetime import datetime
 
 class Service:
     def __init__(self):
@@ -119,13 +119,13 @@ class Service:
             data = self.load_file()
             p.add_comments(provider_name)
             self.add_service_in_member_profile(provider_name, member_name, sName, date_of_service)
-            
             for service in data['services']:
+                code = service["serviceCode"]
                 if service['serviceName'] == sName:
                     fees = service['servicePrice']
                     print("Here is the total amount due: ", fees)
                     break
-            
+            self.add_service_in_provider_profile(provider_name,date_of_service,member_name,code,fees)
         elif(ans == 'n'):
             print("Try again!")
             p.load_validated(provider_name, date_of_service, member_name)
@@ -146,8 +146,27 @@ class Service:
         with open(f"Member/{member_name}/{member_name}_profile.json", "w") as newfile:
             json.dump(data, newfile, indent = 4)
        
-            
-            
+    def add_service_in_provider_profile(self,provider_name,date_of_service,member_name,service_code,service_fee):
+        today = datetime.now()
+        date_time_str = today.strftime("%Y-%m-%d %H:%M:%S")
+        with open(f"Member/MemberDirectory.json", mode="r") as file:
+            data = json.load(file)
+        for member in data["members"]:
+            if member["MemberName"] == member_name:
+                member_number = member['MemberId']
+        with open(f"Provider/{provider_name}/{provider_name}_profile.json", mode="r") as file:
+            new_data = json.load(file)
+        new_service = {
+            "Date of Service ": str(date_of_service),
+            "CurrentDate" : str(date_time_str),
+            "MemberName" : member_name,
+            "MemberNumber": member_number,
+            "ServiceCode": service_code,
+            "ServiceFee": service_fee
+        }
+        new_data["Services"].append(new_service)
+        with open(f"Provider/{provider_name}/{provider_name}_profile.json", "w") as newfile:
+            json.dump(new_data, newfile, indent = 4)    
             
     
     

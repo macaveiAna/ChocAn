@@ -5,7 +5,16 @@
     "ProviderCity": "Portland",
     "ProviderState": "OR",
     "ProviderZip": "97229",
-    "Services": [],
+    "Services": [
+        {
+            "Date of Service ": "2023-03-08",
+            "CurrentDate": "2023-03-09 13:13:13",
+            "MemberName": "Ana macavei",
+            "MemberNumber": "477718737",
+            "ServiceCode": "111356",
+            "ServiceFee": "$40"
+        }
+    ],
     "TotalConsultations": 0,
     "TotalFee": "$0.00"
 }
