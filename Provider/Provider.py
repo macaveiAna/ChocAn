@@ -150,36 +150,54 @@ class Provider:
         if pName == None:
                 return
         choice = self.update_Pmenu()
-        if choice == "1": #Update Provider Name
-            path = os.getcwd() + '/Provider/' + pName #Go to the dir
-            if(os.path.exists(path)):
-                self.provider_name = new_name = self.ask_name()    # Need edit function to call
-                new_path = os.getcwd() + '/Provider/' + new_name
-                os.rename(f"{path}/{pName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
-                shutil.move(path, new_path) #Move the dir & contents to new_named dir
+        path = os.getcwd() + '/Provider/' + pName #Go to the dir
+        if(os.path.exists(path)):
+            if choice == "1": #Update Provider Name
+            #path = os.getcwd() + '/Provider/' + pName #Go to the dir
+                #if(os.path.exists(path)):
+                    self.provider_name = new_name = self.ask_name()    # Need edit function to call
+                    new_path = os.getcwd() + '/Provider/' + new_name
+                    os.rename(f"{path}/{pName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
+                    shutil.move(path, new_path) #Move the dir & contents to new_named dir
 
-                #Need to edit the dictionary now
-                with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
-                    data = json.load(file)
-                data["ProviderName"] = new_name
-                with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
-                    json.dump(data,file,indent=4)
-                with open("Provider/ProviderList.json",mode="r") as file:   #file 
-                    data = json.load(file)
-    
-                for provider in data["providers"]:
-                    if provider["ProviderName"] == pName:
-                        provider["ProviderName"] = new_name
-                with open("Provider/ProviderList.json",mode="w") as file:
+                    #Need to edit the dictionary now
+                    with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
+                        data = json.load(file)
+                    data["ProviderName"] = new_name
+                    with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
                         json.dump(data,file,indent=4)
+                    with open("Provider/ProviderList.json",mode="r") as file:   #file 
+                        data = json.load(file)
+    
+                    for provider in data["providers"]:
+                        if provider["ProviderName"] == pName:
+                            provider["ProviderName"] = new_name
+                    with open("Provider/ProviderList.json",mode="w") as file:
+                            json.dump(data,file,indent=4)
+            
+            elif choice == "2": #Update Provider Address
+                print("Please enter the updated Street Address: ")
+                new_StrAdd = input("> ")
+                print("Please enter the updated City: ")
+                new_city = input("> ")
+                print("Please enter the updated State: ")
+                new_state= input("> ")
+                print("Please enter the updated zipcode: ")
+                new_zip = input("> ")
+                with open(f"{path}/{pName}_profile.json",mode="r") as file:   #file 
+                        data = json.load(file)
+                data["ProviderAddr"] = new_StrAdd
+                data["ProviderCity"] = new_city
+                data["ProviderState"] = new_state
+                data["ProviderZip"] = new_zip
+                with open(f"{path}/{pName}_profile.json",mode="w") as file:   #file 
+                        json.dump(data,file,indent=4)
+
             else:
-                self.print_not_found()
-        
-        """
-              
+                print("Invalid option!")
+                self.update_provider()
         else:
             self.print_not_found()
-        """
 
 
     #Just a print statement to reuse in multiple functions

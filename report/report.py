@@ -1,5 +1,7 @@
 import json
 import datetime
+import pandas as pd
+from tabulate import tabulate
 
 class report:
     def __init__(self):
@@ -54,5 +56,32 @@ class report:
             new_data["EFT_Data"].append(new_record)
             with open("Provider/EFT.json", "w") as EFTfile:
                 json.dump(new_data,EFTfile,indent=4)
+            
 
-    
+            with open('Provider/EFT.json') as f:
+                data = json.load(f)
+            
+
+# Create DataFrame from EFT_Data
+            df = pd.DataFrame(data['EFT_Data'])
+
+# Rename columns
+            df = df.rename(columns={
+                'ProviderName': 'Provider Name',
+                'ProviderId': 'Provider ID',
+                'TotalAmount': 'Total Fees'
+            })
+
+# Convert DataFrame to table format
+            table = tabulate(df, headers='keys', tablefmt='pipe', showindex=False, numalign='left')
+
+# Print table
+            print(table)
+            #df = pd.DataFrame(data["EFT_Data"])
+            #df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+            #df_styled = df.rename(columns={'ProviderName': 'Name', 'ProviderId': 'ID', 'TotalAmount': 'Amount'}).style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+
+            #print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+
+            
+            
