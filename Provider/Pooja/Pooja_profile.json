@@ -8,21 +8,21 @@
     "Services": [
         {
             "Date of Service ": "2023-03-08",
-            "CurrentDate": "2023-03-09 13:13:13",
+            "CurrentDate": "2023-03-09 18:15:18",
             "MemberName": "Ana macavei",
-            "MemberNumber": "477718737",
+            "MemberNumber": "477776789",
             "ServiceCode": "111356",
             "ServiceFee": "$40"
         },
         {
-            "Date of Service ": "2023-03-05",
-            "CurrentDate": "2023-03-09 13:28:15",
+            "Date of Service ": "2023-03-08",
+            "CurrentDate": "2023-03-09 18:16:16",
             "MemberName": "Ana macavei",
-            "MemberNumber": "477718737",
+            "MemberNumber": "477776789",
             "ServiceCode": "111356",
             "ServiceFee": "$40"
         }
     ],
-    "TotalConsultations": 0,
-    "TotalFee": "$0.00"
+    "TotalConsultations": 2,
+    "TotalFee": "$80.00"
 }

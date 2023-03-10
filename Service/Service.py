@@ -165,6 +165,12 @@ class Service:
             "ServiceFee": service_fee
         }
         new_data["Services"].append(new_service)
+        new_data["TotalConsultations"] += 1
+        fee_str = new_data["TotalFee"]
+        fee_str = fee_str.replace("$", "")
+        service_fee_str = service_fee.replace("$", "")
+        fee = float(fee_str) + float(service_fee_str)
+        new_data["TotalFee"] = f"${fee:.2f}"
         with open(f"Provider/{provider_name}/{provider_name}_profile.json", "w") as newfile:
             json.dump(new_data, newfile, indent = 4)    
             
