@@ -54,3 +54,5 @@ class report:
             new_data["EFT_Data"].append(new_record)
             with open("Provider/EFT.json", "w") as EFTfile:
                 json.dump(new_data,EFTfile,indent=4)
+
+    
