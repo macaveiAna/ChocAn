@@ -279,6 +279,73 @@ class Member:
             with open(f"{dir_path}/{mName}_{date_service}.json",mode="w") as file:   #file 
                     json.dump(member,file,indent= 4)
     '''
+    def update_Mmenu(self):
+        print("To update name, enter 1")
+        print("To update address, enter 2")
+        choice = input()
+        return choice
+
+    #Get updated name
+    def ask_name(self):
+        print("Write the updated name of the Member: ")
+        new_mName = input()
+        return new_mName
+    def update_member(self):
+        id = self.getMemberID()
+        mName = self.getMemberName(id)
+        if mName == None:
+                return
+        choice = self.update_Mmenu()
+        path = os.getcwd() + '/Member/' + mName #Go to the dir
+        if(os.path.exists(path)):
+            if choice == "1": #Update Provider Name
+            #path = os.getcwd() + '/Provider/' + pName #Go to the dir
+                #if(os.path.exists(path)):
+                    new_name = self.ask_name()    # Need edit function to call
+                    new_path = os.getcwd() + '/Member/' + new_name
+                    os.rename(f"{path}/{mName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
+                    shutil.move(path, new_path) #Move the dir & contents to new_named dir
+
+                    #Need to edit the dictionary now
+                    with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
+                        data = json.load(file)
+                    data["MemberName"] = new_name
+                    with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
+                        json.dump(data,file,indent=4)
+                    with open("Member/MemberDirectory.json",mode="r") as file:   #file 
+                        data = json.load(file)
+    
+                    for provider in data["members"]:
+                        if provider["MemberName"] == mName:
+                            provider["MemberName"] = new_name
+                    with open("Member/MemberDirectory.json",mode="w") as file:
+                            json.dump(data,file,indent=4)
+            
+            elif choice == "2": #Update Provider Address
+                print("Please enter the updated Street Address: ")
+                new_StrAdd = input("> ")
+                print("Please enter the updated City: ")
+                new_city = input("> ")
+                print("Please enter the updated State: ")
+                new_state= input("> ")
+                print("Please enter the updated zipcode: ")
+                new_zip = input("> ")
+                with open(f"{path}/{pName}_profile.json",mode="r") as file:   #file 
+                        data = json.load(file)
+                data["ProviderAddr"] = new_StrAdd
+                data["ProviderCity"] = new_city
+                data["ProviderState"] = new_state
+                data["ProviderZip"] = new_zip
+                with open(f"{path}/{pName}_profile.json",mode="w") as file:   #file 
+                        json.dump(data,file,indent=4)
+
+            else:
+                print("Invalid option!")
+                self.update_provider()
+        else:
+            self.print_not_found()
+
+
     def display_members(self):
         with open('Member/MemberDirectory.json') as f:
             data = json.load(f)

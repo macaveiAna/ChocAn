@@ -84,7 +84,7 @@ class Manager:
                         elif response == 2:
                             m.remove_member()
                         elif response == 3:
-                            #m.update_provider_records()
+                            m.update_member()
                             pass
                         elif response == 4:
                             m.display_members()
