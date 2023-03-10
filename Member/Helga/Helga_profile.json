@@ -1,10 +1,10 @@
 {
-    "MemberName": "Anna",
+    "MemberName": "Helga",
     "MemberID": "477718737",
-    "MemberAddr": "16789",
-    "MemberCity": "portland",
-    "MemberState": "or",
-    "MemberZip": "97229",
+    "MemberAddr": "111 kko st",
+    "MemberCity": "Salem",
+    "MemberState": "OR",
+    "MemberZip": "22222",
     "Services": [
         {
             "Date of Service ": "2023-03-05",
