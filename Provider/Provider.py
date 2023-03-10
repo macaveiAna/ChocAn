@@ -155,14 +155,15 @@ class Provider:
             #print("Path test: ", path)
             self.provider_name = new_name = self.ask_name()    # Need edit function to call
             new_path = os.getcwd() + '/Provider/' + new_name
-            os.rename(f"{path}/{pName}.json", f"{path}/{new_name}.json") #Renaming Profile
+            os.rename(f"{path}/{pName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
             shutil.move(path, new_path) #Move the dir & contents to new_named dir
     
             #Need to edit the dictionary now
-           # with open(f"{new_path}/{new_name}.json",mode="w") as file:   #file 
-            #   json.dump(provider,file,indent= 4)
-                #data = json.load(file)
-            
+            with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
+                data = json.load(file)
+            data["ProviderName"] = new_name
+            with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
+                json.dump(data,file,indent=4)
         """
             if pName in data:
                     del data[pName]
