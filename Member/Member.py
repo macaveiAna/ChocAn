@@ -279,10 +279,20 @@ class Member:
             with open(f"{dir_path}/{mName}_{date_service}.json",mode="w") as file:   #file 
                     json.dump(member,file,indent= 4)
     '''
+    
+    
     def update_Mmenu(self):
-        print("To update name, enter 1")
-        print("To update address, enter 2")
-        choice = input()
+        options = {
+                'Options': ['1. Update Name', '2. Update Address']
+            }
+        df = pd.DataFrame(options)
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+        choice = input("Please enter your choice: ")
+        
+        #print("To update name, enter 1")
+        #print("To update address, enter 2")
+        #choice = input("> ")
         return choice
 
     #Get updated name
@@ -298,7 +308,7 @@ class Member:
         choice = self.update_Mmenu()
         path = os.getcwd() + '/Member/' + mName #Go to the dir
         if(os.path.exists(path)):
-            if choice == "1": #Update Provider Name
+            if choice == "1": #Update Memeber Name
             #path = os.getcwd() + '/Provider/' + pName #Go to the dir
                 #if(os.path.exists(path)):
                     new_name = self.ask_name()    # Need edit function to call
@@ -330,18 +340,18 @@ class Member:
                 new_state= input("> ")
                 print("Please enter the updated zipcode: ")
                 new_zip = input("> ")
-                with open(f"{path}/{pName}_profile.json",mode="r") as file:   #file 
+                with open(f"{path}/{mName}_profile.json",mode="r") as file:   #file 
                         data = json.load(file)
-                data["ProviderAddr"] = new_StrAdd
-                data["ProviderCity"] = new_city
-                data["ProviderState"] = new_state
-                data["ProviderZip"] = new_zip
-                with open(f"{path}/{pName}_profile.json",mode="w") as file:   #file 
+                data["MemberAddr"] = new_StrAdd
+                data["MemberCity"] = new_city
+                data["MemberState"] = new_state
+                data["MemberZip"] = new_zip
+                with open(f"{path}/{mName}_profile.json",mode="w") as file:   #file 
                         json.dump(data,file,indent=4)
 
             else:
                 print("Invalid option!")
-                self.update_provider()
+                self.update_member()
         else:
             self.print_not_found()
 
