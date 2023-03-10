@@ -30,8 +30,27 @@ class report:
             with open(f"Provider/{name}/{name}_{today}", "w") as f:
                 json.dump(aProvider, f, indent=4)
             aProvider['Services'] = []
+            aProvider["TotalConsultations"] = 0
+            aProvider["TotalFees"] = " "
             with open(f"Provider/{name}/{name}_profile.json", "w") as file:
                 json.dump(aProvider,file, indent=4)
     
     def create_EFT_report(self):
-        pass
+        with open("Provider/ProviderList.json", mode="r") as providerFile:
+            all_providers = json.load(providerFile)
+        for provider in all_providers["providers"]:
+            name = provider["ProviderName"]
+            with open(f"Provider/{name}/{name}_profile.json", "r") as aProviderFile:
+                aProvider = json.load(aProviderFile)
+            provider_number = aProvider["ProviderID"]
+            total_fees_transfer = aProvider["TotalFee"]
+            with open("Provider/EFT.json", "r") as EFTfile:
+                new_data = json.load(EFTfile)
+            new_record = {
+                "ProviderName":name,
+                "ProviderId":provider_number,
+                "TotalAmount":total_fees_transfer
+            }
+            new_data["EFT_Data"].append(new_record)
+            with open("Provider/EFT.json", "w") as EFTfile:
+                json.dump(new_data,EFTfile,indent=4)

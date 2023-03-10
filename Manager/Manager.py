@@ -67,7 +67,7 @@ class Manager:
                         elif(choice == 2):
                             r.create_provider_weekly_reports()
                         elif(choice == 3):
-                            pass
+                            r.create_EFT_report()
                         elif(choice == 4):
                             pass
                         else:
