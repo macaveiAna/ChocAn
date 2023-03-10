@@ -32,3 +32,6 @@ class report:
             aProvider['Services'] = []
             with open(f"Provider/{name}/{name}_profile.json", "w") as file:
                 json.dump(aProvider,file, indent=4)
+    
+    def create_EFT_report(self):
+        pass

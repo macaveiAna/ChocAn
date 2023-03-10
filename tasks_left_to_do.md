@@ -2,5 +2,5 @@
 - test_Member.py functions (Assinged to MG)
 - EFT report (Assigned to PS and AM and MG)
 - Summary report (Assigned to AM and PS and MG)
-- Update totalConsultations and totalFee profile.json in providers profile
+
 
