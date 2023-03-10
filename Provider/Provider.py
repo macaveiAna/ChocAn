@@ -152,47 +152,31 @@ class Provider:
         choice = self.update_Pmenu()
         if choice == "1": #Update Provider Name
             path = os.getcwd() + '/Provider/' + pName #Go to the dir
-            #print("Path test: ", path)
-            self.provider_name = new_name = self.ask_name()    # Need edit function to call
-            new_path = os.getcwd() + '/Provider/' + new_name
-            os.rename(f"{path}/{pName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
-            shutil.move(path, new_path) #Move the dir & contents to new_named dir
+            if(os.path.exists(path)):
+                self.provider_name = new_name = self.ask_name()    # Need edit function to call
+                new_path = os.getcwd() + '/Provider/' + new_name
+                os.rename(f"{path}/{pName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
+                shutil.move(path, new_path) #Move the dir & contents to new_named dir
+
+                #Need to edit the dictionary now
+                with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
+                    data = json.load(file)
+                data["ProviderName"] = new_name
+                with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
+                    json.dump(data,file,indent=4)
+                with open("Provider/ProviderList.json",mode="r") as file:   #file 
+                    data = json.load(file)
     
-            #Need to edit the dictionary now
-            with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
-                data = json.load(file)
-            data["ProviderName"] = new_name
-            with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
-                json.dump(data,file,indent=4)
-            with open("Provider/ProviderList.json",mode="r") as file:   #file 
-                data = json.load(file)
-            
-            for provider in data["providers"]:
-                if provider["ProviderName"] == pName:
-                    provider["ProviderName"] = new_name
-            with open("Provider/ProviderList.json",mode="w") as file:
-                json.dump(data,file,indent=4)
+                for provider in data["providers"]:
+                    if provider["ProviderName"] == pName:
+                        provider["ProviderName"] = new_name
+                with open("Provider/ProviderList.json",mode="w") as file:
+                        json.dump(data,file,indent=4)
+            else:
+                self.print_not_found()
+        
         """
-            if pName in data:
-                    del data[pName]
-                    cacheDict = dict(data)
-                    cacheDict.update({pName:new_name})
-                    with open(f"{new_path}/{new_name}.json",mode="w") as file:
-                    # Dump cached dict to json file
-                        json.dump(cacheDict, file, indent=4)
-                      
-            
-            #shutil.move(f"{new_path}/{pName}.json", f"{new_path}/{new_name}.json")
-               
-            #Update the ProviderList JSON
-            with open("Provider/ProviderList.json",mode="r") as file:
-                data = json.load(file)
-            for index,provider in enumerate(data['providers']):
-                if provider['ProviderId'] == id:
-                 #data['providers'].pop(index)
-                 found = True
-            with open("Provider/ProviderList.json",mode="w") as file:
-                json.dump(data,file, indent = 4)    
+              
         else:
             self.print_not_found()
         """
