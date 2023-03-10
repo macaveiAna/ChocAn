@@ -150,7 +150,6 @@ class Provider:
         if pName == None:
                 return
         choice = self.update_Pmenu()
-        print("choice ", choice)
         if choice == "1": #Update Provider Name
             path = os.getcwd() + '/Provider/' + pName #Go to the dir
             #print("Path test: ", path)
