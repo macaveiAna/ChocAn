@@ -164,6 +164,14 @@ class Provider:
             data["ProviderName"] = new_name
             with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
                 json.dump(data,file,indent=4)
+            with open("Provider/ProviderList.json",mode="r") as file:   #file 
+                data = json.load(file)
+            
+            for provider in data["providers"]:
+                if provider["ProviderName"] == pName:
+                    provider["ProviderName"] = new_name
+            with open("Provider/ProviderList.json",mode="w") as file:
+                json.dump(data,file,indent=4)
         """
             if pName in data:
                     del data[pName]
