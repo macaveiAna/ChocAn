@@ -1,5 +1,6 @@
 from Provider import Provider
 from Member import *
+from LLL import *
 import json
 import random
 import pandas as pd
@@ -111,13 +112,16 @@ class Service:
                 return sName
         return None
     
-    def validateServiceName(self,sName, provider_name, member_name, date_of_service):
+    def validateServiceName(self,sName, provider_number,provider_name, member_number,member_name, date_of_service):
         p = Provider.Provider()
+        aLLL = RecordList()
+        today = datetime.now()
+        date_time_str = today.strftime("%Y-%m-%d %H:%M:%S")
         print("Is this the correct service that was provided? ","'",sName,"'","[y/n]")
         ans = input("> ")
         if(ans == 'y'):   
             data = self.load_file()
-            p.add_comments(provider_name)
+            comment = p.add_comments(provider_name)
             self.add_service_in_member_profile(provider_name, member_name, sName, date_of_service)
             for service in data['services']:
                 code = service["serviceCode"]
@@ -125,6 +129,8 @@ class Service:
                     fees = service['servicePrice']
                     print("Here is the total amount due: ", fees)
                     break
+            aLLL.add_record(date_time_str,date_of_service,provider_number,member_number,code,comment)
+            aLLL.display_records()
             self.add_service_in_provider_profile(provider_name,date_of_service,member_name,code,fees)
         elif(ans == 'n'):
             print("Try again!")

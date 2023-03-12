@@ -1,6 +1,6 @@
 # The purpose of this file is to implement the Linear Linked List
 # methods: insert, retrieve, display and remove
-
+'''
 from ChocAn import *
 import Member
 
@@ -30,7 +30,6 @@ class LLL:
     #default constructor
     def __init__(self):
         self._head = None
-    '''
      #loads contents of the file   
     def load(self):
         file = open("MemberDirectory.txt", "r")
@@ -47,9 +46,8 @@ class LLL:
             #item = line.split('|')   
             #print(line)
             #self._insert(line) #pass the array into a node structure 
-    '''
+
    
-    '''
        def search(self, match):
               return self._search(self._head, match)
         
@@ -63,7 +61,7 @@ class LLL:
         else:
             print("This member does not exist.")
         return self._search(self._head, match)
-    '''  
+      
  
     
     def _insert(self, item):
@@ -91,3 +89,53 @@ class LLL:
             
     def display(self):
         self.display_list(self._head)
+    '''
+class RecordNode:
+    def __init__(self, current_date_time, service_date, provider_number, member_number, service_code, comments):
+        self.current_date_time = current_date_time
+        self.service_date = service_date
+        self.provider_number = provider_number
+        self.member_number = member_number
+        self.service_code = service_code
+        self.comments = comments
+        self.next = None
+        
+class RecordList:
+    def __init__(self):
+        self.head = None
+        
+    def add_record(self, current_date_time, service_date, provider_number, member_number, service_code, comments):
+        new_node = RecordNode(current_date_time, service_date, provider_number, member_number, service_code, comments)
+        
+        if self.head is None:
+            self.head = new_node
+        else:
+            current_node = self.head
+            while current_node.next is not None:
+                current_node = current_node.next
+            current_node.next = new_node
+            
+    def display_records(self):
+        current_node = self.head
+        while current_node is not None:
+            print("Current date and time:", current_node.current_date_time)
+            print("Date service was provided:", current_node.service_date)
+            print("Provider number:", current_node.provider_number)
+            print("Member number:", current_node.member_number)
+            print("Service code:", current_node.service_code)
+            print("Comments:", current_node.comments)
+            print()
+            current_node = current_node.next
+    '''     
+    def calculate_fees(self):
+        current_node = self.head
+        total_fees = 0
+        while current_node is not None:
+            # look up fee for service code
+            fee = get_fee(current_node.service_code)
+            total_fees += fee
+            # display fee on provider's terminal
+            display_fee(current_node.current_date_time, current_node.service_date, current_node.member_number, fee)
+            current_node = current_node.next
+        return total_fees
+    '''
