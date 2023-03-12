@@ -111,7 +111,13 @@ class Service:
                 sName = service["serviceName"]
                 return sName
         return None
-    
+    def get_fee(self,sCode):
+        data = self.load_file()
+        fees = 0
+        for service in data['services']:
+            if service["serviceCode"] == sCode:
+                fees = service['servicePrice']
+        return fees
     def validateServiceName(self,sName, provider_number,provider_name, member_number,member_name, date_of_service):
         p = Provider.Provider()
         aLLL = RecordList()
@@ -130,6 +136,7 @@ class Service:
                     print("Here is the total amount due: ", fees)
                     break
             aLLL.add_record(date_time_str,date_of_service,provider_number,member_number,code,comment)
+            aLLL.save_to_file("report/reports.txt")
             aLLL.display_records()
             self.add_service_in_provider_profile(provider_name,date_of_service,member_name,code,fees)
         elif(ans == 'n'):

@@ -126,16 +126,27 @@ class RecordList:
             print("Comments:", current_node.comments)
             print()
             current_node = current_node.next
-    '''     
-    def calculate_fees(self):
+
+    def save_to_file(self, filename):
         current_node = self.head
-        total_fees = 0
-        while current_node is not None:
-            # look up fee for service code
-            fee = get_fee(current_node.service_code)
-            total_fees += fee
-            # display fee on provider's terminal
-            display_fee(current_node.current_date_time, current_node.service_date, current_node.member_number, fee)
-            current_node = current_node.next
-        return total_fees
-    '''
+        with open(filename, "w") as f:
+            while current_node is not None:
+                f.write(current_node.current_date_time + "," +
+                        current_node.service_date + "," +
+                        current_node.provider_number + "," +
+                        current_node.member_number + "," +
+                        current_node.service_code + "," +
+                        current_node.comments + "\n")
+                current_node = current_node.next
+                
+    def load_from_file(self, filename):
+        with open(filename, "r") as f:
+            for line in f:
+                fields = line.strip().split(",")
+                current_date_time = fields[0]
+                service_date = fields[1]
+                provider_number = fields[2]
+                member_number = fields[3]
+                service_code = fields[4]
+                comments = fields[5]
+                self.add_record(current_date_time, service_date, provider_number, member_number, service_code, comments)

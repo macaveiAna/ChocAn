@@ -2,7 +2,8 @@ import json
 import datetime
 import pandas as pd
 from tabulate import tabulate
-
+from LLL import *
+from Service import *
 class report:
     def __init__(self):
         pass
@@ -78,7 +79,41 @@ class report:
 # Print table
             print(table)
     def create_summary_report(self):
-        pass
+        # create an instance of the RecordList class
+        s = Service()
+        record_list = RecordList()
+        record_list.load_from_file("report/reports.txt")
+
+# create a dictionary to store the provider information
+        provider_info = {}
+
+# iterate over the records in the list and update the provider information
+        for record in record_list:
+            provider_number = record.provider_number
+            fee = s.get_fee(record.service_code)  # function to look up fee for service code
+            if provider_number in provider_info:
+                provider_info[provider_number]['consultations'] += 1
+                provider_info[provider_number]['total_fee'] += fee
+            else:
+                provider_info[provider_number] = {'consultations': 1, 'total_fee': fee}
+
+# print the summary report
+        print("Accounts Payable Summary Report")
+        print("------------------------------")
+        total_providers = len(provider_info)
+        total_consultations = 0
+        total_fee = 0
+        for provider_number, info in provider_info.items():
+            consultations = info['consultations']
+            fee = info['total_fee']
+            total_consultations += consultations
+            total_fee += fee
+        print(f"Provider {provider_number}: {consultations} consultations, ${fee:.2f} fee")
+        print("------------------------------")
+        print(f"Total providers: {total_providers}")
+        print(f"Total consultations: {total_consultations}")
+        print(f"Overall fee total: ${total_fee:.2f}")
+
 
             
             
