@@ -8,7 +8,8 @@ import shutil
 import pandas as pd
 from tabulate import tabulate
 from datetime import date, timedelta
-import datetime
+import sys
+
 
 
 class Provider:
@@ -207,8 +208,8 @@ class Provider:
     def getProviderID(self):
         self.ask_for_ID()
         #print("\nPlease enter a valid provider ID number.")
-        id = input("> ")
 
+        id = input("> ")
         if len(id) != 9 or id.isnumeric() == False:
             return self.getProviderID()
         else:
