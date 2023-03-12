@@ -1,5 +1,6 @@
 import json
 import datetime
+from datetime import date
 import pandas as pd
 from tabulate import tabulate
 from LLL import *
@@ -9,7 +10,7 @@ class report:
         pass
 
     def create_member_weekly_reports(self):
-        today = datetime.date.today()
+        today = date.today()
         with open("Member/MemberDirectory.json", mode="r") as memberFile:
             all_members = json.load(memberFile)
         for member in all_members["members"]:
@@ -18,12 +19,16 @@ class report:
                 aMember = json.load(aMemberFile)
             with open(f"Member/{name}/{name}_{today}", "w") as f:
                 json.dump(aMember, f,indent=4)
-            aMember['Services'] = []
-            with open(f"Member/{name}/{name}_profile.json", "w") as file:
-                json.dump(aMember,file,indent=4)
+            dates = [datetime.strptime(service["Date of Service "], "%Y-%m-%d") for service in aMember["Services"]]
+            date_diff = (dates[-1] - dates[0]).days
+            if date_diff > 7:
+                aMember['Services'] = []
+                with open(f"Member/{name}/{name}_profile.json", "w") as file:
+                    json.dump(aMember,file,indent=4)
+            
     
     def create_provider_weekly_reports(self):
-        today = datetime.date.today()
+        today = date.today()
         with open("Provider/ProviderList.json", mode="r") as providerFile:
             all_providers = json.load(providerFile)
         for provider in all_providers["providers"]:
@@ -32,11 +37,14 @@ class report:
                 aProvider = json.load(aProviderFile)
             with open(f"Provider/{name}/{name}_{today}", "w") as f:
                 json.dump(aProvider, f, indent=4)
-            aProvider['Services'] = []
-            aProvider["TotalConsultations"] = 0
-            aProvider["TotalFees"] = " "
-            with open(f"Provider/{name}/{name}_profile.json", "w") as file:
-                json.dump(aProvider,file, indent=4)
+            dates = [datetime.strptime(service["Date of Service "], "%Y-%m-%d") for service in aProvider["Services"]]
+            date_diff = (dates[-1] - dates[0]).days
+            if date_diff > 7:
+                aProvider['Services'] = []
+                aProvider["TotalConsultations"] = 0
+                aProvider["TotalFees"] = " "
+                with open(f"Provider/{name}/{name}_profile.json", "w") as file:
+                    json.dump(aProvider,file,indent=4)
     
     def create_EFT_report(self):
         with open("Provider/ProviderList.json", mode="r") as providerFile:

@@ -5,16 +5,16 @@
     "MemberCity": "Salem",
     "MemberState": "OR",
     "MemberZip": "22222",
-    "Services": [
-        {
-            "Date of Service ": "2023-03-10",
-            "Provider Name ": "Pooja",
-            "Service Name ": "internist"
-        },
-        {
-            "Date of Service ": "2023-03-10",
-            "Provider Name ": "Pooja",
-            "Service Name ": "internist"
-        }
+    "Services": [  
+    {
+        "Date of Service ": "2023-03-10",
+        "Provider Name ": "Pooja",
+        "Service Name ": "internist"
+    },
+    {
+        "Date of Service ": "2023-03-18",
+        "Provider Name ": "Pooja",
+        "Service Name ": "internist"
+    }
     ]
 }
