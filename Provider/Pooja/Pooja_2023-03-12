@@ -1,0 +1,20 @@
+{
+    "ProviderName": "Pooja",
+    "ProviderID": "236457657",
+    "ProviderAddr": "567 NW",
+    "ProviderCity": "Arizona",
+    "ProviderState": "OR",
+    "ProviderZip": "97868",
+    "Services": [
+        {
+            "Date of Service ": "2023-03-10",
+            "CurrentDate": "2023-03-11 17:10:46",
+            "MemberName": "Helga",
+            "MemberNumber": "477776789",
+            "ServiceCode": "111356",
+            "ServiceFee": "$40"
+        }
+    ],
+    "TotalConsultations": 1,
+    "TotalFee": "$40.00"
+}
