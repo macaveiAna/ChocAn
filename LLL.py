@@ -1,5 +1,6 @@
 # The purpose of this file is to implement the Linear Linked List
 # methods: insert, retrieve, display and remove
+from datetime import datetime
 '''
 from ChocAn import *
 import Member
@@ -131,13 +132,21 @@ class RecordList:
         current_node = self.head
         with open(filename, "w") as f:
             while current_node is not None:
-                f.write(current_node.current_date_time + "," +
-                        current_node.service_date + "," +
+                dt = datetime.strptime(str(current_node.current_date_time), "%Y-%m-%d %H:%M:%S")
+                sd = datetime.strptime(str(current_node.service_date),"%Y-%m-%d")
+                f.write(dt.strftime("%Y-%m-%d %H:%M:%S")+ "," +
+                        sd.strftime("%Y-%m-%d")+ "," +
                         current_node.provider_number + "," +
                         current_node.member_number + "," +
                         current_node.service_code + "," +
                         current_node.comments + "\n")
                 current_node = current_node.next
+    def __iter__(self):
+        current_node = self.head
+        while current_node is not None:
+            yield current_node
+          
+            current_node = current_node.next
                 
     def load_from_file(self, filename):
         with open(filename, "r") as f:

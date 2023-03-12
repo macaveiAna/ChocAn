@@ -69,7 +69,8 @@ class Manager:
                         elif(choice == 3):
                             r.create_EFT_report()
                         elif(choice == 4):
-                            pass
+                            r.create_summary_report()
+                
                         else:
                             print("Enter a valid option!")
                             continue

@@ -105,7 +105,7 @@ class report:
         total_fee = 0
         for provider_number, info in provider_info.items():
             consultations = info['consultations']
-            fee = info['total_fee']
+            fee = float(info['total_fee'].strip('$'))
             total_consultations += consultations
             total_fee += fee
         print(f"Provider {provider_number}: {consultations} consultations, ${fee:.2f} fee")
