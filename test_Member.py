@@ -6,31 +6,23 @@ import datetime
 
 obj1 = Member.Member()
 #when testing, please run with pytest -s to test output
-def test_enter_Provider_details():
-    obj1.enter_Provider_details()
+def test_enter_Member_details():
+    obj1.enter_Member_details()
     
     #check if it's not empty
     assert obj1.member_name != ""
     assert obj1.member_name != None
+    assert obj1.member_name.isalpha == True
+    assert obj1.member_name.isnumeric == False
     assert len(obj1.member_name) <= 25
     assert obj1.member_id != ""
     assert obj1.member_id != None
+    assert obj1.member_id.isalpha == False
+    assert obj1.member_id.isnumeric == True
     assert len(obj1.member_id) == 9
-    '''
-    assert obj1.strAddr != ""
-    assert obj1.strAddr != None
-    assert len(obj1.strAddr) <= 25
-    assert obj1.city != ""
-    assert obj1.city != None
-    assert len(obj1.city) <= 14
-    assert obj1.state != ""
-    assert obj1.state != None
-    assert len(obj1.state) == 2
-    assert obj1.zip != ""
-    assert obj1.zip != None
-    assert len(obj1.zip) == 5
-    '''
-
+ 
+def test_get_address():
+    pass
 
 def test_add_member():
     #obj1.add_member('80192104', 'T_' + datetime.datetime.now())
