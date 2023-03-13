@@ -1,14 +1,3 @@
 {
-    "EFT_Data": [
-        {
-            "ProviderName": "Pooja",
-            "ProviderId": "197812986",
-            "TotalAmount": "$80.00"
-        },
-        {
-            "ProviderName": "Pooja",
-            "ProviderId": "236457657",
-            "TotalAmount": "$40.00"
-        }
-    ]
+    "EFT_Data": []
 }
