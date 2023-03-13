@@ -70,7 +70,6 @@ class report:
             with open('Provider/EFT.json') as f:
                 data = json.load(f)
             
-            data = {}
             
 
 # Create DataFrame from EFT_Data
@@ -88,6 +87,7 @@ class report:
 
 # Print table
             print(table)
+            data['EFT_Data'] = {}
     def create_summary_report(self):
         # create an instance of the RecordList class
         s = Service()
