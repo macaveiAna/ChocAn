@@ -116,10 +116,6 @@ class Member:
         else:
             #creates the new member directory
             directory = f"{self.member_name}/" #new member directory
-            '''
-            p = Path(f"/ChocAn/Provider/{directory}") #sets path to the new provider's directory
-            os.makedirs(p) #makes the directory
-            '''
             path = os.getcwd() + "/Member/" + directory
             os.makedirs(path)
             
@@ -129,10 +125,6 @@ class Member:
             new_member = {
                 "MemberName": self.member_name, 
                 "MemberId": self.member_id, 
-                #"MemberAddr": self.strAddr,
-                #"MemberCity": self.city,
-                #"MemberState": self.state,
-                #"MemberZip": self.zip,
                 "Status": "Active", 
                 "last_payment": str(today)
                 }
