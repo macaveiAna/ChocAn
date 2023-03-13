@@ -7,7 +7,7 @@ from ChocAn import Terminal
  
 #Test the type for the terminal
 # Need to figure out how to do in one test
-'''
+
 def test_setType(setup: Terminal):
     setup = Terminal()
     setup.setType(1)
@@ -17,7 +17,7 @@ def test_setType2(setup: Terminal):
     setup = Terminal()
     setup.setType(2)
     assert setup.type =="Manager"
-'''
+
 
 #def loadTerminal
 #def test_loadTerminal():
