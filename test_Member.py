@@ -7,17 +7,14 @@ import datetime
 obj1 = Member.Member()
 #when testing, please run with pytest -s to test output
     
-    #check if it's not empty
-    assert obj1.member_name != ""
-    assert obj1.member_name != None
-    assert obj1.member_name.isalpha == True
-    assert obj1.member_name.isnumeric == False
-    assert len(obj1.member_name) <= 25
-    assert obj1.member_id != ""
-    assert obj1.member_id != None
-    assert obj1.member_id.isalpha == False
-    assert obj1.member_id.isnumeric == True
-    assert len(obj1.member_id) == 9
+def test_getMemberID():
+    id = obj1.getMemberID()
+    assert len(id) == 9
+    assert id.isnumeric() == True
+    assert id.isalpha() == False
+    assert id != ""
+    assert id != None
+    assert id != '000000000'
  
 def test_get_address():
     obj1.get_address()
@@ -40,8 +37,17 @@ def test_get_address():
     assert obj1.zip.isalpha == False
     assert obj1.zip.isnumeric == True
     assert len(obj1.zip) == 5
+
+def test_get_name():
+   #check if it's not empty
+    assert obj1.member_name != ""
+    assert obj1.member_name != None
+    assert obj1.member_name.isalpha == True
+    assert obj1.member_name.isnumeric == False
+    assert len(obj1.member_name) <= 25  
+
     
-    
+  
     
 def test_add_member():
     today = datetime.date.today()
@@ -67,8 +73,6 @@ def test_add_member():
     assert expected_data == jsondata
     os.remove(filepath)
 
-def test_getMemberID():
-    id = obj1.getMemberID()
-    assert len(id) == 9
-    assert id.isnumeric() == True
-    assert id != '000000000'
+def test_remove_member():
+    pass
+

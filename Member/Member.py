@@ -19,6 +19,7 @@ class Member:
         self.state = ""
         self.zip = ""
     
+    #getting the user to enter the name
     def get_name(self):
         print("Please enter member's first name: ")
         first_name = input("> ")
@@ -56,6 +57,7 @@ class Member:
     def print_exists(self):
         print("Member already exists.") 
 
+    #going inside the member directory to get the name
     def getMemberName(self,id):
         with open("Member/MemberDirectory.json",mode="r") as file:
             data = json.load(file)
@@ -64,8 +66,10 @@ class Member:
                 name = member["MemberName"]
                 return name
         return None
+    
     def print_not_found(self):
         print("Member does not exist.")
+        
     def remove_member(self):
         found = False
         id = self.getMemberID()
@@ -192,7 +196,7 @@ class Member:
                 return True
         
         return False
-    
+
     def update_Mmenu(self):
         options = {
                 'Options': ['1. Update Name', '2. Update Address']
@@ -209,6 +213,7 @@ class Member:
         print("Write the updated name of the Member: ")
         new_mName = input()
         return new_mName
+    
     def update_member(self):
         id = self.getMemberID()
         mName = self.getMemberName(id)
