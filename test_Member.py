@@ -6,8 +6,6 @@ import datetime
 
 obj1 = Member.Member()
 #when testing, please run with pytest -s to test output
-def test_enter_Member_details():
-    obj1.enter_Member_details()
     
     #check if it's not empty
     assert obj1.member_name != ""
@@ -46,7 +44,6 @@ def test_get_address():
     
     
 def test_add_member():
-    #obj1.add_member('80192104', 'T_' + datetime.datetime.now())
     today = datetime.date.today()
     with open("Member/MemberDirectory.json", "r") as file:
         expected_data = json.load(file)
@@ -70,15 +67,8 @@ def test_add_member():
     assert expected_data == jsondata
     os.remove(filepath)
 
-
-def test_isSuspended():
-    pass
-
 def test_getMemberID():
     id = obj1.getMemberID()
     assert len(id) == 9
     assert id.isnumeric() == True
     assert id != '000000000'
-
-def validate_member():
-    pass
