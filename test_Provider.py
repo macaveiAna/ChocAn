@@ -45,6 +45,13 @@ def test_getProviderID():
     assert len(id) == 9
     assert id.isnumeric()
     
+def test_get_comment():
+    comment = obj1.get_comment()
+
+    assert comment != ""
+    assert comment != None 
+    assert len(comment) <= 100
+    
 def test_load_validated():
     #obj1.load_validated()
     
@@ -81,12 +88,14 @@ def test_add_provider():
     }
     expected_data['providers'].append(new_provider)
     with open(filepath,"w") as file:
-        json.dump(expected_data, file)
+        json.dump(expected_data, file, indent=4)
         
     with open("Provider/ProviderList.json", "r") as file:
         jsondata = json.load(file)
-        
-    assert jsondata != expected_data
+    
+    with open(filepath, "r") as file:
+        data = json.load(file)
+    assert jsondata != data
     os.remove(filepath)
     
     
