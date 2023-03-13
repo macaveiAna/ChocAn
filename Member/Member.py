@@ -19,6 +19,7 @@ class Member:
         self.state = ""
         self.zip = ""
     
+    #getting the user to enter the name
     def get_name(self):
         print("Please enter member's first name: ")
         first_name = input("> ")
@@ -56,6 +57,7 @@ class Member:
     def print_exists(self):
         print("Member already exists.") 
 
+    #going inside the member directory to get the name
     def getMemberName(self,id):
         with open("Member/MemberDirectory.json",mode="r") as file:
             data = json.load(file)
@@ -64,8 +66,10 @@ class Member:
                 name = member["MemberName"]
                 return name
         return None
+    
     def print_not_found(self):
         print("Member does not exist.")
+        
     def remove_member(self):
         found = False
         id = self.getMemberID()
@@ -192,95 +196,7 @@ class Member:
                 return True
         
         return False
-    '''
-    def create_weekly_report(self,member_id,date_service,sName,pName):
-        
-        cwd = os.getcwd() #gets current working directory
-        parent_dir = "Member" #sets relative path in variable
-    
-        
-            
 
-        with open('Member/MemberDirectory.json') as file:
-            data = json.load(file)
-        
-        for member in data['members']:
-            if member['MemberId'] == member_id:
-                mName = member['MemberName']
-                mAddr = member["MemberAddr"]
-                mCity = member['MemberCity']
-                mState = member['MemberState']
-                mZip = member['MemberZip']
-        
-        if os.path.exists(f"{cwd}/{parent_dir}/{mName}") == False:
-            directory = f"{mName}/" #new member directory
-            path = os.getcwd() + "/Member/" + directory
-            os.makedirs(path)
-            
-
-        dir_path = f"Member/{mName}"
-        abs_path = os.path.abspath(dir_path)
-        all_files = os.listdir(abs_path)
-        all_files.sort(key=lambda x: os.path.getmtime(os.path.join(abs_path, x)), reverse=True)
-        if len(all_files) != 0:
-            latest_file = os.path.join(abs_path, all_files[0])
-
-            latest_file_mtime = os.path.getmtime(latest_file)
-            latest_file_datetime = datetime.datetime.fromtimestamp(latest_file_mtime)
-
-            today = datetime.date.today()
-            days_ago_7 = today - datetime.timedelta(days=7)
-            directory = f"{mName}"
-            path = os.getcwd() + "/Member/" + directory
-            if latest_file_datetime.date() > days_ago_7:
-                new_service = {
-                    "Date_Of_Service": date_service,
-                    "ProviderName": pName,
-                    "ServiceName": sName
-                }
-                with open(f"{latest_file}","r") as file:
-                    new_data = json.load(file)
-                new_data['Services'].append(new_service)
-                with open(f"{latest_file}","w") as file:
-                    json.dump(new_data,file,indent=4)
-            else:
-            
-                member = {
-                    "MemberName": mName,
-                    "MemberID": member_id,
-                    "MemberAddr": mAddr,
-                    "MemberCity": mCity,
-                    "MemberState": mState,
-                    "MemberZip": mZip,
-                    "Services": [{
-                        "Date_Of_Service": date_service,
-                        "ProviderName": pName,
-                        "ServiceName": sName
-                    }],
-                }
-
-                with open(f"{path}/{mName}_{date_service}.json",mode="w") as file:   #file 
-                    json.dump(member,file,indent= 4)
-    
-        else:
-            member = {
-                    "MemberName": mName,
-                    "MemberID": member_id,
-                    "MemberAddr": mAddr,
-                    "MemberCity": mCity,
-                    "MemberState": mState,
-                    "MemberZip": mZip,
-                    "Services": [{
-                        "Date_Of_Service": date_service,
-                        "ProviderName": pName,
-                        "ServiceName": sName
-                    }],
-            }
-            with open(f"{dir_path}/{mName}_{date_service}.json",mode="w") as file:   #file 
-                    json.dump(member,file,indent= 4)
-    '''
-    
-    
     def update_Mmenu(self):
         options = {
                 'Options': ['1. Update Name', '2. Update Address']
@@ -290,9 +206,6 @@ class Member:
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
         choice = input("Please enter your choice: ")
         
-        #print("To update name, enter 1")
-        #print("To update address, enter 2")
-        #choice = input("> ")
         return choice
 
     #Get updated name
@@ -300,6 +213,7 @@ class Member:
         print("Write the updated name of the Member: ")
         new_mName = input()
         return new_mName
+    
     def update_member(self):
         id = self.getMemberID()
         mName = self.getMemberName(id)
