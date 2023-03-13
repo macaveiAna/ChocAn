@@ -87,7 +87,9 @@ class report:
 
 # Print table
             print(table)
-            data['EFT_Data'] = {}
+            data["EFT_Data"] = []
+            with open("Provider/EFT.json", "w") as EFTfile:
+                json.dump(data, EFTfile, indent=4)
     def create_summary_report(self):
         # create an instance of the RecordList class
         s = Service()
