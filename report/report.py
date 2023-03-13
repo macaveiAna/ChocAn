@@ -70,6 +70,8 @@ class report:
             with open('Provider/EFT.json') as f:
                 data = json.load(f)
             
+            data = {}
+            
 
 # Create DataFrame from EFT_Data
             df = pd.DataFrame(data['EFT_Data'])
