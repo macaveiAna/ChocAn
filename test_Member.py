@@ -76,10 +76,7 @@ def test_add_member():
 
     assert jsondata != test_data
     os.remove(filepath)
-'''
 
-
-'''
 def test_remove_member():
     id = obj1.getMemberID()
     #name = obj1.getMemberName(id)
