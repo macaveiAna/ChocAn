@@ -22,8 +22,29 @@ def test_enter_Member_details():
     assert len(obj1.member_id) == 9
  
 def test_get_address():
-    pass
-
+    obj1.get_address()
+    
+    assert obj1.strAddr != ""
+    assert obj1.strAddr != None
+    assert len(obj1.strAddr) <= 25
+    assert obj1.city != ""
+    assert obj1.city != None
+    assert obj1.city.isalpha == True
+    assert obj1.city.isnumeric == False
+    assert len(obj1.city) <= 14
+    assert obj1.state != ""
+    assert obj1.state != None
+    assert obj1.state.isalpha == True
+    assert obj1.state.isnumeric == False
+    assert len(obj1.state) == 2
+    assert obj1.zip != ""
+    assert obj1.zip != None
+    assert obj1.zip.isalpha == False
+    assert obj1.zip.isnumeric == True
+    assert len(obj1.zip) == 5
+    
+    
+    
 def test_add_member():
     #obj1.add_member('80192104', 'T_' + datetime.datetime.now())
     today = datetime.date.today()
