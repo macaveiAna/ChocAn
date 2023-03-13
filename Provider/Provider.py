@@ -20,6 +20,8 @@ class Provider:
         self.city = ""
         self.state = ""
         self.zip = ""
+        self.provider_status = "" #added for remove/will need to change test file
+        #do we need a provider status change date member? to test removal
     
     def enter_Provider_details(self):
         print("Please enter provider's name: ")
@@ -34,6 +36,7 @@ class Provider:
         self.state= input("> ")
         print("Please enter the zipcode: ")
         self.zip = input("> ")
+        self.provider_status = "Active" # Added for removal, will need to change test file
         self.add_provider()
     
     def print_exists(self):
@@ -61,6 +64,7 @@ class Provider:
             provider = {
                     "ProviderName": self.provider_name,
                     "ProviderID": self.provider_id,
+                    "ProviderStatus": self.provider_status, # Added for removal, will need to change test file
                     "ProviderAddr": self.strAddr,
                     "ProviderCity": self.city,
                     "ProviderState": self.state,
@@ -87,10 +91,7 @@ class Provider:
             new_provider = {
                 "ProviderName": self.provider_name,
                 "ProviderId": self.provider_id,
-                #"ProviderAddr": self.strAddr, # I don't think these are needed in the full list
-                #"ProviderCity": self.city,
-               # "ProviderState": self.state,
-                #"ProviderZip": self.zip,
+                "ProviderStatus:": self.provider_status, # Added for removal, will need to change test file
             }
             #Appends the new provider to the full provider list
             data['providers'].append(new_provider)
@@ -131,6 +132,12 @@ class Provider:
         return found
        #test
     
+    #test
+    #added to make capability of changing status to "remove" in one week after billing
+    def change_status(self):
+        #should probably call remove function after testing if the date is more than a week old
+        pass
+
     def update_Pmenu(self):
         print("To update name, enter 1")
         print("To update address, enter 2")
@@ -249,8 +256,7 @@ class Provider:
     
     def load_validated(self, provider_id,provider_name, date_of_service, member_id,member_name):  
         s = Service()
-        #print("Please enter the date the service was provided:")
-        #date_service = input("> ")
+        
         print("Please enter service code:")
         service_code = input("> ")
         validServiceCode = False
