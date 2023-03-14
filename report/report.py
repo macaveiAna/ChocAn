@@ -40,13 +40,14 @@ class report:
             with open(f"Provider/{name}/{name}_{today}", "w") as f:
                 json.dump(aProvider, f, indent=4)
             dates = [datetime.strptime(service["Date of Service "], "%Y-%m-%d") for service in aProvider["Services"]]
-            date_diff = (dates[-1] - dates[0]).days
-            if date_diff > 7:
-                aProvider['Services'] = []
-                aProvider["TotalConsultations"] = 0
-                aProvider["TotalFees"] = " "
-                with open(f"Provider/{name}/{name}_profile.json", "w") as file:
-                    json.dump(aProvider,file,indent=4)
+            if dates:
+                date_diff = (dates[-1] - dates[0]).days
+                if date_diff > 7:
+                    aProvider['Services'] = []
+                    aProvider["TotalConsultations"] = 0
+                    aProvider["TotalFees"] = " "
+                    with open(f"Provider/{name}/{name}_profile.json", "w") as file:
+                        json.dump(aProvider,file,indent=4)
     
     def create_EFT_report(self):
         with open("Provider/ProviderList.json", mode="r") as providerFile:
