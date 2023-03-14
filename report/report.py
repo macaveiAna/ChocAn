@@ -70,29 +70,34 @@ class report:
                 json.dump(new_data,EFTfile,indent=4)
             
 
-            with open('Provider/EFT.json') as f:
-                data = json.load(f)
+        with open('Provider/EFT.json') as f:
+            data = json.loads(f.read())
             
             
-
+        
 # Create DataFrame from EFT_Data
-            df = pd.DataFrame(data['EFT_Data'])
+        df = pd.DataFrame(data['EFT_Data'])
 
 # Rename columns
-            df = df.rename(columns={
-                'ProviderName': 'Provider Name',
-                'ProviderId': 'Provider ID',
-                'TotalAmount': 'Total Fees'
-            })
+            
+        df = df.rename(columns={
+            'ProviderName': 'Provider Name',
+            'ProviderId': 'Provider ID',
+            'TotalAmount': 'Total Fees'
+        })
+            
 
-# Convert DataFrame to table format
-            table = tabulate(df, headers='keys', tablefmt='pipe', showindex=False, numalign='left')
 
-# Print table
-            print(table)
-            data["EFT_Data"] = []
-            with open("Provider/EFT.json", "w") as EFTfile:
-                json.dump(data, EFTfile, indent=4)
+        
+        
+            #frames.append(df)
+        #result = pd.concat(frames)
+        df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
+        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+    
+        data["EFT_Data"] = []
+        with open("Provider/EFT.json", "w") as EFTfile:
+            json.dump(data, EFTfile, indent=4)
     def create_summary_report(self):
         # create an instance of the RecordList class
         s = Service()
