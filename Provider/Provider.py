@@ -7,7 +7,7 @@ from pathlib import Path
 import shutil
 import pandas as pd
 from tabulate import tabulate
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import sys
 
 
@@ -20,7 +20,7 @@ class Provider:
         self.city = ""
         self.state = ""
         self.zip = ""
-        self.provider_status = "" #added for remove/will need to change test file
+        self.removal_date = "" #added for remove/will need to change test file
         #do we need a provider status change date member? to test removal
     
     def enter_Provider_details(self):
@@ -36,7 +36,7 @@ class Provider:
         self.state= input("> ")
         print("Please enter the zipcode: ")
         self.zip = input("> ")
-        self.provider_status = "Active" # Added for removal, will need to change test file
+        self.removal_date = "Active" # Added for removal, will need to change test file
         self.add_provider()
     
     def print_exists(self):
@@ -64,7 +64,7 @@ class Provider:
             provider = {
                     "ProviderName": self.provider_name,
                     "ProviderID": self.provider_id,
-                    "ProviderStatus": self.provider_status, # Added for removal, will need to change test file
+                    "ProviderRemoval": self.removal_date, # Added for removal, will need to change test file
                     "ProviderAddr": self.strAddr,
                     "ProviderCity": self.city,
                     "ProviderState": self.state,
@@ -91,7 +91,7 @@ class Provider:
             new_provider = {
                 "ProviderName": self.provider_name,
                 "ProviderId": self.provider_id,
-                "ProviderStatus:": self.provider_status, # Added for removal, will need to change test file
+                "ProviderRemoval": self.removal_date, # Added for removal, will need to change test file
             }
             #Appends the new provider to the full provider list
             data['providers'].append(new_provider)
@@ -115,12 +115,55 @@ class Provider:
         found = False
         id = self.getProviderID()
         pName = self.getProviderName(id, 0)
+        pRemove = self.getProviderRemoval(id)
         if pName != None:
             found = True
             path = os.getcwd() + '/Provider/' + pName
-            shutil.rmtree(path)
+            print(path)
+            if pRemove == "Active":
+            #self.removal_date = date.today() #sets removal date to today
+                with open(f"{path}/{pName}_profile.json",mode="r") as file:   #file 
+                    data = json.load(file)
+                data["ProviderRemoval"] = str(date.today())
+                with open(f"{path}/{pName}_profile.json",mode="w") as file:   #file 
+                    json.dump(data,file,indent=4)
+                with open("Provider/ProviderList.json",mode="r") as file:   #file 
+                    data = json.load(file)
+        
+                for provider in data["providers"]:
+                    if provider["ProviderName"] == pName:
+                        provider["ProviderRemoval"] = str(date.today())
+                    with open("Provider/ProviderList.json",mode="w") as file:
+                        json.dump(data,file,indent=4)
+            elif datetime.strptime(pRemove, '%Y-%m-%d').date() + timedelta(days=8) < date.today():
+                #self.full_removal(path)
+                shutil.rmtree(path)
+                with open("Provider/ProviderList.json",mode="r") as file:
+                    data = json.load(file)
+                for index,provider in enumerate(data['providers']):
+                    if provider['ProviderId'] == id:
+                        data['providers'].pop(index)
+                        found = True
+                with open("Provider/ProviderList.json",mode="w") as file:
+                    json.dump(data,file, indent = 4)    
+            # return found
         else:
             self.print_not_found()
+       #test
+    
+    #test
+    #added to make capability of changing status to "remove" in one week after billing
+    def full_removal(self, path):
+        #should probably call remove function after testing if the date is more than a week old
+       # self.display_providers()
+        #found = False
+        #id = self.getProviderID()
+        #pName = self.getProviderName(id, 0)
+       # if pName != None:
+       #     found = True
+        #    path = os.getcwd() + '/Provider/' + pName
+        shutil.rmtree(path)
+        
         with open("Provider/ProviderList.json",mode="r") as file:
             data = json.load(file)
         for index,provider in enumerate(data['providers']):
@@ -129,14 +172,8 @@ class Provider:
                 found = True
         with open("Provider/ProviderList.json",mode="w") as file:
             json.dump(data,file, indent = 4)    
-        return found
-       #test
-    
-    #test
-    #added to make capability of changing status to "remove" in one week after billing
-    def change_status(self):
-        #should probably call remove function after testing if the date is more than a week old
-        pass
+       # return found
+        
 
     def update_Pmenu(self):
         print("To update name, enter 1")
@@ -225,6 +262,15 @@ class Provider:
     def printWelcomeMessage(self, name):
         print("Welcome ", name)
         
+    def getProviderRemoval(self, id):
+        with open("Provider/ProviderList.json",mode="r") as file:
+            data = json.load(file)
+        for member in data['providers']:
+            if member['ProviderId'] == id:
+                removal_date = member["ProviderRemoval"]
+                return removal_date
+        return None  
+    
     #test
     def getProviderName(self,id, choice):
         with open("Provider/ProviderList.json",mode="r") as file:
