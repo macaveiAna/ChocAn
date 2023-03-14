@@ -20,7 +20,10 @@ class Terminal:
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
         choice = input("Please enter your choice: ")
         if choice.isnumeric() == False or (int(choice) != 1 and int(choice) != 2):
-            os.system('cls')
+            if os.name == 'nt':  # For Windows
+                os.system('cls')
+            else:  # For Linux/Mac
+                os.system('clear')
             print("Invalid Input! Try again:")
             return self.getInitInput()
         else:        
@@ -38,6 +41,11 @@ class Terminal:
     def loadTerminal(self):
         choice = self.getInitInput()
         self.setType(choice)
+        
+        if os.name == 'nt':  # For Windows
+            os.system('cls')
+        else:  # For Linux/Mac
+            os.system('clear')
 
         if self.type == "Provider": # if type is provider
             provider = Provider()

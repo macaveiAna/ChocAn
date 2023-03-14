@@ -11,5 +11,8 @@ def main():
     terminal.loadTerminal()
 
 if __name__ == "__main__":
-    os.system('cls')
+    if os.name == 'nt':  # For Windows
+        os.system('cls')
+    else:  # For Linux/Mac
+        os.system('clear')
     main()
