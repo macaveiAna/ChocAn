@@ -4,6 +4,7 @@ from Member import *
 from Service import *
 from tabulate import tabulate
 import pandas as pd
+import os
 
 #generate different reports for provider and member
 #able to add member,delete member, same with provider and able to also do the same with services  
@@ -53,13 +54,16 @@ class Manager:
         return int(input("Please enter your choice: "))
     
     def menu(self):
+        os.system('cls')
         print("Welcome back!")
         while True:
+            
             option = self.displayMainMenu()
             print("\n")
             match option:
                 case 1:
                     r = report()
+                    os.system('cls')
                     choice = self.reportsMenu()
                     while True:
                         if(choice == 1):
@@ -77,6 +81,7 @@ class Manager:
                         break
                 case 2:
                     m = Member()
+                    os.system('cls')
                     print("\n")
                     while True:
                         response = self.membersMenu()
@@ -97,6 +102,7 @@ class Manager:
                 case 3:
                     print("\n")
                     p = Provider()
+                    os.system('cls')
                     while True:
                         response = self.providersMenu()
                         if response == 1:
@@ -115,6 +121,7 @@ class Manager:
                 case 4:
                     print("\n")
                     s = Service()
+                    os.system('cls')
                     while True:
                         response = self.servicesMenu()
                         if response == 1:
