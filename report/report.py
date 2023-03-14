@@ -20,11 +20,13 @@ class report:
             with open(f"Member/{name}/{name}_{today}", "w") as f:
                 json.dump(aMember, f,indent=4)
             dates = [datetime.strptime(service["Date of Service "], "%Y-%m-%d") for service in aMember["Services"]]
-            date_diff = (dates[-1] - dates[0]).days
-            if date_diff > 7:
-                aMember['Services'] = []
-                with open(f"Member/{name}/{name}_profile.json", "w") as file:
-                    json.dump(aMember,file,indent=4)
+            if(dates):
+        
+                date_diff = (dates[-1] - dates[0]).days
+                if date_diff > 7:
+                    aMember['Services'] = []
+                    with open(f"Member/{name}/{name}_profile.json", "w") as file:
+                        json.dump(aMember,file,indent=4)
             
     
     def create_provider_weekly_reports(self):
