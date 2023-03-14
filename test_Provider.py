@@ -98,9 +98,3 @@ def test_add_provider():
     assert jsondata != data
     os.remove(filepath)
     
-    
- 
-    
-    
-    
-    

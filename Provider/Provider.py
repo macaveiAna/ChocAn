@@ -15,7 +15,7 @@ import sys
 class Provider:
     def __init__(self):
         self.provider_id = ""
-        self.provider_name = ""
+        self.provider_name = None
         self.strAddr = ""
         self.city = ""
         self.state = ""
@@ -108,8 +108,6 @@ class Provider:
         if ch == 1:
             self.load()
             
-            
-    #test
     def remove_provider(self):
         self.display_providers()
         found = False
@@ -149,32 +147,7 @@ class Provider:
             # return found
         else:
             self.print_not_found()
-       #test
-    
-    #test
-    #added to make capability of changing status to "remove" in one week after billing
-    def full_removal(self, path):
-        #should probably call remove function after testing if the date is more than a week old
-       # self.display_providers()
-        #found = False
-        #id = self.getProviderID()
-        #pName = self.getProviderName(id, 0)
-       # if pName != None:
-       #     found = True
-        #    path = os.getcwd() + '/Provider/' + pName
-        shutil.rmtree(path)
         
-        with open("Provider/ProviderList.json",mode="r") as file:
-            data = json.load(file)
-        for index,provider in enumerate(data['providers']):
-            if provider['ProviderId'] == id:
-                data['providers'].pop(index)
-                found = True
-        with open("Provider/ProviderList.json",mode="w") as file:
-            json.dump(data,file, indent = 4)    
-       # return found
-        
-
     def update_Pmenu(self):
         print("To update name, enter 1")
         print("To update address, enter 2")
@@ -198,27 +171,25 @@ class Provider:
         path = os.getcwd() + '/Provider/' + pName #Go to the dir
         if(os.path.exists(path)):
             if choice == "1": #Update Provider Name
-            #path = os.getcwd() + '/Provider/' + pName #Go to the dir
-                #if(os.path.exists(path)):
-                    self.provider_name = new_name = self.ask_name()    # Need edit function to call
-                    new_path = os.getcwd() + '/Provider/' + new_name
-                    os.rename(f"{path}/{pName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
-                    shutil.move(path, new_path) #Move the dir & contents to new_named dir
+                self.provider_name = new_name = self.ask_name()    # Need edit function to call
+                new_path = os.getcwd() + '/Provider/' + new_name
+                os.rename(f"{path}/{pName}_profile.json", f"{path}/{new_name}_profile.json") #Renaming Profile
+                shutil.move(path, new_path) #Move the dir & contents to new_named dir
 
-                    #Need to edit the dictionary now
-                    with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
-                        data = json.load(file)
-                    data["ProviderName"] = new_name
-                    with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
+                #Need to edit the dictionary now
+                with open(f"{new_path}/{new_name}_profile.json",mode="r") as file:   #file 
+                    data = json.load(file)
+                data["ProviderName"] = new_name
+                with open(f"{new_path}/{new_name}_profile.json",mode="w") as file:   #file 
+                    json.dump(data,file,indent=4)
+                with open("Provider/ProviderList.json",mode="r") as file:   #file 
+                    data = json.load(file)
+
+                for provider in data["providers"]:
+                    if provider["ProviderName"] == pName:
+                        provider["ProviderName"] = new_name
+                with open("Provider/ProviderList.json",mode="w") as file:
                         json.dump(data,file,indent=4)
-                    with open("Provider/ProviderList.json",mode="r") as file:   #file 
-                        data = json.load(file)
-    
-                    for provider in data["providers"]:
-                        if provider["ProviderName"] == pName:
-                            provider["ProviderName"] = new_name
-                    with open("Provider/ProviderList.json",mode="w") as file:
-                            json.dump(data,file,indent=4)
             
             elif choice == "2": #Update Provider Address
                 print("Please enter the updated Street Address: ")
@@ -251,13 +222,11 @@ class Provider:
     
     def getProviderID(self):
         self.ask_for_ID()
-        #print("\nPlease enter a valid provider ID number.")
 
         id = input("> ")
         if len(id) != 9 or id.isnumeric() == False:
             return self.getProviderID()
-        else:
-            return id
+        return id  
         
     def printWelcomeMessage(self, name):
         print("Welcome ", name)
@@ -336,23 +305,22 @@ class Provider:
         else:
             self.load_validated(provider_id,provider_name, d, member_id,member_name)
         
-    #test 
     def load(self):
-        self.provider_id = self.getProviderID()
-        self.provider_name = self.getProviderName(self.provider_id, 1)
+        # gets provider id & name
         while(self.provider_name == None):
-            print("Invalid Provider Id")
+            print("Enter Valid Provider Id")   
             self.provider_id = self.getProviderID()
             self.provider_name = self.getProviderName(self.provider_id, 1)
+       
+        # gets member id & name
         m = Member()
-        m.member_id = m.getMemberID()
-        m.member_name = m.getMemberName(m.member_id)
         while(m.member_name == None):
-            print("Invalid Member Id")
+            print("Enter Valid Member Id")  
             m.member_id = m.getMemberID()
             m.member_name = m.getMemberName(m.member_id)
-        var = m.validate_member(m.member_id)
-        if var == True:
+
+        # checks for member account status
+        if m.validate_member(m.member_id) == True: 
             if m.isSuspended(m.member_id) == True:
                 m.printSuspended()
             else:

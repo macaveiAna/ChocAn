@@ -4,6 +4,11 @@
             "ProviderName": "Test",
             "ProviderId": "481850818",
             "ProviderRemoval": "Active"
+        },
+        {
+            "ProviderName": "tim",
+            "ProviderId": "737478959",
+            "ProviderRemoval": "Active"
         }
     ]
 }
