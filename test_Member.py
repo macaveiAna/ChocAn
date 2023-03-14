@@ -36,13 +36,13 @@ def test_get_address():
     assert obj1.zip.isalpha() == False
     assert obj1.zip.isnumeric() == True
     assert len(obj1.zip) == 5
+    
 
 def test_get_name():
     name = obj1.get_name()
    #check if it's not empty
     assert name != ""
     assert name != None
-    #assert name.isalpha() == True
     assert name.isnumeric() == False
     assert len(name) <= 25  
 
@@ -62,8 +62,6 @@ def test_add_member():
         "last_payment": str(today) #work on this part
         }
     expected_data["members"].append(new_member)
-
-    #obj1.add_member('80192104', 'T_' + datetime.datetime.now())
 
     with open("test_file.json", "w") as file:
         json.dump(expected_data, file, indent=4)

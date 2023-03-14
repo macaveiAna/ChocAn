@@ -37,6 +37,8 @@ def test_enter_Provider_details():
     assert obj1.zip.isalpha() == False
     assert obj1.zip.isnumeric() == True
     assert len(obj1.zip) == 5
+    assert obj1.provider_status != ""
+    assert obj1.provider_status != None
 
 def test_getProviderID():
     id = obj1.getProviderID()
@@ -74,8 +76,6 @@ def test_load_validated():
     #the last statement basically removes the temporary file
     os.remove(filepath)
     
-    #verify that this test works as should 
-# - group 2 was working on this while I was testing
 def test_add_provider():
     #obj1.add_provider()
     
