@@ -77,11 +77,15 @@ class Manager:
                     choice = self.reportsMenu()
                     while True:
                         if(choice == 1):
-                            r.create_member_weekly_reports()
+                            if(r.create_member_weekly_reports() == True):
+                                print("Member reports created successfully")
+                            
                         elif(choice == 2):
-                            r.create_provider_weekly_reports()
+                            if(r.create_provider_weekly_reports() == True):
+                                print("Provider reports created successfully")
                         elif(choice == 3):
-                            r.create_EFT_report()
+                            if (r.create_EFT_report() == None):
+                                print("NO AMOUNT TO BE TRANSFERRED FOR THE WEEK")
                         elif(choice == 4):
                             if(r.create_summary_report() == None):
                                 print("NO ACCOUNTS TO BE PAID FOR THE WEEK!")

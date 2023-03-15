@@ -28,6 +28,7 @@ class report:
                     aMember['Services'] = []
                     with open(f"Member/{name}/{name}_profile.json", "w") as file:
                         json.dump(aMember,file,indent=4)
+        return True
             
     
     def create_provider_weekly_reports(self):
@@ -49,6 +50,7 @@ class report:
                     aProvider["TotalFees"] = " "
                     with open(f"Provider/{name}/{name}_profile.json", "w") as file:
                         json.dump(aProvider,file,indent=4)
+        return True
     
     def create_EFT_report(self):
         with open("Provider/ProviderList.json", mode="r") as providerFile:
@@ -59,22 +61,24 @@ class report:
                 aProvider = json.load(aProviderFile)
             provider_number = aProvider["ProviderID"]
             total_fees_transfer = aProvider["TotalFee"]
-            with open("Provider/EFT.json", "r") as EFTfile:
-                new_data = json.load(EFTfile)
-            new_record = {
-                "ProviderName":name,
-                "ProviderId":provider_number,
-                "TotalAmount":total_fees_transfer
-            }
-            new_data["EFT_Data"].append(new_record)
-            with open("Provider/EFT.json", "w") as EFTfile:
-                json.dump(new_data,EFTfile,indent=4)
+            if total_fees_transfer != "$0.00":
+                with open("Provider/EFT.json", "r") as EFTfile:
+                    new_data = json.load(EFTfile)
+                new_record = {
+                    "ProviderName":name,
+                    "ProviderId":provider_number,
+                    "TotalAmount":total_fees_transfer
+                }
+                new_data["EFT_Data"].append(new_record)
+                with open("Provider/EFT.json", "w") as EFTfile:
+                    json.dump(new_data,EFTfile,indent=4)
             
 
         with open('Provider/EFT.json') as f:
             data = json.loads(f.read())
             
-            
+        if data["EFT_Data"] == {}:
+            return None    
         
 # Create DataFrame from EFT_Data
         df = pd.DataFrame(data['EFT_Data'])
