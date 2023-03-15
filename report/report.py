@@ -14,6 +14,8 @@ class report:
         today = date.today()
         with open("Member/MemberDirectory.json", mode="r") as memberFile:
             all_members = json.load(memberFile)
+        if all_members["members"] == {}:
+            return False
         for member in all_members["members"]:
             name = member["MemberName"]
             with open(f"Member/{name}/{name}_profile.json", "r") as aMemberFile:
@@ -35,6 +37,8 @@ class report:
         today = date.today()
         with open("Provider/ProviderList.json", mode="r") as providerFile:
             all_providers = json.load(providerFile)
+        if(all_providers["providers"] == {}):
+            return False
         for provider in all_providers["providers"]:
             name = provider["ProviderName"]
             with open(f"Provider/{name}/{name}_profile.json", "r") as aProviderFile:

@@ -79,10 +79,13 @@ class Manager:
                         if(choice == 1):
                             if(r.create_member_weekly_reports() == True):
                                 print("Member reports created successfully")
-                            
+                            else:
+                                print("No members found")
                         elif(choice == 2):
                             if(r.create_provider_weekly_reports() == True):
                                 print("Provider reports created successfully")
+                            else:
+                                print("No providers found")
                         elif(choice == 3):
                             if (r.create_EFT_report() == None):
                                 print("NO AMOUNT TO BE TRANSFERRED FOR THE WEEK")
