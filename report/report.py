@@ -5,6 +5,7 @@ import pandas as pd
 from tabulate import tabulate
 from LLL import *
 from Service import *
+import os
 class report:
     def __init__(self):
         pass
@@ -101,8 +102,13 @@ class report:
     def create_summary_report(self):
         # create an instance of the RecordList class
         s = Service()
+        filename = "report/reports.txt"
+        with open(filename,"r") as file:
+            if(len(file.read().strip()) == 0):
+                return None
         record_list = RecordList()
         record_list.load_from_file("report/reports.txt")
+        
 
 # create a dictionary to store the provider information
         provider_info = {}

@@ -83,7 +83,8 @@ class Manager:
                         elif(choice == 3):
                             r.create_EFT_report()
                         elif(choice == 4):
-                            r.create_summary_report()
+                            if(r.create_summary_report() == None):
+                                print("NO ACCOUNTS TO BE PAID FOR THE WEEK!")
                 
                         else:
                             print("Enter a valid option!")
