@@ -1,3 +1,9 @@
 {
-    "EFT_Data": []
+    "EFT_Data": [
+        {
+            "ProviderName": "Tim",
+            "ProviderId": "983000104",
+            "TotalAmount": "$40.00"
+        }
+    ]
 }
