@@ -144,6 +144,7 @@ class Service:
             p.load_validated(provider_name, date_of_service, member_name)
         else:
             print("Invalid response!")
+            self.validateServiceName(sName, provider_number,provider_name, member_number,member_name, date_of_service)
     
     def add_service_in_member_profile(self, provider_name, member_name, service_name, date_of_service):
         with open(f"Member/{member_name}/{member_name}_profile.json", "r") as file:

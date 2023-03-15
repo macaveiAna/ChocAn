@@ -1,0 +1,15 @@
+{
+    "MemberName": "Ana Macavei",
+    "MemberID": "452138802",
+    "MemberAddr": "656 Boy St",
+    "MemberCity": "Portland",
+    "MemberState": "OR",
+    "MemberZip": "97224",
+    "Services": [
+        {
+            "Date of Service ": "2023-03-14",
+            "Provider Name ": "Tim",
+            "Service Name ": "internist"
+        }
+    ]
+}

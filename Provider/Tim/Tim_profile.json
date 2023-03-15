@@ -1,0 +1,21 @@
+{
+    "ProviderName": "Tim",
+    "ProviderID": "983000104",
+    "ProviderRemoval": "Active",
+    "ProviderAddr": "456 Ok St",
+    "ProviderCity": "Oregon City",
+    "ProviderState": "OR",
+    "ProviderZip": "97867",
+    "Services": [
+        {
+            "Date of Service ": "2023-03-14",
+            "CurrentDate": "2023-03-14 22:22:04",
+            "MemberName": "Ana Macavei",
+            "MemberNumber": "452138802",
+            "ServiceCode": "111356",
+            "ServiceFee": "$40"
+        }
+    ],
+    "TotalConsultations": 1,
+    "TotalFee": "$40.00"
+}
