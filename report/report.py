@@ -57,6 +57,7 @@ class report:
         return True
     
     def create_EFT_report(self):
+        flag = False
         with open("Provider/ProviderList.json", mode="r") as providerFile:
             all_providers = json.load(providerFile)
         for provider in all_providers["providers"]:
@@ -68,21 +69,28 @@ class report:
             if total_fees_transfer != "$0.00":
                 with open("Provider/EFT.json", "r") as EFTfile:
                     new_data = json.load(EFTfile)
-                new_record = {
-                    "ProviderName":name,
-                    "ProviderId":provider_number,
-                    "TotalAmount":total_fees_transfer
-                }
-                new_data["EFT_Data"].append(new_record)
-                with open("Provider/EFT.json", "w") as EFTfile:
-                    json.dump(new_data,EFTfile,indent=4)
+                for provider in new_data["EFT_Data"]:
+                    if provider["ProviderName"] == name:
+                        provider["TotalAmount"] = total_fees_transfer
+                        flag = True
+                        break
+        if(flag == False):
+
+            new_record = {
+                "ProviderName":name,
+                "ProviderId":provider_number,
+                "TotalAmount":total_fees_transfer
+            }
+            new_data["EFT_Data"].append(new_record)
+            with open("Provider/EFT.json", "w") as EFTfile:
+                json.dump(new_data,EFTfile,indent=4)
             
 
         with open('Provider/EFT.json') as f:
             data = json.loads(f.read())
             
-        #if data["EFT_Data"] == {}:
-        #    return None    
+        if data["EFT_Data"] == {}:
+               return None    
         
 # Create DataFrame from EFT_Data
         df = pd.DataFrame(data['EFT_Data'])
