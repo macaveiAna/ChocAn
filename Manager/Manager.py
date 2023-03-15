@@ -87,8 +87,11 @@ class Manager:
                             else:
                                 print("No providers found")
                         elif(choice == 3):
-                            if (r.create_EFT_report() == None):
+                            report_list = r.create_EFT_report()
+                            if report_list is None:
                                 print("NO AMOUNT TO BE TRANSFERRED FOR THE WEEK")
+                            else:
+                                print(report_list)
                         elif(choice == 4):
                             report_list = r.create_summary_report()
                             if report_list is None:

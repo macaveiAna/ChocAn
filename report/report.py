@@ -102,11 +102,12 @@ class report:
             #frames.append(df)
         #result = pd.concat(frames)
         df_styled = df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}]).set_properties(**{'text-align': 'left'})
-        print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
+        #print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
     
         data["EFT_Data"] = []
         with open("Provider/EFT.json", "w") as EFTfile:
             json.dump(data, EFTfile, indent=4)
+        return tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False)
     def create_summary_report(self):
         # create an instance of the RecordList class
         s = Service()
