@@ -132,8 +132,8 @@ class report:
                 provider_info[provider_number] = {'consultations': 1, 'total_fee': fee}
 
 # print the summary report
-        print("Accounts Payable Summary Report")
-        print("------------------------------")
+        report_str = "Accounts Payable Summary Report\n"
+        report_str += "------------------------------\n"
         total_providers = len(provider_info)
         total_consultations = 0
         total_fee = 0
@@ -142,12 +142,12 @@ class report:
             fee = float(info['total_fee'].strip('$'))
             total_consultations += consultations
             total_fee += fee
-        print(f"Provider {provider_number}: {consultations} consultations, ${fee:.2f} fee")
-        print("------------------------------")
-        print(f"Total providers: {total_providers}")
-        print(f"Total consultations: {total_consultations}")
-        print(f"Overall fee total: ${total_fee:.2f}")
-
+        report_str += f"Provider {provider_number}: {consultations} consultations, ${fee:.2f} fee\n"
+        report_str += "------------------------------\n"
+        report_str += f"Total providers: {total_providers}\n"
+        report_str += f"Total consultations: {total_consultations}\n"
+        report_str += f"Overall fee total: ${total_fee:.2f}\n"
+        return report_str
 
             
             

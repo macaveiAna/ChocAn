@@ -90,8 +90,11 @@ class Manager:
                             if (r.create_EFT_report() == None):
                                 print("NO AMOUNT TO BE TRANSFERRED FOR THE WEEK")
                         elif(choice == 4):
-                            if(r.create_summary_report() == None):
+                            report_list = r.create_summary_report()
+                            if report_list is None:
                                 print("NO ACCOUNTS TO BE PAID FOR THE WEEK!")
+                            else:
+                                print(report_list)
                 
                         else:
                             print("Enter a valid option!")
