@@ -120,6 +120,7 @@ class report:
        # return tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False)
         
     def create_summary_report(self):
+        today = date.today()
         # create an instance of the RecordList class
         s = Service()
         filename = "report/reports.txt"
@@ -159,6 +160,22 @@ class report:
         report_str += f"Total providers: {total_providers}\n"
         report_str += f"Total consultations: {total_consultations}\n"
         report_str += f"Overall fee total: ${total_fee:.2f}\n"
+        provider = {
+            "ProviderId": provider_number,
+            "Number of Consultations": consultations,
+            "Total Fee": total_fee
+        }
+        data = {
+            "Provider": provider,
+            "Total Providers": total_providers,
+            "Total Consultations": total_consultations,
+            "Overall Fee Total": total_fee
+        }
+        with open(f"report/Summary Reports/{today}", "w") as file:
+            json.dump(data,file,indent=4)
+        
+
+
         return report_str
 
             
