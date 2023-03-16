@@ -10,6 +10,11 @@
             "Date of Service ": "2023-03-14",
             "Provider Name ": "Tim",
             "Service Name ": "internist"
+        },
+        {
+            "Date of Service ": "2023-03-15",
+            "Provider Name ": "Tim",
+            "Service Name ": "internist"
         }
     ]
 }

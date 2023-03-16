@@ -66,14 +66,20 @@ class report:
                 aProvider = json.load(aProviderFile)
             provider_number = aProvider["ProviderID"]
             total_fees_transfer = aProvider["TotalFee"]
+            
             if total_fees_transfer != "$0.00":
                 with open("Provider/EFT.json", "r") as EFTfile:
                     new_data = json.load(EFTfile)
                 for provider in new_data["EFT_Data"]:
                     if provider["ProviderName"] == name:
+                        
                         provider["TotalAmount"] = total_fees_transfer
+                        
                         flag = True
+                        with open("Provider/EFT.json", "w") as EFTfile:
+                            json.dump(new_data,EFTfile,indent=4)
                         break
+
         if(flag == False):
 
             new_record = {
@@ -88,7 +94,8 @@ class report:
 
         with open('Provider/EFT.json') as f:
             data = json.loads(f.read())
-            
+
+   
         if data["EFT_Data"] == {}:
                return None    
         
