@@ -1,10 +1,10 @@
 {
     "Provider": {
         "ProviderId": "983000104",
-        "Number of Consultations": 1,
-        "Total Fee": 40.0
+        "Number of Consultations": 2,
+        "Total Fee": 80.0
     },
     "Total Providers": 1,
-    "Total Consultations": 1,
-    "Overall Fee Total": 40.0
+    "Total Consultations": 2,
+    "Overall Fee Total": 80.0
 }

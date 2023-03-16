@@ -144,14 +144,11 @@ class report:
 # iterate over the records in the list and update the provider information
         for record in record_list:
             provider_number = record.provider_number
-            fee = s.get_fee(record.service_code)  # function to look up fee for service code
-            if isinstance(fee, float):
-                fee_str = f"${fee:.2f}"
-            else:
-                fee_str = str(fee)
+            fee = float(s.get_fee(record.service_code).replace('$', ''))  # function to look up fee for service code
+            
             if provider_number in provider_info:
                 provider_info[provider_number]['consultations'] += 1
-                provider_info[provider_number]['total_fee'] += fee_str
+                provider_info[provider_number]['total_fee'] += fee
             else:
                 provider_info[provider_number] = {'consultations': 1, 'total_fee': fee}
 
@@ -163,8 +160,8 @@ class report:
         total_fee = 0
         for provider_number, info in provider_info.items():
             consultations = info['consultations']
-            print(info['total_fee'])
-            fee = float(info['total_fee'].strip('$'))
+            
+            fee = info['total_fee']
             total_consultations += consultations
             total_fee += fee
         report_str += f"Provider {provider_number}: {consultations} consultations, ${fee:.2f} fee\n"
@@ -185,6 +182,7 @@ class report:
         }
         with open(f"report/Summary Reports/{today}", "w") as file:
             json.dump(data,file,indent=4)
+        return report_str
         
 
 
