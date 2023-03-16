@@ -1,6 +1,6 @@
 import json
 import datetime
-from datetime import date
+from datetime import date,timedelta
 import pandas as pd
 from tabulate import tabulate
 from LLL import *
@@ -145,12 +145,16 @@ class report:
         for record in record_list:
             provider_number = record.provider_number
             fee = float(s.get_fee(record.service_code).replace('$', ''))  # function to look up fee for service code
-            
-            if provider_number in provider_info:
-                provider_info[provider_number]['consultations'] += 1
-                provider_info[provider_number]['total_fee'] += fee
-            else:
-                provider_info[provider_number] = {'consultations': 1, 'total_fee': fee}
+            date_format = '%Y-%m-%d %H:%M:%S'
+            date_obj = datetime.strptime(record.current_date_time,date_format)
+            now = datetime.now()
+            seven_days_ago = now - timedelta(days=7)
+            if date_obj > seven_days_ago:
+                if provider_number in provider_info:
+                    provider_info[provider_number]['consultations'] += 1
+                    provider_info[provider_number]['total_fee'] += fee
+                else:
+                    provider_info[provider_number] = {'consultations': 1, 'total_fee': fee}
 
 # print the summary report
         report_str = "Accounts Payable Summary Report\n"
