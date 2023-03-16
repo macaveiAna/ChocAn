@@ -8,46 +8,22 @@
     "ProviderZip": "97867",
     "Services": [
         {
-            "Date of Service ": "2023-03-14",
-            "CurrentDate": "2023-03-14 22:22:04",
+            "Date of Service ": "2023-03-10",
+            "CurrentDate": "2023-03-15 20:47:39",
             "MemberName": "Ana Macavei",
             "MemberNumber": "452138802",
             "ServiceCode": "111356",
             "ServiceFee": "$40"
         },
         {
-            "Date of Service ": "2023-03-15",
-            "CurrentDate": "2023-03-15 19:46:38",
-            "MemberName": "Ana Macavei",
-            "MemberNumber": "452138802",
-            "ServiceCode": "111356",
-            "ServiceFee": "$40"
-        },
-        {
-            "Date of Service ": "2023-03-15",
-            "CurrentDate": "2023-03-15 19:59:49",
-            "MemberName": "Ana Macavei",
-            "MemberNumber": "452138802",
-            "ServiceCode": "111356",
-            "ServiceFee": "$40"
-        },
-        {
-            "Date of Service ": "2023-03-15",
-            "CurrentDate": "2023-03-15 20:02:58",
-            "MemberName": "Ana Macavei",
-            "MemberNumber": "452138802",
-            "ServiceCode": "111356",
-            "ServiceFee": "$40"
-        },
-        {
-            "Date of Service ": "2023-03-15",
-            "CurrentDate": "2023-03-15 20:04:40",
+            "Date of Service ": "2023-03-10",
+            "CurrentDate": "2023-03-15 20:50:55",
             "MemberName": "Ana Macavei",
             "MemberNumber": "452138802",
             "ServiceCode": "111356",
             "ServiceFee": "$40"
         }
     ],
-    "TotalConsultations": 5,
-    "TotalFee": "$200.00"
+    "TotalConsultations": 2,
+    "TotalFee": "$80.00"
 }
