@@ -130,7 +130,7 @@ class RecordList:
 
     def save_to_file(self, filename):
         current_node = self.head
-        with open(filename, "w") as f:
+        with open(filename, "a") as f:
             while current_node is not None:
                 dt = datetime.strptime(str(current_node.current_date_time), "%Y-%m-%d %H:%M:%S")
                 sd = datetime.strptime(str(current_node.service_date),"%Y-%m-%d")

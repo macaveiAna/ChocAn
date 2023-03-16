@@ -136,7 +136,7 @@ class report:
                 return None
         record_list = RecordList()
         record_list.load_from_file("report/reports.txt")
-        
+    
 
 # create a dictionary to store the provider information
         provider_info = {}
@@ -145,9 +145,13 @@ class report:
         for record in record_list:
             provider_number = record.provider_number
             fee = s.get_fee(record.service_code)  # function to look up fee for service code
+            if isinstance(fee, float):
+                fee_str = f"${fee:.2f}"
+            else:
+                fee_str = str(fee)
             if provider_number in provider_info:
                 provider_info[provider_number]['consultations'] += 1
-                provider_info[provider_number]['total_fee'] += fee
+                provider_info[provider_number]['total_fee'] += fee_str
             else:
                 provider_info[provider_number] = {'consultations': 1, 'total_fee': fee}
 
@@ -159,6 +163,7 @@ class report:
         total_fee = 0
         for provider_number, info in provider_info.items():
             consultations = info['consultations']
+            print(info['total_fee'])
             fee = float(info['total_fee'].strip('$'))
             total_consultations += consultations
             total_fee += fee
@@ -183,7 +188,6 @@ class report:
         
 
 
-        return report_str
 
             
             
