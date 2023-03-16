@@ -171,7 +171,7 @@ class report:
             "Total Consultations": total_consultations,
             "Overall Fee Total": total_fee
         }
-        with open(f"report/{today}", "w") as file:
+        with open(f"report/Summary Reports/{today}", "w") as file:
             json.dump(data,file,indent=4)
         
 
