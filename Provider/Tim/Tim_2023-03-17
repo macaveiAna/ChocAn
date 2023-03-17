@@ -38,32 +38,8 @@
             "MemberNumber": "452138802",
             "ServiceCode": "111356",
             "ServiceFee": "$40"
-        },
-        {
-            "Date of Service ": "2023-03-15",
-            "CurrentDate": "2023-03-17 12:01:00",
-            "MemberName": "Ana Macavei",
-            "MemberNumber": "452138802",
-            "ServiceCode": "111356",
-            "ServiceFee": "$40"
-        },
-        {
-            "Date of Service ": "2023-03-15",
-            "CurrentDate": "2023-03-17 12:06:55",
-            "MemberName": "Ana Macavei",
-            "MemberNumber": "452138802",
-            "ServiceCode": "111356",
-            "ServiceFee": "$40"
-        },
-        {
-            "Date of Service ": "2023-03-15",
-            "CurrentDate": "2023-03-17 12:08:45",
-            "MemberName": "Ana Macavei",
-            "MemberNumber": "452138802",
-            "ServiceCode": "111356",
-            "ServiceFee": "$40"
         }
     ],
-    "TotalConsultations": 7,
-    "TotalFee": "$280.00"
+    "TotalConsultations": 4,
+    "TotalFee": "$160.00"
 }
