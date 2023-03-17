@@ -1,5 +1,7 @@
-#ChocAn
-CS 314 group project
+#ChocAn 
+CS 314 
+Group 2-Winter 2023
+Ana Macavei, Pooja Sounder Rajan, Melissa Fielman, Emma Yakley, Mahad Ghani
 
 Members pay a monthly fee to ChocAn.  
 
