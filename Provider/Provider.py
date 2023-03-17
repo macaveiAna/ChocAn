@@ -300,6 +300,7 @@ class Provider:
             
     def get_date_service(self, provider_id,provider_name, member_id,member_name):
         print("\nPlease enter the date the service was provided. ")
+        print("Note: The date has to be within 7 days of the current date")
         year = int(input('Enter year (yyyy): '))
         month = int(input('Enter month (mm): '))
         day = int(input('Enter day (dd): '))
