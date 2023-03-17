@@ -37,10 +37,19 @@ class Member:
         self.strAddr = input("> ")
         print("Please enter the City: ")
         self.city = input("> ")
+        while not self.city.isalpha():
+            print("Not a valid city, try again.")
+            self.city = input("Please enter a valid city: ")
         print("Please enter the State: ")
-        self.state= input("> ")
+        self.state = input("> ")
+        while len(self.state) != 2 or (not self.state.isalpha()):
+            print("Not a valid state, try again.")
+            self.state = input("Please enter a valid state: ")
         print("Please enter the zipcode: ")
         self.zip = input("> ")
+        while len(self.zip) != 5 or (not self.zip.isdigit()):
+            print("Not a 5 digit number, try again.")
+            self.zip = input("Please enter your 5 digit zipcode: ")
 
         if self.city.isalpha() == False or self.state.isalpha() == False or self.zip.isnumeric() == False or len(self.state) != 2 or len(self.zip) != 5:
             print("Incorrect address format!")

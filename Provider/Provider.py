@@ -32,10 +32,20 @@ class Provider:
         self.strAddr = input("> ")
         print("Please enter the City: ")
         self.city = input("> ")
+        while not self.city.isalpha():
+            print("Not a valid city, try again.")
+            self.city = input("Please enter a valid city: ")
         print("Please enter the State: ")
         self.state= input("> ")
+        while len(self.state) != 2 or (not self.state.isalpha()):
+            print("Not a valid state, try again.")
+            self.state = input("Please enter a valid state: ")
         print("Please enter the zipcode: ")
         self.zip = input("> ")
+        while len(self.zip) != 5 or (not self.zip.isdigit()):
+            print("Not a 5 digit number, try again.")
+            self.zip = input("Please enter your 5 digit zipcode: ")
+            
         self.removal_date = "Active" # Added for removal, will need to change test file
         self.add_provider()
     
@@ -106,7 +116,7 @@ class Provider:
         print(tabulate(df_styled.data, headers=df_styled.columns, tablefmt='fancy_grid', showindex=False))
         ch = int(input("Please enter your choice: "))
         if ch == 1:
-            self.load()
+            self.enter_Provider_details()
             
     def remove_provider(self):
         self.display_providers()
