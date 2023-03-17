@@ -22,8 +22,16 @@
             "MemberNumber": "452138802",
             "ServiceCode": "111356",
             "ServiceFee": "$40"
+        },
+        {
+            "Date of Service ": "2023-03-10",
+            "CurrentDate": "2023-03-16 22:07:22",
+            "MemberName": "Ana Macavei",
+            "MemberNumber": "452138802",
+            "ServiceCode": "111356",
+            "ServiceFee": "$40"
         }
     ],
-    "TotalConsultations": 2,
-    "TotalFee": "$80.00"
+    "TotalConsultations": 3,
+    "TotalFee": "$120.00"
 }
